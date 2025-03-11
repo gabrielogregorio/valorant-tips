@@ -21,6 +21,9 @@ const resources = {
       'label.name': 'NOME',
       'label.username': 'USUÁRIO',
       'msg.error.onFetchUserLogged': 'Erro ao obter dados do usuário logado',
+
+      'msg.error.onFetchSuggestions': 'Sugestões não carregadas',
+
       'label.newPassword': 'A NOVA SENHA',
       'placeholder.newPassword': '*******',
       'label.newConfirmPassword': 'CONFIRME A NOVA SENHA',
@@ -48,6 +51,9 @@ const resources = {
       'label.name': 'NOME',
       'label.username': 'USUÁRIO',
       'msg.error.onFetchUserLogged': 'Erro ao obter dados do usuário logado',
+
+      'msg.error.onFetchSuggestions': 'Sugestões não carregadas',
+
       'label.newPassword': 'A NOVA SENHA',
       'placeholder.newPassword': '*******',
       'label.newConfirmPassword': 'CONFIRME A NOVA SENHA',

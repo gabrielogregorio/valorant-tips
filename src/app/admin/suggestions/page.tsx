@@ -1,11 +1,12 @@
 import { TitleAndSubtitle } from '../../../Molecules/TitleAndSubTitle';
+import { Suggestions } from '../../../Organisms/Suggestions';
 
-export default function DashboardScreen() {
+export default function SuggestionScreen() {
   return (
     <>
-      <TitleAndSubtitle title="Dashboard" subtitle="Esse é um dashboard" />
+      <TitleAndSubtitle title="Sugestões" subtitle="Aqui estão as sugestões enviadas pelos players" />
 
-      <div>Tela inicial</div>
+      <Suggestions />
     </>
   );
 }
