@@ -58,7 +58,7 @@ export default {
     },
 
     backgroundImage: {
-      loadImage: ' url(/images/choiceImage.png);',
+      loadImage: ' url(/public/images/choiceImage.png);',
     },
     colors: {
       transparent: 'transparent',
