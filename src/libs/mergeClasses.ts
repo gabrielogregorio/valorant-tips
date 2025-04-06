@@ -1,5 +1,3 @@
 import { twMerge } from 'tailwind-merge';
 
-export const mergeClasses = (...classes: string[]) => {
-  return twMerge(...classes);
-};
+export const mergeClasses = (...classes: string[]) => twMerge(...classes);

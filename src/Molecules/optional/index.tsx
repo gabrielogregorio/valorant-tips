@@ -22,7 +22,7 @@ export const Optional = ({ className = '', variant = OptionalVariantEnum.Default
   const styles = variantStyles[variant];
   return (
     <div className={mergeClasses(styles, 'flex gap-xs items-center', className)}>
-      <Text variant={TextVariantEnum.subtext}>{`(Opcional)`}</Text>
+      <Text variant={TextVariantEnum.subtext}>(Opcional)</Text>
     </div>
   );
 };

@@ -4,11 +4,7 @@ import { render, screen } from '../../libs/test-utils/test-utils';
 
 describe('HelpText', () => {
   it('should render a default variant', async () => {
-    const { container } = render(
-      <>
-        <HelpText variant={HelpTextVariantEnum.Default} text="Example" />
-      </>,
-    );
+    const { container } = render(<HelpText variant={HelpTextVariantEnum.Default} text="Example" />);
 
     const component = screen.getByText('Example').closest('div');
 
@@ -20,11 +16,7 @@ describe('HelpText', () => {
   });
 
   it('should render a disable variant', async () => {
-    const { container } = render(
-      <>
-        <HelpText variant={HelpTextVariantEnum.Disabled} text="Example" />
-      </>,
-    );
+    const { container } = render(<HelpText variant={HelpTextVariantEnum.Disabled} text="Example" />);
 
     const component = screen.getByText('Example').closest('div');
 
@@ -36,11 +28,7 @@ describe('HelpText', () => {
   });
 
   it('should render a error variant', async () => {
-    const { container } = render(
-      <>
-        <HelpText variant={HelpTextVariantEnum.Error} text="Example" />
-      </>,
-    );
+    const { container } = render(<HelpText variant={HelpTextVariantEnum.Error} text="Example" />);
 
     const component = screen.getByText('Example').closest('div');
 

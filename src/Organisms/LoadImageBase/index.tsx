@@ -1,4 +1,5 @@
 'use client';
+
 import { ChangeEvent, SetStateAction } from 'react';
 import { Text, TextVariantEnum } from '../../Atoms/Text';
 import { Image } from '../../libs/image';
@@ -64,7 +65,7 @@ export const LoadImageBase = ({
   if (isLoading) {
     return (
       <div className={mergeClasses('flex flex-col', className)}>
-        <Skeleton className="w-[240px] h-[240px]  rounded-sm"></Skeleton>
+        <Skeleton className="w-[240px] h-[240px]  rounded-sm" />
 
         <Text variant={TextVariantEnum.subtext} className="text-content-fg-subcontent">
           carregando imagem...

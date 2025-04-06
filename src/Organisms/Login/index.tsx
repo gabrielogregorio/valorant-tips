@@ -1,4 +1,5 @@
 'use client';
+
 import { TextFieldForm } from '../../Molecules/TextFieldForm';
 import { Button, ButtonVariantEnum } from '../../Molecules/Button';
 import { Text } from '../../Atoms/Text';
@@ -9,7 +10,7 @@ import { LoginFormInterface } from './validationSchema';
 import { useHandleRouter } from '../../libs/useHandleRouter';
 import { RouteScreensEnum } from '../../@types/routeScreenEnum';
 
-export default function Login() {
+const Login = () => {
   const { control, onSubmit, isLoading, errorMessage, success } = useLoginAccountFormController();
   const { push } = useHandleRouter();
 
@@ -59,4 +60,6 @@ export default function Login() {
       </div>
     </form>
   );
-}
+};
+
+export default Login;

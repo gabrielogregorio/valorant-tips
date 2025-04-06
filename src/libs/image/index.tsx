@@ -18,6 +18,4 @@ interface ImageProps {
   unoptimized?: boolean;
 }
 
-export const Image = (props: ImageProps) => {
-  return <ImageComponent {...props} />;
-};
+export const Image = (props: ImageProps) => <ImageComponent {...props} />;

@@ -120,7 +120,7 @@ export const InputTagBase = ({
             baseOnDisableStyles,
           )}>
           <input
-            type={'text'}
+            type="text"
             ref={ref}
             name={name}
             disabled={disabled}

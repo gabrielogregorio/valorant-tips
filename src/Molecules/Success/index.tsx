@@ -7,15 +7,13 @@ type Props = {
   className?: string;
 };
 
-export const SuccessMessage = ({ text = undefined, className = '' }: Props) => {
-  return (
-    <div
-      role="alert"
-      className={mergeClasses(
-        'text-feedback-success-hard py-lg px-xl rounded-sm flex gap-md bg-feedback-success-soft w-full',
-        className,
-      )}>
-      <Text>{text}</Text>
-    </div>
-  );
-};
+export const SuccessMessage = ({ text = undefined, className = '' }: Props) => (
+  <div
+    role="alert"
+    className={mergeClasses(
+      'text-feedback-success-hard py-lg px-xl rounded-sm flex gap-md bg-feedback-success-soft w-full',
+      className,
+    )}>
+    <Text>{text}</Text>
+  </div>
+);

@@ -91,7 +91,7 @@ export const Text = ({
   className = '',
   children = undefined,
 }: TextProps) => {
-  const currentVariant = variantsStyles[variant] || variantsStyles['text'];
+  const currentVariant = variantsStyles[variant] || variantsStyles.text;
 
   const Tag = asTag || currentVariant.as;
   const classes = currentVariant.className;

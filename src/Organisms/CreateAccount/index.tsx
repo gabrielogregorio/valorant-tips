@@ -1,4 +1,5 @@
 'use client';
+
 import { CreateAccountFormInterface } from './validationSchema';
 import { useCreateAccountFormController } from './useCreateAccountFormController';
 import { TextFieldForm } from '../../Molecules/TextFieldForm';
@@ -10,7 +11,7 @@ import { useHandleRouter } from '../../libs/useHandleRouter';
 import { RouteScreensEnum } from '../../@types/routeScreenEnum';
 import { formatI18n } from '../../libs/i18n';
 
-export default function CreateAccount() {
+const CreateAccount = () => {
   const { control, onSubmit, isLoading, errorMessage, success } = useCreateAccountFormController();
   const { push } = useHandleRouter();
 
@@ -90,4 +91,6 @@ export default function CreateAccount() {
       </div>
     </form>
   );
-}
+};
+
+export default CreateAccount;

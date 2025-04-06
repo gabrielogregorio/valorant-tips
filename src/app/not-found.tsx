@@ -1,3 +1,3 @@
-export default function NotFound() {
-  return <div>Ops, router not found</div>;
-}
+const NotFound = () => <div>Ops, router not found</div>;
+
+export default NotFound;

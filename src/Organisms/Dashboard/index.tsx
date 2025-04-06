@@ -1,4 +1,5 @@
 'use client';
+
 import { useCallback, useEffect, useState } from 'react';
 import { CardDash } from '../../Molecules/CardDash';
 import { plainPromise } from '../../shared/utils/plainPromise';
@@ -82,16 +83,14 @@ export const Dashboard = () => {
 
   return (
     <div className="flex flex-wrap gap-3xl justify-center">
-      {data.map((item, index) => {
-        return (
-          <CardDash
-            className={styleVarianteStyles[index] || styleVarianteStyles[0]}
-            title={formatI18n(`label.dashboard.${item.key}`)}
-            key={item.key}
-            value={formatNumbers(item.value)}
-          />
-        );
-      })}
+      {data.map((item, index) => (
+        <CardDash
+          className={styleVarianteStyles[index] || styleVarianteStyles[0]}
+          title={formatI18n(`label.dashboard.${item.key}`)}
+          key={item.key}
+          value={formatNumbers(item.value)}
+        />
+      ))}
     </div>
   );
 };

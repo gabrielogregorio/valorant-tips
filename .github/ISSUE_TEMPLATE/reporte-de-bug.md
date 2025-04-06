@@ -6,10 +6,10 @@ Uma descrição clara e concisa do que é o bug.
 
 ### Passos para reproduzir o comportamento
 
--   Vá para '...'
--   Clique em '....'
--   Role para baixo até '....'
--   Veja o erro
+- Vá para '...'
+- Clique em '....'
+- Role para baixo até '....'
+- Veja o erro
 
 ### Comportamento esperado
 
@@ -21,16 +21,16 @@ Se aplicável, adicione capturas de tela para ajudar a explicar seu problema.
 
 ### Desktop
 
--   SO: Windows
--   Navegador: Safari
--   Versão 22
+- SO: Windows
+- Navegador: Safari
+- Versão 22
 
 ### Smartphone
 
--   Dispositivo: Samsung J2 2016
--   SO: Android 4.4
--   Navegador: Internet Samsung
--   Versão: 19
+- Dispositivo: Samsung J2 2016
+- SO: Android 4.4
+- Navegador: Internet Samsung
+- Versão: 19
 
 ### Contexto adicional
 

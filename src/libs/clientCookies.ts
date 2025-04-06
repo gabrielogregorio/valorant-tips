@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 'use client';
+
 import {
   getCookie as getCookieLib,
   getCookies as getCookiesLib,
@@ -27,6 +29,7 @@ export class ClientCookies {
   static getCookies(_options?: OptionsType): TmpCookiesObj | undefined {
     return getCookiesLib(_options);
   }
+
   static setCookie(key: string, data: any, options?: OptionsType): void {
     return setCookieLib(key, data, options);
   }

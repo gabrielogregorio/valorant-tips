@@ -63,11 +63,11 @@ export const CheckboxBase = ({
   return (
     <div className="flex gap-xs">
       <input
-        type={'checkbox'}
+        type="checkbox"
         ref={ref}
         name={name}
         disabled={disabled}
-        value={Boolean(isChecked) ? 'true' : 'false'}
+        value={isChecked ? 'true' : 'false'}
         checked={Boolean(isChecked)}
         id={id}
         className={mergeClasses('accent-primary cursor-pointer', inputOnDisableStyles, className)}

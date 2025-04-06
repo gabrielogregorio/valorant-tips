@@ -4,11 +4,7 @@ import { render, screen } from '../../libs/test-utils/test-utils';
 
 describe('Optional', () => {
   it('should render a default variant', async () => {
-    const { container } = render(
-      <>
-        <Optional variant={OptionalVariantEnum.Default} className="example-custom-class" />
-      </>,
-    );
+    const { container } = render(<Optional variant={OptionalVariantEnum.Default} className="example-custom-class" />);
 
     const component = screen.getByText('(Opcional)').closest('div');
 
@@ -21,11 +17,7 @@ describe('Optional', () => {
   });
 
   it('should render a disable variant', async () => {
-    const { container } = render(
-      <>
-        <Optional variant={OptionalVariantEnum.Disabled} />
-      </>,
-    );
+    const { container } = render(<Optional variant={OptionalVariantEnum.Disabled} />);
 
     const component = screen.getByText('(Opcional)').closest('div');
 
@@ -37,11 +29,7 @@ describe('Optional', () => {
   });
 
   it('should render a error variant', async () => {
-    const { container } = render(
-      <>
-        <Optional variant={OptionalVariantEnum.Error} />
-      </>,
-    );
+    const { container } = render(<Optional variant={OptionalVariantEnum.Error} />);
 
     const component = screen.getByText('(Opcional)').closest('div');
 

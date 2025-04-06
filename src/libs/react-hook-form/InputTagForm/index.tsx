@@ -44,7 +44,7 @@ export const InputTagFormExternal = <T extends CustomFieldValuesInputTagBaseValu
         onBlur?.(event);
       }}
       name={name}
-      onChange={(value) => onChangeHookForm(value)}
+      onChange={(valueLocal) => onChangeHookForm(valueLocal)}
       {...rest}
     />
   );

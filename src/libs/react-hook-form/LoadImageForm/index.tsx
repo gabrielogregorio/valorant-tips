@@ -24,7 +24,7 @@ export const LoadImageFormExternal = <T extends FieldValues>({
       value={value}
       errorMessage={errorMessageHandled}
       name={name}
-      onChange={(value) => onChangeHookForm(value)}
+      onChange={(valueLocal) => onChangeHookForm(valueLocal)}
       {...rest}
     />
   );

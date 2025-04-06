@@ -5,6 +5,4 @@ import { CheckboxFormExternal } from '../../libs/react-hook-form/CheckboxFormExt
 
 export const CheckboxForm: <T extends CustomFieldValuesBoolean>(props: CheckboxFormProps<T>) => JSX.Element = (
   props,
-) => {
-  return <CheckboxFormExternal {...props} />;
-};
+) => <CheckboxFormExternal {...props} />;

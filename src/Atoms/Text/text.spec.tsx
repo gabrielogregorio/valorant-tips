@@ -22,7 +22,6 @@ describe('Text', () => {
     expect(textComponent).toHaveClass('text-[36px]');
   });
 
-
   it('should render 9xl variant', () => {
     render(<Text variant={TextVariantEnum['9xl']}>Example</Text>);
 
@@ -32,7 +31,6 @@ describe('Text', () => {
     expect(textComponent.tagName).toBe('SPAN');
     expect(textComponent).toHaveClass('text-[56px]');
   });
-
 
   it('should render button variant', () => {
     render(<Text variant={TextVariantEnum.button}>Example</Text>);

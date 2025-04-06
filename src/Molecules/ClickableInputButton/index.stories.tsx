@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { ClickableInputButton } from '.';
 import { Icons } from '../../Atoms/Icons';
-import { action } from '@storybook/addon-actions';
 
 const meta = {
   title: 'Molecules/ClickableInputButton',

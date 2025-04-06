@@ -6,15 +6,13 @@ describe('ClickableInputButton', () => {
   it('should render a default variant', async () => {
     const clickFunction = jest.fn();
     const { container } = render(
-      <>
-        <ClickableInputButton
-          ariaLabel="close"
-          onClick={clickFunction}
-          icon="AddOutline"
-          className="example-custom-invalid"
-          disabled={false}
-        />
-      </>,
+      <ClickableInputButton
+        ariaLabel="close"
+        onClick={clickFunction}
+        icon="AddOutline"
+        className="example-custom-invalid"
+        disabled={false}
+      />,
     );
 
     const component = screen.getByRole('button');
@@ -33,15 +31,13 @@ describe('ClickableInputButton', () => {
     const fn = jest.fn();
     const clickFunction = jest.fn();
     const { container } = render(
-      <>
-        <ClickableInputButton
-          ariaLabel="close"
-          onClick={fn}
-          icon="AddOutline"
-          className="example-custom-invalid"
-          disabled
-        />
-      </>,
+      <ClickableInputButton
+        ariaLabel="close"
+        onClick={fn}
+        icon="AddOutline"
+        className="example-custom-invalid"
+        disabled
+      />,
     );
 
     const component = screen.getByRole('button');

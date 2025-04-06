@@ -1,4 +1,5 @@
 'use client';
+
 import { TextFieldForm } from '../../Molecules/TextFieldForm';
 import { Button, ButtonVariantEnum } from '../../Molecules/Button';
 import { ErrorMessage } from '../../Molecules/ErrorMessage';
@@ -7,7 +8,7 @@ import { formatI18n } from '../../libs/i18n';
 import { UpdateProfilePasswordFormInterface } from './validationSchema';
 import { useProfileNewPasswordAccountFormController } from './useProfileDataAccountFormController';
 
-export default function UpdateProfilePassword() {
+const UpdateProfilePassword = () => {
   const { control, onSubmit, isLoading, errorMessage, success } = useProfileNewPasswordAccountFormController();
 
   return (
@@ -48,4 +49,6 @@ export default function UpdateProfilePassword() {
       </div>
     </form>
   );
-}
+};
+
+export default UpdateProfilePassword;

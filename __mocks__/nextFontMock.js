@@ -6,7 +6,7 @@ module.exports = new Proxy(
         className: 'className',
         variable: 'variable',
         style: { fontFamily: 'fontFamily' },
-      })
+      });
     },
-  }
-)
+  },
+);

@@ -14,7 +14,6 @@ export const Header = () => (
         </svg>
         <h1>Acme</h1>
       </div>
-      <div></div>
     </div>
   </header>
 );

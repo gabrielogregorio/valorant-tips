@@ -59,7 +59,7 @@ const handlePasswordShow = (
 ) => {
   const typeHandled = showPassword && type === 'password' ? 'text' : type;
 
-  let element: ReactNode = undefined;
+  let element: ReactNode;
 
   if (type === 'password') {
     element = showPassword ? (

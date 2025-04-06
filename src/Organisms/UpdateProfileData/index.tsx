@@ -1,4 +1,6 @@
 'use client';
+
+import { useEffect } from 'react';
 import { TextFieldForm } from '../../Molecules/TextFieldForm';
 import { Button, ButtonVariantEnum } from '../../Molecules/Button';
 import { ErrorMessage } from '../../Molecules/ErrorMessage';
@@ -8,9 +10,8 @@ import { useProfileDataAccountFormController } from './useProfileDataAccountForm
 import { UpdateProfileDataFormInterface } from './validationSchema';
 import { LoadImageForm } from '../LoadImageForm';
 import { useFetchUserLogged } from '../../shared/hooks/useFetchUserLogged';
-import { useEffect } from 'react';
 
-export default function UpdateProfileData() {
+const UpdateProfileData = () => {
   const { control, onSubmit, isLoading, errorMessage, success, setValue, getValues } =
     useProfileDataAccountFormController();
 
@@ -83,4 +84,6 @@ export default function UpdateProfileData() {
       </div>
     </form>
   );
-}
+};
+
+export default UpdateProfileData;
