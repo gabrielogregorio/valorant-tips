@@ -1,10 +1,10 @@
-import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
-import config from '../../../tailwind.config';
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+import {getThemeVariables} from '../../utils-storybook'
 
 export const Spacing = () => {
+   const keysSpacing = getThemeVariables('spacing')
 
-const objectSpacing =config.theme.spacing
-const keysSpacing = Object.keys(objectSpacing)
+
 
 return <table className="table-fixed">
 <thead>
@@ -15,10 +15,8 @@ return <table className="table-fixed">
   </thead>
    <tbody>
 
-{keysSpacing.map((key) => {
+{Object.entries(keysSpacing).map(([key, value]) => {
 
-
-const value = objectSpacing[key]
 
     return   <tr key={key}>
       <td>{key}</td>

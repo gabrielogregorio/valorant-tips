@@ -28,9 +28,9 @@ export const LoadImageBase = ({
   label,
   name,
   value,
-  onChange = () => {},
+  onChange = () => { },
   className = '',
-  setErrorMessage = () => {},
+  setErrorMessage = () => { },
   errorMessage,
   helpText,
 }: LoadImagePropsInterface) => {
@@ -65,7 +65,7 @@ export const LoadImageBase = ({
   if (isLoading) {
     return (
       <div className={mergeClasses('flex flex-col', className)}>
-        <Skeleton className="w-[240px] h-[240px]  rounded-sm" />
+        <Skeleton className="w-60 h-60  rounded-sm" />
 
         <Text variant={TextVariantEnum.subtext} className="text-content-fg-subcontent">
           carregando imagem...
@@ -84,7 +84,7 @@ export const LoadImageBase = ({
             width={240}
             height={240}
             alt=""
-            className="min-h-[240px] min-w-[240px] object-cover"
+            className="min-h-60 min-w-60 object-cover"
           />
 
           <Button
@@ -103,7 +103,7 @@ export const LoadImageBase = ({
   return (
     <div className={mergeClasses('flex flex-col', className)}>
       <div className="object-cover">
-        <div className="w-[245px] h-[249px] bg-loadImage ">
+        <div className="w-61.25 h-62.25 bg-loadImage ">
           <Label htmlFor={name} className="hidden" id={id} text={label} />
           <input
             type="file"

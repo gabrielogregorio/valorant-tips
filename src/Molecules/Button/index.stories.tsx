@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { fn } from 'storybook/test';
 import { Button, ButtonVariantEnum } from '.';
 import { Icons } from '../../Atoms/Icons';
 
@@ -26,7 +26,7 @@ export const Primary: Story = {
     leftIcon: <Icons.GearOutline className="h-[14px]" />,
     rightIcon: <Icons.OpenEyeOutline className="h-[14px]" />,
     disabled: false,
-    onClick: action('onClick'),
+    onClick: fn(),
     variant: ButtonVariantEnum.Primary,
     children: 'Enviar Post',
     className: '',
@@ -44,7 +44,7 @@ export const Secondary: Story = {
     leftIcon: <Icons.GearOutline className="h-[14px]" />,
     rightIcon: <Icons.OpenEyeOutline className="h-[14px]" />,
     disabled: false,
-    onClick: action('onClick'),
+    onClick: fn(),
     variant: ButtonVariantEnum.Secondary,
     children: 'Enviar Post',
     className: '',
@@ -62,7 +62,7 @@ export const Text: Story = {
     leftIcon: <Icons.GearOutline className="h-[14px]" />,
     rightIcon: <Icons.OpenEyeOutline className="h-[14px]" />,
     disabled: false,
-    onClick: action('onClick'),
+    onClick: fn(),
     variant: ButtonVariantEnum.Text,
     children: 'Enviar Post',
     className: '',

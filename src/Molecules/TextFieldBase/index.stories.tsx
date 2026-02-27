@@ -1,5 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { fn } from 'storybook/test';
+
 import { TextFieldBase } from '.';
 import { ClickableInputButton } from '../ClickableInputButton';
 
@@ -18,12 +19,12 @@ type Story = StoryObj<typeof meta>;
 export const DefaultAndFilling: Story = {
   args: {
     disabled: false,
-    onClick: action('onClick'),
-    onChange: action('onChange'),
+    onClick: fn(),
+    onChange: fn(),
     id: 'example',
-    leftIcon: <ClickableInputButton ariaLabel="all right" onClick={action('clickLeftIcon')} icon="CheckOutline" />,
+    leftIcon: <ClickableInputButton ariaLabel="all right" onClick={fn} icon="CheckOutline" />,
     rightIcon: (
-      <ClickableInputButton ariaLabel="show password" onClick={action('clickRightIcon')} icon="OpenEyeOutline" />
+      <ClickableInputButton ariaLabel="show password" onClick={fn} icon="OpenEyeOutline" />
     ),
     label: 'SEU NOME',
     autoComplete: 'off',
@@ -39,12 +40,12 @@ export const DefaultAndFilling: Story = {
 export const Filled: Story = {
   args: {
     disabled: false,
-    onClick: action('onClick'),
-    onChange: action('onChange'),
+    onClick: fn(),
+    onChange: fn(),
     id: 'example',
-    leftIcon: <ClickableInputButton ariaLabel="all right" onClick={action('clickLeftIcon')} icon="CheckOutline" />,
+    leftIcon: <ClickableInputButton ariaLabel="all right" onClick={fn} icon="CheckOutline" />,
     rightIcon: (
-      <ClickableInputButton ariaLabel="show password" onClick={action('clickRightIcon')} icon="OpenEyeOutline" />
+      <ClickableInputButton ariaLabel="show password" onClick={fn} icon="OpenEyeOutline" />
     ),
     label: 'SEU NOME',
     autoComplete: 'off',
@@ -61,12 +62,12 @@ export const Filled: Story = {
 export const Error: Story = {
   args: {
     disabled: false,
-    onClick: action('onClick'),
-    onChange: action('onChange'),
+    onClick: fn(),
+    onChange: fn(),
     id: 'example',
-    leftIcon: <ClickableInputButton ariaLabel="all right" onClick={action('clickLeftIcon')} icon="CheckOutline" />,
+    leftIcon: <ClickableInputButton ariaLabel="all right" onClick={fn} icon="CheckOutline" />,
     rightIcon: (
-      <ClickableInputButton ariaLabel="show password" onClick={action('clickRightIcon')} icon="OpenEyeOutline" />
+      <ClickableInputButton ariaLabel="show password" onClick={fn} icon="OpenEyeOutline" />
     ),
     label: 'SEU NOME',
     autoComplete: 'off',
@@ -83,12 +84,12 @@ export const Error: Story = {
 export const Disabled: Story = {
   args: {
     disabled: true,
-    onClick: action('onClick'),
-    onChange: action('onChange'),
+    onClick: fn(),
+    onChange: fn(),
     id: 'example',
-    leftIcon: <ClickableInputButton ariaLabel="all right" onClick={action('clickLeftIcon')} icon="CheckOutline" />,
+    leftIcon: <ClickableInputButton ariaLabel="all right" onClick={fn} icon="CheckOutline" />,
     rightIcon: (
-      <ClickableInputButton ariaLabel="show password" onClick={action('clickRightIcon')} icon="OpenEyeOutline" />
+      <ClickableInputButton ariaLabel="show password" onClick={fn} icon="OpenEyeOutline" />
     ),
     label: 'SEU NOME',
     autoComplete: 'off',

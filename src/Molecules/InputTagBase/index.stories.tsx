@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { fn } from 'storybook/test';
 import { InputTagBase, InputTagBaseVariantEnum } from '.';
 
 const meta = {
@@ -23,10 +23,10 @@ export const DefaultAdding: Story = {
   },
   args: {
     disabled: false,
-    onClick: action('onClick'),
+    onClick: fn(),
     variant: InputTagBaseVariantEnum.Adding,
-    onChange: action('onChange'),
-    onDelete: action('onDelete'),
+    onChange: fn(),
+    onDelete: fn(),
     id: 'example',
     label: 'SEU NOME',
     autoComplete: 'off',
@@ -47,10 +47,10 @@ export const UpdatingDefault: Story = {
   },
   args: {
     disabled: false,
-    onClick: action('onClick'),
+    onClick: fn(),
     variant: InputTagBaseVariantEnum.Updating,
-    onChange: action('onChange'),
-    onDelete: action('onDelete'),
+    onChange: fn(),
+    onDelete: fn(),
     id: 'example',
     label: 'SEU NOME',
     autoComplete: 'off',
@@ -71,10 +71,10 @@ export const UpdatingHidden: Story = {
   },
   args: {
     disabled: false,
-    onClick: action('onClick'),
+    onClick: fn(),
     variant: InputTagBaseVariantEnum.Updating,
-    onChange: action('onChange'),
-    onDelete: action('onDelete'),
+    onChange: fn(),
+    onDelete: fn(),
     id: 'example',
     label: 'SEU NOME',
     autoComplete: 'off',
@@ -95,10 +95,10 @@ export const UpdatingDisalbed: Story = {
   },
   args: {
     disabled: true,
-    onClick: action('onClick'),
+    onClick: fn(),
     variant: InputTagBaseVariantEnum.Updating,
-    onChange: action('onChange'),
-    onDelete: action('onDelete'),
+    onChange: fn(),
+    onDelete: fn(),
     id: 'example',
     label: 'SEU NOME',
     autoComplete: 'off',

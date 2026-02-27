@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { fn } from 'storybook/test';
 import { CheckboxBase } from '.';
 
 const meta = {
@@ -17,8 +17,8 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     disabled: false,
-    onClick: action('onClick'),
-    onChange: action('onChange'),
+    onClick: fn(),
+    onChange: fn(),
     id: 'example',
     label: 'SEU NOME',
     isChecked: true,
@@ -34,8 +34,8 @@ export const Default: Story = {
 export const NotChecked: Story = {
   args: {
     disabled: false,
-    onClick: action('onClick'),
-    onChange: action('onChange'),
+    onClick: fn(),
+    onChange: fn(),
     id: 'example',
     label: 'SEU NOME',
     isChecked: false,
@@ -51,8 +51,8 @@ export const NotChecked: Story = {
 export const Disabled: Story = {
   args: {
     disabled: true,
-    onClick: action('onClick'),
-    onChange: action('onChange'),
+    onClick: fn(),
+    onChange: fn(),
     id: 'example',
     label: 'SEU NOME',
     isChecked: true,

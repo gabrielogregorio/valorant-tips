@@ -5,5 +5,5 @@ interface Props {
 }
 
 export const Skeleton = ({ className = '' }: Props) => (
-  <div className={mergeClasses('bg-content-bg-disabled animate-pulseIn300 w-[220px] h-[184px]', className)} />
+  <div className={mergeClasses('bg-content-bg-disabled animate-pulseIn300 w-55 h-46', className)} />
 );

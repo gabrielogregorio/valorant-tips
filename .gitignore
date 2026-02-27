@@ -11,15 +11,6 @@
 !.yarn/versions
 
 # testing
-
-
-
-# Ignore screenshot cypress
-/cypress/screenshots/*
-
-# Ignore movies cypress
-/cypress/videos/*
-
 /coverage
 
 # next.js
@@ -49,6 +40,13 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-OLD
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
 
 *storybook.log
+storybook-static

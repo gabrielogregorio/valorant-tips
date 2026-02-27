@@ -94,7 +94,7 @@ export const InputTagBase = ({
   onChange,
   label,
   value,
-  onDelete = () => {},
+  onDelete = () => { },
   ...rest
 }: InputTagBaseProps) => {
   const variants = getVariants({ disabled, errorMessage });
@@ -109,7 +109,7 @@ export const InputTagBase = ({
 
   return (
     <div>
-      <div className="select-none max-h-[18px] h-[18px]">
+      <div className="select-none max-h-4.5 h-4.5">
         <Label text={label} htmlFor={id} variant={variants.label} />
       </div>
 

@@ -23,10 +23,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: install dependencies and test
-        run: yarn --frozen-lockfile
+        run: pnpm --frozen-lockfile
 
       - name: build storybook
-        run: yarn storybook:build
+        run: pnpm storybook:build
 
       - name: deploy with gh-pages
         run: |

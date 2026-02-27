@@ -1,7 +1,5 @@
-import type { Preview } from '@storybook/react';
-import '!style-loader!css-loader!postcss-loader!../src/app/globals.css';
-
-import { withThemeByClassName } from '@storybook/addon-themes';
+import type { Preview } from '@storybook/nextjs-vite';
+import '../src/app/tailwind.css';
 
 const preview: Preview = {
   parameters: {
@@ -11,18 +9,14 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-  },
 
-  decorators: [
-    withThemeByClassName({
-      themes: {
-        // nameOfTheme: 'classNameForTheme',
-        light: '',
-        dark: 'dark',
-      },
-      defaultTheme: 'light',
-    }),
-  ],
+    a11y: {
+      // 'todo' - show a11y violations in the test UI only
+      // 'error' - fail CI on a11y violations
+      // 'off' - skip a11y checks entirely
+      test: 'todo',
+    },
+  },
 };
 
 export default preview;

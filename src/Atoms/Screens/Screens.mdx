@@ -1,16 +1,20 @@
-import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
-import config from '../../../tailwind.config';
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+import {getThemeVariables} from '../../utils-storybook'
+
 
 export const Shadow = () => {
+  const colorsList = getThemeVariables('color')
   const colors = [
-    config.theme.colors.accent.radiant,
-    config.theme.colors.accent.rose,
-    config.theme.colors.accent.purple,
-    config.theme.colors.accent.pacific.blue,
+    colorsList['accent-radiant'],
+    colorsList['accent-rose'],
+    colorsList['accent-purple'],
+    colorsList['accent-pacific-blue'],
   ]
 
-  const objectSpacing =config.theme.screens
-  const keysSpacing = Object.keys(objectSpacing)
+
+  const objectSpacing = getThemeVariables('breakpoint')
+  const keysSpacing = Object.entries(objectSpacing).map(([k, v]) => v)
+    console.log(objectSpacing, keysSpacing, 'colorsList')
 
   return <div className="flex flex-col gap-xs">
     {keysSpacing.map((key, index) => {
@@ -21,7 +25,7 @@ export const Shadow = () => {
       {key}
       </div>
       <div
-        className="flex justify-center items-center text-content-fg-contrast"
+        className="flex justify-center items-center text-content-fg-contrast desktop:bg-red-400"
          style={{
           width: value,
           height: '100px',

@@ -1,5 +1,7 @@
 import { TitleAndSubtitle } from '../../../Molecules/TitleAndSubTitle';
 
+// Copilot, crie as telas
+
 export default function DashboardScreen() {
   return (
     <>
@@ -9,3 +11,4 @@ export default function DashboardScreen() {
     </>
   );
 }
+

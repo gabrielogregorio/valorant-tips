@@ -1,6 +1,15 @@
+'use client'
+import  {useQuery } from '@tanstack/react-query'
+
 import { TitleAndSubtitle } from '../../../Molecules/TitleAndSubTitle';
 
-const DashboardScreen = () => (
+const useAdminPosts = () => {
+return useQuery({
+  queryKey: ['admin-posts'],
+})
+}
+
+const PostScreen = () => (
   <>
     <TitleAndSubtitle title="Posts" subtitle="..." />
 
@@ -8,4 +17,4 @@ const DashboardScreen = () => (
   </>
 );
 
-export default DashboardScreen;
+export default PostScreen;

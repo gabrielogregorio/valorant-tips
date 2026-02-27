@@ -1,13 +1,14 @@
-import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
-import config from '../../../tailwind.config';
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+import {getThemeVariables} from '../../utils-storybook'
 
 export const Shadow = () => {
+    const colorsList = getThemeVariables('color')
   const colors = [
-    config.theme.colors.accent.radiant,
+    colorsList['accent-radiant'],
   ]
 
-  const objectSpacing =config.theme.boxShadow
-  const keysSpacing = Object.keys(objectSpacing)
+    const shadowList = getThemeVariables('shadow')
+  const keysSpacing = Object.entries(shadowList).map(([k,v]) => v)
 
   return <div className="flex gap-xs">
     {keysSpacing.map((key, index) => {
@@ -36,9 +37,9 @@ export const Shadow = () => {
 
 
 
-## Border radius
+## Sombras
 
-Border radius usado no projeto
+Sombras usadas no projeto
 
 <Shadow />
 

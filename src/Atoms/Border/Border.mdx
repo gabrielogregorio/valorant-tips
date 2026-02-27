@@ -1,20 +1,19 @@
-import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
-import config from '../../../tailwind.config';
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+import {getThemeVariables} from '../../utils-storybook/index'
 
 export const BorderRadius = () => {
-  const colors = [
-    config.theme.colors.accent.radiant,
-    config.theme.colors.accent.rose,
-    config.theme.colors.accent.purple,
-    config.theme.colors.accent.pacific.blue,
-  ]
+  const colors = getThemeVariables('color')
+  const borderRadius = getThemeVariables('radius')
 
-  const objectSpacing =config.theme.borderRadius
-  const keysSpacing = Object.keys(objectSpacing)
+  // const borderradius = getThemeVariables('border')
+
+  // const objectSpacing =config.theme.borderRadius
+  // const keysSpacing = Object.keys(objectSpacing)
 
   return <div className="flex gap-xs">
-    {keysSpacing.map((key, index) => {
-      const value = objectSpacing[key]
+    {Object.entries(borderRadius).map(([key, value]) => {
+
+console.log(colors, 'COLOR')
 
       return <div key={key} >
       <div className='text-center text-content-fg-subcontent'>
@@ -23,10 +22,10 @@ export const BorderRadius = () => {
       <div
         className="flex justify-center items-center"
          style={{
-          color:    config.theme.colors.content.fg.contrast,
-          borderRadius: value, background: colors[index], width: '100px', height: '100px'}}>
-
-
+          borderRadius: value,
+          backgroundColor: colors.primary,
+          width: '100px',
+          height: '100px'}}>
           {value}
         </div>
         </div>
@@ -35,19 +34,14 @@ export const BorderRadius = () => {
 }
 
 
-
-
 export const BorderWidth = () => {
-  const colors = [
-    config.theme.colors.accent.radiant,
-  ]
 
-  const objectSpacing =config.theme.borderWidth
-  const keysSpacing = Object.keys(objectSpacing)
+  const colors = getThemeVariables('color') // ,
+  const borderWidths = getThemeVariables('border-width')
+
 
   return <div className="flex gap-xs">
-    {keysSpacing.map((key, index) => {
-      const value = objectSpacing[key]
+    {Object.entries(borderWidths) .map(([key, value]) => {
 
       return<div key={key} >
             <div className='text-center text-content-fg-subcontent'>
@@ -56,7 +50,7 @@ export const BorderWidth = () => {
       <div
         className="flex justify-center items-center"
         style={{
-          borderColor:    colors[index],
+          borderColor:    colors.accent.radiant,
           borderWidth: value
           }}
           >

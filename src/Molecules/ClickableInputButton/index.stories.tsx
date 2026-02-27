@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { fn } from 'storybook/test';
 import { ClickableInputButton } from '.';
 import { Icons } from '../../Atoms/Icons';
 
@@ -24,7 +24,8 @@ export const Default: Story = {
   },
   args: {
     icon: 'OpenEyeOutline',
-    onClick: action('onClick'),
+    onClick: fn(),
+    ariaLabel: '',
     disabled: false,
     className: '',
   },

@@ -32,7 +32,7 @@ type TextProps = {
 const variantsStyles: { [key in TextVariantEnum]: { as: TextAsEnum; className: string } } = {
   [TextVariantEnum['9xl']]: {
     as: TextAsEnum.span,
-    className: 'font-poppins font-bold text-[56px] leading-[84px] tracking-[0%]',
+    className: 'font-poppins font-bold text-[56px] leading-21 tracking-[0%]',
   },
 
   [TextVariantEnum['6xl']]: {
@@ -81,7 +81,7 @@ const variantsStyles: { [key in TextVariantEnum]: { as: TextAsEnum; className: s
   },
   [TextVariantEnum.subtext]: {
     as: TextAsEnum.span,
-    className: 'font-poppins font-normal text-[12px] leading-[18px] tracking-[0%]',
+    className: 'font-poppins font-normal text-[12px] leading-4.5 tracking-[0%]',
   },
 };
 

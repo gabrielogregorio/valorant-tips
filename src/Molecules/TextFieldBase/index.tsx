@@ -97,28 +97,28 @@ export const TextFieldBase = ({
   const baseOnDisableStyles = disabled ? 'bg-content-bg-disabled' : 'bg-root-bg';
   const inputOnDisableStyles = disabled ? 'cursor-not-allowed' : 'cursor-auto';
 
-  const inputStylesLeftIcon = leftIcon ? 'pl-[28px]' : 'pl-[12px]';
-  const inputStylesRightIcon = rightIcon ? 'pr-[28px]' : 'pr-[12px]';
+  const inputStylesLeftIcon = leftIcon ? 'pl-7' : 'pl-3';
+  const inputStylesRightIcon = rightIcon ? 'pr-7' : 'pr-3';
 
   const [showPassword, setShowPassword] = useState(false);
 
   const { element, typeHandled } = handlePasswordShow(type, showPassword, setShowPassword);
 
   return (
-    <div className="flex flex-col gap-xxs relative">
+    <div className="flex flex-col gap-xxs relative"  >
       <div
         className={mergeClasses(
-          'flex flex-col gap-xs border-b border-border focus-within:border-primary min-h-[71px]',
+          'flex flex-col gap-xs border-b border-border focus-within:border-primary min-h-17.75',
           baseOnDisableStyles,
         )}>
-        <div className="flex gap-xs items-center absolute left-lg top-lg pointer-events-none select-none max-h-[18px] h-[18px]">
+        <div className="flex gap-xs items-center absolute left-lg top-lg pointer-events-none select-none max-h-4.5 h-4.5">
           <Label text={label} htmlFor={id} variant={variants.label} />
           {isOptional ? <Optional variant={variants.optional} /> : undefined}
         </div>
 
         <div className="flex gap-xs">
           {leftIcon ? (
-            <div className="absolute top-[34px] left-[12px] min-h-[24px] max-h-[24px] min-w-[12px] flex items-center justify-center">
+            <div className="absolute top-8.5 left-3 min-h-6 max-h-6 min-w-3 flex items-center justify-center">
               {leftIcon}
             </div>
           ) : undefined}
@@ -129,7 +129,7 @@ export const TextFieldBase = ({
             value={value === null || value === undefined ? '' : value}
             id={id}
             className={mergeClasses(
-              'pt-[34px] pb-[12px] text-base font-normal tracking-[0%] placeholder:text-content-fg-placeholder bg-transparent outline-none focus:outline-none text-content-fg w-full',
+              'pt-8.5 pb-3 text-base font-normal tracking-[0%] placeholder:text-content-fg-placeholder bg-transparent outline-none focus:outline-none text-content-fg w-full',
               inputStylesLeftIcon,
               inputStylesRightIcon,
               inputOnDisableStyles,
@@ -138,11 +138,11 @@ export const TextFieldBase = ({
             {...rest}
           />
           {rightIcon ? (
-            <div className="absolute top-[34px] right-[12px] min-h-[24px] max-h-[24px] min-w-[12px] flex items-center justify-center">
+            <div className="absolute top-8.5 right-3 min-h-6 max-h-6 min-w-3 flex items-center justify-center">
               {rightIcon}
             </div>
           ) : (
-            <div className="absolute top-[34px] right-[12px] min-h-[24px] max-h-[24px] min-w-[12px] flex items-center justify-center">
+            <div className="absolute top-8.5 right-3 min-h-6 max-h-6 min-w-3 flex items-center justify-center">
               {element}
             </div>
           )}
@@ -151,7 +151,7 @@ export const TextFieldBase = ({
 
       {helpTextHandled ? (
         <HelpText
-          leftIcon={errorMessage ? <Icons.AlertOutline className="h-[12px] w-[12px]" /> : undefined}
+          leftIcon={errorMessage ? <Icons.AlertOutline className="h-3 w-3" /> : undefined}
           variant={variants.helpText}
           text={helpTextHandled}
         />
