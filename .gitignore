@@ -10,7 +10,11 @@
 !.yarn/releases
 !.yarn/versions
 
+eslint-config-debug.json
+temp-config.json
+debug-storybook.log
 # testing
+FETCH_HEAD
 /coverage
 
 # next.js

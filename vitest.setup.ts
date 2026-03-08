@@ -12,4 +12,5 @@ globalThis.jest = {
   mock: vi.mock,
   clearAllMocks: vi.clearAllMocks,
   resetAllMocks: vi.resetAllMocks,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 } as any;

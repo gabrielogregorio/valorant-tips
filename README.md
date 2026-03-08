@@ -275,3 +275,33 @@ Radix
 Radix
 Radix
 Zustand
+
+## Commits e Hooks de Git
+
+Este projeto utiliza **Husky** e **Commitlint** para garantir que todas as mensagens de commit sigam o padrão de **Commits Semânticos** (Conventional Commits).
+
+### Commits Semânticos
+
+As mensagens de commit devem seguir o formato:
+`<tipo>(escopo opcional): <descrição>`
+
+Tipos comuns:
+- `feat`: Nova funcionalidade
+- `fix`: Correção de bug
+- `docs`: Alterações na documentação
+- `style`: Alterações que não afetam o significado do código (espaço em branco, formatação, etc)
+- `refactor`: Alteração de código que não corrige um bug nem adiciona uma funcionalidade
+- `test`: Adição de testes ou correção de testes existentes
+- `chore`: Alterações no processo de build ou ferramentas auxiliares
+
+**Exemplo:** `feat(login): adicionar validação de senha`
+
+### Hooks de Git
+
+Os hooks são executados automaticamente:
+- **pre-commit**: Roda o linting (`pnpm lint`) antes de cada commit.
+- **commit-msg**: Valida se a mensagem do commit segue o padrão semântico.
+
+Se você precisar rodar manualmente para testar:
+- Linting: `pnpm lint`
+- Commitlint (último commit): `pnpm commitlint --from HEAD~1 --to HEAD --verbose`

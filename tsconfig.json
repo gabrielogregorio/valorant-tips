@@ -25,8 +25,8 @@
       "@/Organisms/*": ["./src/components/Organisms/*"],
       "@/shared/*": ["./src/shared/*"],
       "@/libs/*": ["./src/libs/*"],
-      "@/types/*": ["./src/@types/*"],
-      "@Features/*": ["./src/components/Features/*"],
+      "@/types/*": ["./src/shared/@types/*"],
+      "@Features/*": ["./src/Features/*"],
       "@/*": ["./src/*"]
     }
   },
