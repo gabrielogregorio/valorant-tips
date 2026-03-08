@@ -17,11 +17,9 @@ export default async function Page() {
             type="button"
             key={map.id}
             href={`/map/${map.id}`}
-            className={'relative rounded-lg overflow-hidden border-2 transition-all'}>
-            <Image src={map.imageUrl} alt={map.name} className="object-cover" width={500} height={500} />
-            <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1 text-center">
-              {map.name}
-            </div>
+            className={'overflow-hidden hover:scale-105 transition-transform duration-150'}>
+            <Image src={map.imageUrl} alt={map.name} className="object-cover rounded-lg" width={500} height={500} />
+            <div className="text-white text-base p-1 text-center">{map.name}</div>
           </Link>
         ))}
       </div>
