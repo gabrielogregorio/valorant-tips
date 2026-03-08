@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { UpdateProfilePasswordFormInterface, updateProfilePasswordFormSchema } from './validationSchema';
-import { ApiService } from '@/shared/services/ApiService';
+import { api } from '@/libs/api';
 import { plainPromise } from '@/shared/utils/plainPromise';
 import { ApiError } from '@/shared/services/ApiError';
 import { useHandleState } from '@/shared/hooks/useHandleState';
@@ -33,7 +33,7 @@ export const useProfileNewPasswordAccountFormController = () => {
     setErrorMessage('');
     setIsLoading(true);
     const { error } = await plainPromise(() =>
-      ApiService.patch('/users', {
+      api.patch('/users', {
         password: formData.newPassword,
       }),
     );

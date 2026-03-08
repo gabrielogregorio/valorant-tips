@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './tailwind.css';
+import Providers from '@/libs/providers';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`bg-main-bg antialiased`}>{children}</body>
+      <body className={`bg-main-bg antialiased`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

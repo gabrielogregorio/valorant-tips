@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginFormInterface, loginFormSchema } from './validationSchema';
-import { ApiService } from '@/shared/services/ApiService';
+import { api } from '@/libs/api';
 import { plainPromise } from '@/shared/utils/plainPromise';
 import { ApiError } from '@/shared/services/ApiError';
 import { useHandleState } from '@/shared/hooks/useHandleState';
@@ -36,8 +36,14 @@ export const useLoginAccountFormController = () => {
     setSuccess('');
     setErrorMessage('');
     setIsLoading(true);
+    interface AuthResponse {
+      token: string;
+      userId: string;
+      expiresAtIso: string;
+    }
+
     const { error, data } = await plainPromise(() =>
-      ApiService.post('/auth', {
+      api.post<AuthResponse>('/auth', {
         username: formData.username,
         password: formData.password,
       }),

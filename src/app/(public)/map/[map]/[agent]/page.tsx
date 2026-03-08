@@ -1,5 +1,6 @@
-import { TitleAndSubtitle } from '@/molecules/TitleAndSubtitle';
-import { postsService } from '@/features/posts/services/postsService';
+import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
+import { api } from '@/libs/api';
+import { PostsServiceType } from '@/shared/hooks/useFetchPosts';
 import { CACHE_REVALIDATE_TIMES } from '@/shared/constants/cache';
 
 export const revalidate = CACHE_REVALIDATE_TIMES.TWENTY_FOUR_HOURS;
@@ -7,7 +8,8 @@ export const revalidate = CACHE_REVALIDATE_TIMES.TWENTY_FOUR_HOURS;
 export default async function PostsMapAgents({ params }: { params: { agent: string; map: string } }) {
   const { agent, map } = await params;
 
-  const { posts } = await postsService.getPostsByMapAndAgent(map, agent);
+  const { data } = await api.get<{ posts: PostsServiceType[] }>(`/posts/${map}/${agent}`);
+  const posts = data?.posts || [];
 
   return (
     <div>

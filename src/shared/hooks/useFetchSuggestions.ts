@@ -1,4 +1,4 @@
-import { ApiService } from '../services/ApiService';
+import { api } from '@/libs/api';
 import { formatI18n } from '@/libs/i18n';
 import { useRequestCacheCustomSwr } from '@/libs/useRequestCache';
 
@@ -14,7 +14,7 @@ type SuggestionsType = {
 
 export const useFetchSuggestions = () => {
   const { data, error, isLoading, mutate } = useRequestCacheCustomSwr('/suggestions', (url: string) =>
-    ApiService.get<SuggestionsType[]>(url),
+    api.get<SuggestionsType[]>(url),
   );
 
   return {

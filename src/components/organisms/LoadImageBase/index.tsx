@@ -5,7 +5,7 @@ import { Text, TextVariantEnum } from '@/atoms/Text';
 import { Button } from '@/molecules/Button';
 import { Skeleton } from '@/molecules/Skeleton';
 import { useHandleState } from '@/shared/hooks/useHandleState';
-import { ApiService } from '@/shared/services/ApiService';
+import { api } from '@/libs/api';
 import { HelpText, HelpTextVariantEnum } from '@/molecules/helpText';
 import { tailwindMerge } from '@/libs/mergeClasses';
 import { Label } from '@/molecules/Label';
@@ -46,8 +46,8 @@ export const LoadImageBase = ({
 
     formData.append('image', event.target.files[0]);
 
-    ApiService.post<{ url: string }>('/uploadImage', formData)
-      .then((res) => {
+    api.post<{ url: string }>('/uploadImage', formData)
+      .then((res: { data: { url: string } }) => {
         const urlImg = `${res.data.url}`;
         onChange(urlImg);
         setIsLoading(false);

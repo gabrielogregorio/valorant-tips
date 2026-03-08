@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'axios';
 import { useState } from 'react';
 
 export const useFetch = <T>() => {
@@ -6,8 +5,8 @@ export const useFetch = <T>() => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [data, setData] = useState<T | null>(null);
 
-  const fetcher = (promise: () => Promise<AxiosResponse>) => {
-    setIsLoading(false);
+  const fetcher = (promise: () => Promise<{ data: T }>) => {
+    setIsLoading(true);
     setErrorMessage('');
     setData(null);
 
@@ -15,8 +14,8 @@ export const useFetch = <T>() => {
       .then((res) => {
         setData(res.data);
       })
-      .catch(() => {
-        setErrorMessage('Any error');
+      .catch((err) => {
+        setErrorMessage(err?.message || 'Any error');
       })
       .finally(() => {
         setIsLoading(false);

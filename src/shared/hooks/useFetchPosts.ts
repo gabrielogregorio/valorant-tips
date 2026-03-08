@@ -1,4 +1,4 @@
-import useSWR from 'swr';
+import { useQuery } from '@tanstack/react-query';
 import { fetcher } from '@/libs/fetcher';
 
 export type PostsServiceType = {
@@ -45,36 +45,28 @@ const buildUrl = ({ agent, map }: { agent?: string; map?: string }) => {
 };
 
 export const useFetchStablePosts = ({ agent, map }: { agent?: string; map?: string }) => {
-  // TODO: reavalizar nuxt
-  const { data, error, isLoading, mutate } = useSWR<{ data: PostsServiceType[] }>(
-    buildUrl({
-      agent,
-      map,
-    }),
+  const url = buildUrl({ agent, map });
+  const { data, error, isLoading, refetch } = useQuery<{ data: PostsServiceType[] }>({
+    queryKey: ['posts', agent, map],
+    queryFn: () => fetcher(url),
+    staleTime: Infinity,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    retry: 3,
+  });
 
-    fetcher,
-    {
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false, // se a interent desconectar
-      refreshInterval: 0, // 20s pooling
-      keepPreviousData: true, // mantém dados até o fim da revalidação
-      errorRetryCount: 3, // tentativas
-      revalidateIfStale: false, // revalida na primeira montagem se não tiver cache
-    },
-  );
-
-  return { posts: data?.data, error, isLoading, reload: mutate };
+  return { posts: data?.data, error, isLoading, reload: refetch };
 };
 
 export const useFetchPosts = () => {
-  const { data, error, isLoading, mutate } = useSWR<{ data: PostsServiceType[] }>('/posts', fetcher, {
-    revalidateOnFocus: false,
-    revalidateOnReconnect: true, // se a interent desconectar
-    refreshInterval: 20000, // 20s pooling
-    keepPreviousData: true, // mantém dados até o fim da revalidação
-    errorRetryCount: 3, // tentativas
-    revalidateIfStale: true, // revalida na primeira montagem se não tiver cache
+  const { data, error, isLoading, refetch } = useQuery<{ data: PostsServiceType[] }>({
+    queryKey: ['posts'],
+    queryFn: () => fetcher('/posts'),
+    refetchInterval: 20000,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: true,
+    retry: 3,
   });
 
-  return { posts: data?.data, error, isLoading, reload: mutate };
+  return { posts: data?.data, error, isLoading, reload: refetch };
 };

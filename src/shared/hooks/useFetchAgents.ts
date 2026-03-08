@@ -1,4 +1,4 @@
-import useSWR from 'swr';
+import { useQuery } from '@tanstack/react-query';
 import { fetcher } from '@/libs/fetcher';
 
 export type AgentType = {
@@ -8,14 +8,14 @@ export type AgentType = {
 };
 
 export const useFetchAgents = () => {
-  const { data, error, isLoading, mutate } = useSWR<AgentType[]>('/agents', fetcher, {
-    revalidateOnFocus: false,
-    revalidateOnReconnect: true, // se a interent desconectar
-    refreshInterval: 0, // sem pooling
-    keepPreviousData: true, // mantém dados até o fim da revalidação
-    errorRetryCount: 3, // tentativas
-    revalidateIfStale: true, // revalida na primeira montagem se não tiver cache
+  const { data, error, isLoading, refetch } = useQuery<AgentType[]>({
+    queryKey: ['agents'],
+    queryFn: () => fetcher('/agents'),
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: true,
+    staleTime: 0,
+    retry: 3,
   });
 
-  return { agents: data, error, isLoading, reload: mutate };
+  return { agents: data, error, isLoading, reload: refetch };
 };

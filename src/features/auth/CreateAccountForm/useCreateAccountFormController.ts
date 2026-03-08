@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CreateAccountFormInterface, createAccountFormSchema } from './validationSchema';
-import { ApiService } from '@/shared/services/ApiService';
+import { api } from '@/libs/api';
 import { plainPromise } from '@/shared/utils/plainPromise';
 import { ApiError } from '@/shared/services/ApiError';
 import { useHandleState } from '@/shared/hooks/useHandleState';
@@ -32,7 +32,7 @@ export const useCreateAccountFormController = () => {
     setErrorMessage('');
     setIsLoading(true);
     const { error } = await plainPromise(() =>
-      ApiService.post('/users', {
+      api.post('/users', {
         username: formData.username,
         password: formData.password,
         code: formData.code,

@@ -1,4 +1,4 @@
-import useSWR from 'swr';
+import { useQuery } from '@tanstack/react-query';
 import { fetcher } from '@/libs/fetcher';
 
 export type IDashboardServiceType = {
@@ -7,14 +7,14 @@ export type IDashboardServiceType = {
 };
 
 export const useFetchDashboards = () => {
-  const { data, error, isLoading, mutate } = useSWR<IDashboardServiceType[]>('/dashboards', fetcher, {
-    revalidateOnFocus: false,
-    revalidateOnReconnect: true, // se a interent desconectar
-    refreshInterval: 20000, // 20s pooling
-    keepPreviousData: true, // mantém dados até o fim da revalidação
-    errorRetryCount: 3, // tentativas
-    revalidateIfStale: true, // revalida na primeira montagem se não tiver cache
+  const { data, error, isLoading, refetch } = useQuery<IDashboardServiceType[]>({
+    queryKey: ['dashboards'],
+    queryFn: () => fetcher('/dashboards'),
+    refetchInterval: 20000,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: true,
+    retry: 3,
   });
 
-  return { dashboards: data, error, isLoading, reload: mutate };
+  return { dashboards: data, error, isLoading, reload: refetch };
 };

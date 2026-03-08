@@ -1,10 +1,9 @@
-import useSWR, { KeyedMutator } from 'swr';
-//import useSWR, { KeyedMutator } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
-interface IResponseCustomSwr<T> {
+interface IResponseCustomQuery<T> {
   data: T | undefined | null;
   isLoading: boolean;
-  mutate: KeyedMutator<T | null>;
+  mutate: () => void;
   error: unknown;
 }
 
@@ -13,13 +12,25 @@ const TIME_IN_MS_TO_RETRY_INTERVAL = 2000;
 export const useRequestCacheCustomSwr = <T>(
   url: string,
   fetcher: ((arg: string) => Promise<T> | null) | null,
-): IResponseCustomSwr<T> => {
-  const { data, error, mutate } = useSWR(url, fetcher, { errorRetryInterval: TIME_IN_MS_TO_RETRY_INTERVAL });
+): IResponseCustomQuery<T> => {
+  const { data, error, isLoading, refetch } = useQuery({
+    queryKey: [url],
+    queryFn: async () => {
+      if (!fetcher) throw new Error('No fetcher');
+      const response = await fetcher(url);
+      // Handle the case where the fetcher might return { data: T } or just T
+      return (response as any)?.data !== undefined ? (response as any).data : response;
+    },
+    enabled: !!url && !!fetcher,
+    retryDelay: TIME_IN_MS_TO_RETRY_INTERVAL,
+  });
 
   return {
-    data,
-    isLoading: !data && !error && fetcher !== null,
-    mutate,
+    data: data as T,
+    isLoading,
+    mutate: () => {
+      refetch();
+    },
     error,
   };
 };

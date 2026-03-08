@@ -1,4 +1,4 @@
-import { ApiService } from '../services/ApiService';
+import { api } from '@/libs/api';
 import { formatI18n } from '@/libs/i18n';
 import { useRequestCacheCustomSwr } from '@/libs/useRequestCache';
 
@@ -10,11 +10,11 @@ type UserType = {
 
 export const useFetchUserLogged = () => {
   const { data, error, isLoading, mutate } = useRequestCacheCustomSwr('/users/me', (url: string) =>
-    ApiService.get<UserType>(url),
+    api.get<UserType>(url),
   );
 
   return {
-    data,
+    data: data?.data,
     errorMessage: error ? formatI18n('msg.error.onFetchUserLogged') : '',
     isLoading,
     reload: mutate,

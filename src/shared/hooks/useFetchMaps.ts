@@ -1,4 +1,4 @@
-import useSWR from 'swr';
+import { useQuery } from '@tanstack/react-query';
 import { fetcher } from '@/libs/fetcher';
 
 export type MapsType = {
@@ -8,14 +8,14 @@ export type MapsType = {
 };
 
 export const useFetchMaps = () => {
-  const { data, error, isLoading, mutate } = useSWR<MapsType[]>('/maps', fetcher, {
-    revalidateOnFocus: false,
-    revalidateOnReconnect: true, // se a interent desconectar
-    refreshInterval: 0, // sem pooling
-    keepPreviousData: true, // mantém dados até o fim da revalidação
-    errorRetryCount: 3, // tentativas
-    revalidateIfStale: true, // revalida na primeira montagem se não tiver cache
+  const { data, error, isLoading, refetch } = useQuery<MapsType[]>({
+    queryKey: ['maps'],
+    queryFn: () => fetcher('/maps'),
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: true,
+    staleTime: 0,
+    retry: 3,
   });
 
-  return { maps: data, error, isLoading, reload: mutate };
+  return { maps: data, error, isLoading, reload: refetch };
 };
