@@ -1,6 +1,4 @@
-'use client';
-
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { X, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
@@ -10,6 +8,7 @@ import { ImageUploadPreview } from '@/molecules/ImageUploadPreview/ImageLoad';
 import { Button } from '@/molecules/Button';
 import { TextFieldForm } from '@/molecules/TextFieldForm';
 import { AgentType } from '@/shared/hooks/useFetchAgents';
+import { useImageUpload } from '@/shared/hooks/useImageUpload';
 
 interface AgentModalProps {
   agent?: AgentType | null;
@@ -73,8 +72,10 @@ type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
 export const ModalCreateOrUpdateAgent = ({ agent, onClose, onSuccess }: AgentModalProps) => {
   const isEditing = !!agent?.id;
 
-  const [imageFile, setImageFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | undefined>(agent?.imageUrl);
+  const { imageFile, imagePreview, handleImageSelect, handleImageRemove } = useImageUpload({
+    initialImage: agent?.imageUrl,
+  });
+
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
   const hasImage = !!imageFile || !!imagePreview;
 
@@ -121,14 +122,6 @@ export const ModalCreateOrUpdateAgent = ({ agent, onClose, onSuccess }: AgentMod
     }
   };
 
-  useEffect(() => {
-    return () => {
-      if (imagePreview?.startsWith('blob:')) {
-        URL.revokeObjectURL(imagePreview);
-      }
-    };
-  }, [imagePreview]);
-
   return (
     <Dialog.Root open onOpenChange={(open) => !open && onClose()}>
       <Dialog.Overlay className="fixed inset-0 z-40 bg-black/80 backdrop-blur-sm animate-in fade-in-0" />
@@ -151,14 +144,8 @@ export const ModalCreateOrUpdateAgent = ({ agent, onClose, onSuccess }: AgentMod
         <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-5" noValidate>
           <div className="space-y-1">
             <ImageUploadPreview
-              onImageSelect={(file) => {
-                setImageFile(file);
-                setImagePreview(URL.createObjectURL(file));
-              }}
-              onImageRemove={() => {
-                setImageFile(null);
-                setImagePreview(undefined);
-              }}
+              onImageSelect={handleImageSelect}
+              onImageRemove={handleImageRemove}
               currentImage={imagePreview}
               label="Escolher imagem do agente"
             />

@@ -10,33 +10,41 @@ import { useProfileDataAccountFormController } from './useProfileDataAccountForm
 import { UpdateProfileDataFormInterface } from './validationSchema';
 
 import { useFetchUserLogged } from '@/shared/hooks/useFetchUserLogged';
-import { LoadImageForm } from '@/organisms/LoadImageForm';
+import { ImageUploadPreview } from '@/molecules/ImageUploadPreview/ImageLoad';
+import { useImageUpload } from '@/shared/hooks/useImageUpload';
 
-const UpdateProfileData = () => {
+export const UpdateProfileData = () => {
   const { control, onSubmit, isLoading, errorMessage, success, setValue, getValues } =
     useProfileDataAccountFormController();
 
   const userLogged = useFetchUserLogged();
 
+  const { imagePreview, isUploading, handleImageSelect, handleImageRemove, setImagePreview } = useImageUpload({
+    uploadApiRoute: '/uploadImage',
+    onUploadSuccess: (url) => setValue('imageUrl', url, { shouldValidate: true, shouldDirty: true }),
+    onRemoveComplete: () => setValue('imageUrl', '', { shouldValidate: true, shouldDirty: true }),
+  });
+
+  console.log(userLogged.data);
   useEffect(() => {
     if (userLogged.data) {
       const imageUrl = getValues('imageUrl');
       if (!imageUrl) {
-        setValue('imageUrl', userLogged.data.data.imageUrl);
+        setValue('imageUrl', userLogged.data.imageUrl);
+        setImagePreview(userLogged.data.imageUrl);
       }
 
       const username = getValues('username');
       if (!username) {
-        setValue('username', userLogged.data.data.username);
+        setValue('username', userLogged.data.username);
       }
 
       const name = getValues('name');
       if (!name) {
-        setValue('name', userLogged.data.data.name);
+        setValue('name', userLogged.data.name);
       }
     }
-    // TODO: RESOLVE
-  }, [userLogged.data]);
+  }, [userLogged.data, getValues, setValue, setImagePreview]);
 
   return (
     <form
@@ -46,13 +54,11 @@ const UpdateProfileData = () => {
         onSubmit(event);
       }}>
       <div className="flex flex-col gap-xl">
-        <LoadImageForm<UpdateProfileDataFormInterface>
-          control={control}
-          id="image"
-          label="image"
-          name="imageUrl"
-          helpText="help text"
-          className="flex items-center justify-center"
+        <ImageUploadPreview
+          currentImage={imagePreview}
+          label="Escolher foto de perfil"
+          onImageSelect={handleImageSelect}
+          onImageRemove={handleImageRemove}
         />
 
         <TextFieldForm<UpdateProfileDataFormInterface>
@@ -74,17 +80,16 @@ const UpdateProfileData = () => {
         />
       </div>
 
-      <div className="flex flex-col gap-xl">
+      <div className="flex flex-col gap-xl mt-4">
         {errorMessage ? <ErrorMessage text={errorMessage} /> : undefined}
 
         {success ? <SuccessMessage text={success} /> : undefined}
 
-        <Button type="submit" variant={'primary'} disabled={isLoading}>
-          {isLoading ? 'SALVANDO ALTERAÇÕES...' : 'SALVAR ALTERAÇÕES'}
+        <Button type="submit" variant={'primary'} disabled={isLoading || isUploading}>
+          {isLoading || isUploading ? 'SALVANDO ALTERAÇÕES...' : 'SALVAR ALTERAÇÕES'}
         </Button>
       </div>
     </form>
   );
 };
 
-export default UpdateProfileData;

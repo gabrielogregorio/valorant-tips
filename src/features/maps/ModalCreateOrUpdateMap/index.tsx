@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { X, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
@@ -9,6 +9,7 @@ import { z } from 'zod';
 import { ImageUploadPreview } from '@/molecules/ImageUploadPreview/ImageLoad';
 import { Button } from '@/molecules/Button';
 import { TextFieldForm } from '@/molecules/TextFieldForm';
+import { useImageUpload } from '@/shared/hooks/useImageUpload';
 
 export interface ValorantMap {
   id: string;
@@ -78,8 +79,10 @@ type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
 export const ModalCreateOrUpdateMap = ({ map, onClose, onSuccess }: MapModalProps) => {
   const isEditing = !!map?.id;
 
-  const [imageFile, setImageFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | undefined>(map?.imageUrl);
+  const { imageFile, imagePreview, handleImageSelect, handleImageRemove } = useImageUpload({
+    initialImage: map?.imageUrl,
+  });
+
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -125,14 +128,6 @@ export const ModalCreateOrUpdateMap = ({ map, onClose, onSuccess }: MapModalProp
     }
   };
 
-  useEffect(() => {
-    return () => {
-      if (imagePreview?.startsWith('blob:')) {
-        URL.revokeObjectURL(imagePreview);
-      }
-    };
-  }, [imagePreview]);
-
   return (
     <Dialog.Root open onOpenChange={(open) => !open && onClose()}>
       <Dialog.Overlay className="fixed inset-0 z-40 bg-black/80 backdrop-blur-sm animate-in fade-in-0" />
@@ -155,14 +150,8 @@ export const ModalCreateOrUpdateMap = ({ map, onClose, onSuccess }: MapModalProp
         <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-5" noValidate>
           <div className="space-y-1">
             <ImageUploadPreview
-              onImageSelect={(file) => {
-                setImageFile(file);
-                setImagePreview(URL.createObjectURL(file));
-              }}
-              onImageRemove={() => {
-                setImageFile(null);
-                setImagePreview(undefined);
-              }}
+              onImageSelect={handleImageSelect}
+              onImageRemove={handleImageRemove}
               currentImage={imagePreview}
               label="Escolher imagem do mapa"
             />

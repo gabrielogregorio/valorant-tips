@@ -5,13 +5,13 @@ import { useParams, useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Loader2, AlertCircle, CheckCircle2, RefreshCcw } from 'lucide-react';
+import { AlertCircle, CheckCircle2, Loader2, RefreshCcw } from 'lucide-react';
 import { TextFieldForm } from '@/molecules/TextFieldForm';
-import { ImageUploadPreview } from '@/molecules/ImageUploadPreview/ImageLoad';
+import { StepEditor } from './components/StepEditor';
 import { SelectableCard } from '@/molecules/SelectableCard';
+import { AgentType, useFetchAgents } from '@/shared/hooks/useFetchAgents';
+import { MapsType, useFetchMaps } from '@/shared/hooks/useFetchMaps';
 import { Button } from '@/molecules/Button';
-import { useFetchAgents } from '@/shared/hooks/useFetchAgents';
-import { useFetchMaps } from '@/shared/hooks/useFetchMaps';
 import { ClientCookies } from '@/libs/clientCookies';
 import { authCookieName } from '@/shared/constants/cookies';
 
@@ -191,18 +191,6 @@ export const CreateOrEditPost = () => {
     }
   };
 
-  /* ================= CLEANUP ================= */
-
-  useEffect(() => {
-    return () => {
-      steps.forEach((step) => {
-        if (step.imagePreview?.startsWith('blob:')) {
-          URL.revokeObjectURL(step.imagePreview);
-        }
-      });
-    };
-  }, [steps]);
-
   /* ================= LOADING SCREEN ================= */
 
   if (initialLoading) {
@@ -244,7 +232,7 @@ export const CreateOrEditPost = () => {
       <section className="space-y-4">
         <h2 className="text-xl font-semibold text-content-fg">Agentes</h2>
         <div className="grid grid-cols-4 gap-4">
-          {fetchAgents.agents?.map((agent) => (
+          {Array.isArray(fetchAgents.agents) && fetchAgents.agents.map((agent: AgentType) => (
             <SelectableCard
               key={agent.id}
               id={agent.id}
@@ -268,7 +256,7 @@ export const CreateOrEditPost = () => {
       <section className="space-y-4">
         <h2 className="text-xl font-semibold text-content-fg">Mapas</h2>
         <div className="grid grid-cols-4 gap-4">
-          {fetchMaps.maps?.map((map) => (
+          {Array.isArray(fetchMaps.maps) && fetchMaps.maps.map((map: MapsType) => (
             <SelectableCard
               key={map.id}
               id={map.id}
@@ -293,38 +281,24 @@ export const CreateOrEditPost = () => {
         <h2 className="text-xl font-semibold text-content-fg">Passos</h2>
 
         {steps.map((step, index) => (
-          <div key={step.id} className="p-4 border rounded-lg bg-gray-50 space-y-4">
-            <ImageUploadPreview
-              currentImage={step.imagePreview}
-              onImageSelect={(file) =>
-                updateStep(step.id, {
-                  imageFile: file,
-                  imagePreview: URL.createObjectURL(file),
-                })
-              }
-              onImageRemove={() =>
-                updateStep(step.id, {
-                  imageFile: null,
-                  imagePreview: undefined,
-                })
-              }
-              label={`Imagem do passo ${index + 1}`}
+          <div key={step.id} className="w-full">
+            <StepEditor
+              step={{ id: step.id, description: step.description, image: step.imagePreview }}
+              index={index}
+              onUpdate={updateStep}
+              onRemove={removeStep}
+              canMoveDown={index < steps.length - 1}
+              canMoveUp={index > 0}
+              onMove={(dir) => {
+                const items = [...steps];
+                if (dir === 'up' && index > 0) {
+                  [items[index], items[index - 1]] = [items[index - 1], items[index]];
+                } else if (dir === 'down' && index < items.length - 1) {
+                  [items[index], items[index + 1]] = [items[index + 1], items[index]];
+                }
+                setSteps(items);
+              }}
             />
-
-            <textarea
-              className="w-full border rounded-md p-2"
-              value={step.description}
-              onChange={(e) =>
-                updateStep(step.id, {
-                  description: e.target.value,
-                })
-              }
-              disabled={isLoading}
-            />
-
-            <Button type="button" variant="secondary" onClick={() => removeStep(step.id)} disabled={isLoading}>
-              Remover passo
-            </Button>
           </div>
         ))}
 

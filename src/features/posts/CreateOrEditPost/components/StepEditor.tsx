@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
-import { ChevronUp, ChevronDown, X, AlertCircle } from 'lucide-react';
+import { useEffect } from 'react';
+import { ChevronUp, ChevronDown, X } from 'lucide-react';
 import { ImageUploadPreview } from '@/molecules/ImageUploadPreview/ImageLoad';
+import { useImageUpload } from '@/shared/hooks/useImageUpload';
 
 interface Step {
   id: string;
@@ -18,26 +19,12 @@ interface StepEditorProps {
   onMove: (direction: 'up' | 'down') => void;
 }
 
-type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
-
 export const StepEditor = ({ step, index, onUpdate, onRemove, canMoveUp, canMoveDown, onMove }: StepEditorProps) => {
-  const [imageFile, setImageFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | undefined>('');
-  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
-
-  const hasImage = !!imageFile || !!imagePreview;
+  const { imagePreview, handleImageSelect, handleImageRemove } = useImageUpload();
 
   useEffect(() => {
     onUpdate(step.id, { image: imagePreview });
-
-    return () => {
-      if (imagePreview?.startsWith('blob:')) {
-        URL.revokeObjectURL(imagePreview);
-        onUpdate(step.id, { image: undefined });
-      }
-      // onChange={(e) => onUpdate(step.id, { description: e.target.value })}
-    };
-  }, [imagePreview]);
+  }, [imagePreview, step.id, onUpdate]);
 
   return (
     <div className="flex gap-4 p-4 border rounded-lg">
@@ -64,22 +51,11 @@ export const StepEditor = ({ step, index, onUpdate, onRemove, canMoveUp, canMove
 
       <div className="space-y-1">
         <ImageUploadPreview
-          onImageSelect={(file) => {
-            setImageFile(file);
-            setImagePreview(URL.createObjectURL(file));
-          }}
-          onImageRemove={() => {
-            setImageFile(null);
-            setImagePreview(undefined);
-          }}
+          onImageSelect={handleImageSelect}
+          onImageRemove={handleImageRemove}
           currentImage={imagePreview}
           label="Escolher imagem do mapa"
         />
-        {!hasImage && submitStatus === 'error' && (
-          <p className="text-sm text-red-500 flex items-center gap-1">
-            <AlertCircle size={14} /> Imagem é obrigatória
-          </p>
-        )}
       </div>
 
       <textarea
