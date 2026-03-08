@@ -2,10 +2,10 @@ import { InputHTMLAttributes, Ref, useMemo } from 'react';
 import { HelpText, HelpTextVariantEnum } from '../helpText';
 import { Label, LabelVariantEnum } from '../Label';
 import { OptionalVariantEnum } from '../optional';
-import { tailwindMerge } from '../../../libs/mergeClasses';
-import { Icons } from '../../Atoms/Icons';
+import { tailwindMerge } from '@/libs/mergeClasses';
+import { Icons } from '@/Atoms/Icons';
 import { ClickableInputButton } from '../ClickableInputButton';
-import { InputTagBaseValue } from '../../@types/InputTagBaseValue';
+import { InputTagBaseValue } from '@/types/InputTagBaseValue';
 
 export enum InputTagBaseVariantEnum {
   Adding = 'Adding',

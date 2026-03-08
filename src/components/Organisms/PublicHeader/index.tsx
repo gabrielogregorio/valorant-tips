@@ -2,11 +2,11 @@
 
 import Link from 'next/link';
 import { useMemo } from 'react';
-import { Text, TextAsEnum, TextVariantEnum } from '../../Atoms/Text';
-import { tailwindMerge } from '../../../libs/mergeClasses';
-import { RouteScreensEnum } from '../../../@types/routeScreenEnum';
+import { Text, TextAsEnum, TextVariantEnum } from '@/Atoms/Text';
+import { tailwindMerge } from '@/libs/mergeClasses';
+import { RouteScreensEnum } from '@/types/routeScreenEnum';
 import { usePathname } from 'next/navigation';
-import Breadcrumb from '../../Molecules/Breadcrumb';
+import Breadcrumb from '@/Molecules/Breadcrumb';
 
 const getVariantStyles = (active: boolean) => {
   if (active) {

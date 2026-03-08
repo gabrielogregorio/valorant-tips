@@ -1,8 +1,8 @@
 import { ImageLoader } from 'next/dist/client/image-component';
 import { PlaceholderValue, StaticImport } from 'next/dist/shared/lib/get-img-props';
 import ImageComponent from 'next/image';
-import { NEXT_PUBLIC_MODE_RUN } from '../../shared/envs';
-import { getImagePath } from '../../shared/utils/getImagePath';
+import { NEXT_PUBLIC_MODE_RUN } from '@/shared/envs';
+import { getImagePath } from '@/shared/utils/getImagePath';
 
 interface ImageProps {
   src: string | StaticImport;

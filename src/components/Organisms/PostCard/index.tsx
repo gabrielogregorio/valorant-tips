@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
-import { PostsServiceType } from '../../../shared/hooks/useFetchPosts';
-import { Image } from '../../../libs/image';
+import { PostsServiceType } from '@/shared/hooks/useFetchPosts';
+import { Image } from '@/libs/image';
 import { PostCarousel } from './PostCarousel';
 import { PostActions } from './PostActions';
 

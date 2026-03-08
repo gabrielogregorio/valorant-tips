@@ -6,9 +6,9 @@ import { X, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { ImageUploadPreview } from '../../Molecules/ImageUploadPreview/ImageLoad';
-import { Button } from '../../Molecules/Button';
-import { TextFieldForm } from '../../Molecules/TextFieldForm';
+import { ImageUploadPreview } from '@/Molecules/ImageUploadPreview/ImageLoad';
+import { Button } from '@/Molecules/Button';
+import { TextFieldForm } from '@/Molecules/TextFieldForm';
 
 export interface ValorantMap {
   id: string;

@@ -1,5 +1,5 @@
-import { Icons } from '../../Atoms/Icons';
-import { tailwindMerge } from '../../../libs/mergeClasses';
+import { Icons } from '@/Atoms/Icons';
+import { tailwindMerge } from '@/libs/mergeClasses';
 import { Button, ButtonVariantEnum } from '../Button';
 
 type Props = {

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { Text, TextVariantEnum } from '../../Atoms/Text';
-import { tailwindMerge } from '../../../libs/mergeClasses';
+import { Text, TextVariantEnum } from '@/Atoms/Text';
+import { tailwindMerge } from '@/libs/mergeClasses';
 
 export enum HelpTextVariantEnum {
   Default = 'Default',

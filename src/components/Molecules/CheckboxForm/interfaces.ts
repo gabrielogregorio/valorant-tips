@@ -1,4 +1,4 @@
-import { CustomFieldValuesBoolean } from '../../@types/CustomFieldValues';
+import { CustomFieldValuesBoolean } from '@/types/CustomFieldValues';
 import { CheckboxBaseProps } from '../CheckboxBase';
 
 export interface CheckboxFormProps<T extends CustomFieldValuesBoolean> extends Omit<

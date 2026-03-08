@@ -1,5 +1,5 @@
-import { tailwindMerge } from '../../../libs/mergeClasses';
-import { Text, TextVariantEnum } from '../../Atoms/Text';
+import { tailwindMerge } from '@/libs/mergeClasses';
+import { Text, TextVariantEnum } from '@/Atoms/Text';
 
 interface CardDashProps {
   title: string;

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { tailwindMerge } from '../../../libs/mergeClasses';
+import { tailwindMerge } from '@/libs/mergeClasses';
 
 type TagProps = {
   disabled?: boolean;

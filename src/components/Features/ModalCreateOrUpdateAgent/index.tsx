@@ -6,10 +6,10 @@ import { X, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { ImageUploadPreview } from '../../Molecules/ImageUploadPreview/ImageLoad';
-import { Button } from '../../Molecules/Button';
-import { TextFieldForm } from '../../Molecules/TextFieldForm';
-import { AgentType } from '../../../shared/hooks/useFetchAgents';
+import { ImageUploadPreview } from '@/Molecules/ImageUploadPreview/ImageLoad';
+import { Button } from '@/Molecules/Button';
+import { TextFieldForm } from '@/Molecules/TextFieldForm';
+import { AgentType } from '@/shared/hooks/useFetchAgents';
 
 interface AgentModalProps {
   agent?: AgentType | null;

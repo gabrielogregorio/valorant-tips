@@ -5,9 +5,9 @@ import { MapListAdmin } from '@/Molecules/MapListAdmin';
 import { AgentList } from '@/Molecules/AgentList';
 import { Button } from '@/Molecules/Button';
 import { MapAdminType } from '@/Molecules/MapListAdmin/types';
-import { AgentType } from '../../../shared/hooks/useFetchAgents';
-import { ModalCreateOrUpdateMap } from '../../Features/ModalCreateOrUpdateMap';
-import { ModalCreateOrUpdateAgent } from '../../Features/ModalCreateOrUpdateAgent';
+import { AgentType } from '@/shared/hooks/useFetchAgents';
+import { ModalCreateOrUpdateMap } from '@Features/ModalCreateOrUpdateMap';
+import { ModalCreateOrUpdateAgent } from '@Features/ModalCreateOrUpdateAgent';
 
 export const ManageData = () => {
   const [maps, setMaps] = useState<MapAdminType[]>([]);
@@ -91,7 +91,6 @@ export const ManageData = () => {
         </Button>
       </section>
 
-      {/* Modals */}
       {showMapModal && (
         <ModalCreateOrUpdateMap
           map={selectedMap}

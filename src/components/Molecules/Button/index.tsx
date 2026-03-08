@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
-import { tailwindMerge } from '../../../libs/mergeClasses';
-import { Text, TextVariantEnum } from '../../Atoms/Text';
+import { tailwindMerge } from '@/libs/mergeClasses';
+import { Text, TextVariantEnum } from '@/Atoms/Text';
 
 export type ButtonVariantEnum = 'primary' | 'secondary' | 'text';
 

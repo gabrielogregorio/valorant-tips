@@ -1,4 +1,4 @@
-import { Text, TextVariantEnum } from '../../Atoms/Text';
+import { Text, TextVariantEnum } from '@/Atoms/Text';
 
 export const TitleAndSubtitle = ({ title = '', subtitle = '' }: { title?: string; subtitle?: string }) => (
   <div className="flex flex-col justify-center items-center">

@@ -1,4 +1,4 @@
-import { tailwindMerge } from '../../../libs/mergeClasses';
+import { tailwindMerge } from '@/libs/mergeClasses';
 
 type SvgProps = {
   className?: string;

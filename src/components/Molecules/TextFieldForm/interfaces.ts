@@ -1,4 +1,4 @@
-import { CustomFieldValues } from '../../@types/CustomFieldValues';
+import { CustomFieldValues } from '@/types/CustomFieldValues';
 import { TextFieldBaseProps } from '../TextFieldBase';
 
 export interface TextFieldFormProps<T extends CustomFieldValues> extends Omit<

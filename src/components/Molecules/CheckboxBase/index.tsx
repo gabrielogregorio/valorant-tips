@@ -1,7 +1,7 @@
 import { InputHTMLAttributes, Ref } from 'react';
 import { Label, LabelVariantEnum } from '../Label';
 import { Optional, OptionalVariantEnum } from '../optional';
-import { tailwindMerge } from '../../../libs/mergeClasses';
+import { tailwindMerge } from '@/libs/mergeClasses';
 
 export interface CheckboxBaseProps extends Omit<
   Omit<Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>, 'value'>,

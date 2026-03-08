@@ -1,10 +1,10 @@
 'use client';
 
 import { ReactElement, useState, useId } from 'react';
-import { PostsServiceType } from '../../../shared/hooks/useFetchPosts';
-import { Image } from '../../../libs/image';
+import { PostsServiceType } from '@/shared/hooks/useFetchPosts';
+import { Image } from '@/libs/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from '../../Molecules/Button';
+import { Button } from '@/Molecules/Button';
 
 type TProps = {
   steps: PostsServiceType['steps'];

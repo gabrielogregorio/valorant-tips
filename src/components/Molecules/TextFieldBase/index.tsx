@@ -2,8 +2,8 @@ import { Dispatch, HTMLInputTypeAttribute, InputHTMLAttributes, ReactNode, Ref, 
 import { HelpText, HelpTextVariantEnum } from '../helpText';
 import { Label, LabelVariantEnum } from '../Label';
 import { Optional, OptionalVariantEnum } from '../optional';
-import { tailwindMerge } from '../../../libs/mergeClasses';
-import { Icons } from '../../Atoms/Icons';
+import { tailwindMerge } from '@/libs/mergeClasses';
+import { Icons } from '@/Atoms/Icons';
 import { ClickableInputButton } from '../ClickableInputButton';
 
 export interface TextFieldBaseProps extends InputHTMLAttributes<HTMLInputElement> {

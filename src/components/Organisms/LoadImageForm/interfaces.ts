@@ -1,4 +1,4 @@
-import { CustomFieldValues } from '../../@types/CustomFieldValues';
+import { CustomFieldValues } from '@/types/CustomFieldValues';
 import { LoadImagePropsInterface } from '../LoadImageBase';
 
 export interface LoadImageFormProps<T extends CustomFieldValues> extends Omit<

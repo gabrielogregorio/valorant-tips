@@ -1,8 +1,8 @@
 import { useEffect, useRef, ReactElement, RefObject } from 'react';
 import { useController } from 'react-hook-form';
-import { CheckboxFormProps } from '../../../Molecules/CheckboxForm/interfaces';
-import { CheckboxBase } from '../../../Molecules/CheckboxBase';
-import { CustomFieldValuesBoolean } from '../../../@types/CustomFieldValues';
+import { CheckboxFormProps } from '@/Molecules/CheckboxForm/interfaces';
+import { CheckboxBase } from '@/Molecules/CheckboxBase';
+import { CustomFieldValuesBoolean } from '@/types/CustomFieldValues';
 
 export const CheckboxFormExternal = <T extends CustomFieldValuesBoolean>({
   name,

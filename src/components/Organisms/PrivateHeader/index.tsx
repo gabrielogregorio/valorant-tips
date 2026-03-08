@@ -2,10 +2,10 @@
 import Link from 'next/link';
 import { useMemo } from 'react';
 import { usePathname } from 'next/navigation'; // <<< import
-import { Text, TextAsEnum, TextVariantEnum } from '../../Atoms/Text';
-import { tailwindMerge } from '../../../libs/mergeClasses';
-import { RouteScreensEnum } from '../../../@types/routeScreenEnum';
-import { ProfileMenu } from '../../Molecules/ProfileMenu';
+import { Text, TextAsEnum, TextVariantEnum } from '@/Atoms/Text';
+import { tailwindMerge } from '@/libs/mergeClasses';
+import { RouteScreensEnum } from '@/types/routeScreenEnum';
+import { ProfileMenu } from '@/Molecules/ProfileMenu';
 
 const getVariantStyles = (active: boolean) => {
   if (active) {

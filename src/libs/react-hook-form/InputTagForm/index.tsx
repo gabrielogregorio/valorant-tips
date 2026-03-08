@@ -1,8 +1,8 @@
 import { useEffect, useRef, ReactElement, RefObject } from 'react';
 import { useController } from 'react-hook-form';
-import { InputTagFormProps } from '../../../Molecules/InputTagForm/interfaces';
-import { CustomFieldValuesInputTagBaseValue } from '../../../@types/CustomFieldValues';
-import { InputTagBase } from '../../../Molecules/InputTagBase';
+import { InputTagFormProps } from '@/Molecules/InputTagForm/interfaces';
+import { CustomFieldValuesInputTagBaseValue } from '@/types/CustomFieldValues';
+import { InputTagBase } from '@/Molecules/InputTagBase';
 
 export const InputTagFormExternal = <T extends CustomFieldValuesInputTagBaseValue>({
   name,

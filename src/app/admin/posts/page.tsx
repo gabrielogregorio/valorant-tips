@@ -3,7 +3,7 @@
 import { TitleAndSubtitle } from '@/components/Molecules/TitleAndSubTitle';
 import { Loader2, AlertCircle } from 'lucide-react';
 import { PostsServiceType, useFetchPosts } from '@/shared/hooks/useFetchPosts';
-import { PostCard } from '../../../components/Organisms/PostCard';
+import { PostCard } from '@/components/Organisms/PostCard';
 
 const PostScreen = () => {
   const { posts, isLoading, reload, error } = useFetchPosts();

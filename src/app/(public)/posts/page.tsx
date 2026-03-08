@@ -2,8 +2,8 @@
 
 import { useSearchParams } from 'next/navigation';
 import { PostsServiceType, useFetchStablePosts } from '@/shared/hooks/useFetchPosts';
-import { PostCard } from '../../../components/Organisms/PostCard';
-import { TitleAndSubtitle } from '../../../components/Molecules/TitleAndSubTitle';
+import { PostCard } from '@/components/Organisms/PostCard';
+import { TitleAndSubtitle } from '@/components/Molecules/TitleAndSubTitle';
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -39,7 +39,7 @@ export default function Page() {
           </button>
         </div>
 
-        <div className='flex gap-2 flex-wrap justify-center'>
+        <div className="flex gap-2 flex-wrap justify-center">
           {[
             'QualquerMomento',
             'Facil',

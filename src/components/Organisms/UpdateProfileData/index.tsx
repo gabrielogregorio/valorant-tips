@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { TextFieldForm } from '@/components/Molecules/TextFieldForm';
-import { Button, ButtonVariantEnum } from '@/components/Molecules/Button';
+import { Button } from '@/components/Molecules/Button';
 import { ErrorMessage } from '@/components/Molecules/ErrorMessage';
 import { SuccessMessage } from '@/components/Molecules/Success';
 import { formatI18n } from '@/libs/i18n';

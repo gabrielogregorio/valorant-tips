@@ -1,4 +1,4 @@
-import { CustomFieldValuesInputTagBaseValue } from '../../@types/CustomFieldValues';
+import { CustomFieldValuesInputTagBaseValue } from '@/types/CustomFieldValues';
 import { InputTagBaseProps } from '../InputTagBase';
 
 export interface InputTagFormProps<T extends CustomFieldValuesInputTagBaseValue> extends Omit<

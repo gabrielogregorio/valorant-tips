@@ -1,5 +1,5 @@
-import { Text } from '../../Atoms/Text';
-import { tailwindMerge } from '../../../libs/mergeClasses';
+import { Text } from '@/Atoms/Text';
+import { tailwindMerge } from '@/libs/mergeClasses';
 
 type Props = {
   text?: string;

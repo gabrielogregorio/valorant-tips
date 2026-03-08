@@ -8,7 +8,7 @@ import { useHandleState } from '@/shared/hooks/useHandleState';
 import { ApiService } from '@/shared/services/ApiService';
 import { HelpText, HelpTextVariantEnum } from '@/components/Molecules/helpText';
 import { tailwindMerge } from '@/libs/mergeClasses';
-import { Label } from '../../Molecules/Label';
+import { Label } from '@/Molecules/Label';
 
 export interface LoadImagePropsInterface {
   label: string;

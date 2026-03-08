@@ -4,7 +4,7 @@
  * Não dependem do React — podem ser usadas em qualquer contexto.
  */
 
-import { storage } from '../libs/storage';
+import { storage } from '@/libs/storage';
 
 const KEYS = {
   saved: 'post_saved_ids',

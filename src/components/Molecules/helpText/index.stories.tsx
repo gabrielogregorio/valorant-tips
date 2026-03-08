@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { HelpText, HelpTextVariantEnum } from '.';
-import { Icons } from '../../Atoms/Icons';
+import { Icons } from '@/Atoms/Icons';
 
 const meta = {
   title: 'Molecules/HelpText',

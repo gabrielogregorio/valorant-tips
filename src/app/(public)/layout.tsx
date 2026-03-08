@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { ReactNode } from 'react';
-import { PublicHeader } from '../../components/Organisms/PublicHeader';
-import { Footer } from '../../components/Organisms/Footer';
+import { PublicHeader } from '@/components/Organisms/PublicHeader';
+import { Footer } from '@/components/Organisms/Footer';
 
 export const metadata: Metadata = {
   title: 'Create Next App',

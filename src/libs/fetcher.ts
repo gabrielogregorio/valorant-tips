@@ -1,4 +1,4 @@
-import { authCookieName } from '../shared/constants/cookies';
+import { authCookieName } from '@/shared/constants/cookies';
 import { ClientCookies } from './clientCookies';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://127.0.0.1:3333';
