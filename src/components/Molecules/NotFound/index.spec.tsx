@@ -1,7 +1,7 @@
-import { render, screen } from '../../libs/test-utils/test-utils';
+import { render, screen } from '@/libs/test-utils/test-utils';
 import { NotFound } from '.';
-import * as formatI18nMap from '../../libs/i18n';
-import { a11yValidations } from '../../libs/test-utils/a11y';
+import * as formatI18nMap from '@/libs/i18n';
+import { a11yValidations } from '@/libs/test-utils/a11y';
 
 const mock = jest.spyOn(formatI18nMap, 'formatI18n');
 mock.mockImplementation((value) => value);

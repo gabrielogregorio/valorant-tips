@@ -1,6 +1,6 @@
 import { TextFieldBase } from '.';
-import { a11yValidations } from '../../libs/test-utils/a11y';
-import { render, screen, type } from '../../libs/test-utils/test-utils';
+import { a11yValidations } from '@/libs/test-utils/a11y';
+import { render, screen, type } from '@/libs/test-utils/test-utils';
 
 describe('TextFieldBase', () => {
   it('should render a default variant', async () => {
@@ -19,7 +19,7 @@ describe('TextFieldBase', () => {
 
     expect(await a11yValidations(container)).toHaveNoViolations();
     expect(component).toBeInTheDocument();
-    expect(component.tagName).toBe('INPUT');
+    expect(component!.tagName).toBe('INPUT');
     expect(component).toHaveClass('text-content-fg');
   });
 

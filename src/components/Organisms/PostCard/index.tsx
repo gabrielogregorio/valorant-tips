@@ -33,7 +33,7 @@ export const PostCard = ({ post }: TProps): ReactElement => {
   const tesetdPostsIsChecked = testedPost.testedIds.includes(post.id);
 
   return (
-    <div className="p-2 pl-0 pr-0 w-full h-full border-t border-gray-200 dark:border-gray-600">
+    <div className="p-2 pl-0 pr-0 w-full h-full border-t border-gray-600">
       <div>
         <div className="flex flex-col gap-sm">
           {post.authors.map((author) => (
@@ -59,7 +59,7 @@ export const PostCard = ({ post }: TProps): ReactElement => {
         ) : null} */}
       </div>
 
-      <h2 className="text-base dark:text-skin-white text-skin-gray-800 w-full mb-2.5">{post.title}</h2>
+      <h2 className="text-base text-white w-full mb-2.5">{post.title}</h2>
 
       <div className="w-full">
         <div className="relative w-full">
@@ -129,12 +129,12 @@ export const PostCard = ({ post }: TProps): ReactElement => {
       </div>
 
       <div>
-        <p className="text-base dark:text-skin-white text-skin-gray-800">{post.description}</p>
+        <p className="text-base text-white">{post.description}</p>
 
         <p className="text-skin-secondary-regular text-lg bg-transparent">
           {post.maps.map((map) => {
             return (
-              <span className="text-base font-bold" key={map.id}>
+              <span className="text-base font-bold text-primary" key={map.id}>
                 {' '}
                 #{map.name}
               </span>
@@ -143,7 +143,7 @@ export const PostCard = ({ post }: TProps): ReactElement => {
 
           {post.agents.map((agent) => {
             return (
-              <span className="text-base font-bold" key={agent.id}>
+              <span className="text-base font-bold text-primary" key={agent.id}>
                 {' '}
                 #{agent.name}
               </span>

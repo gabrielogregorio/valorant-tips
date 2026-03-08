@@ -1,5 +1,5 @@
 import { CardDash } from '.';
-import { render, screen } from '../../libs/test-utils/test-utils';
+import { render, screen } from '@/libs/test-utils/test-utils';
 
 describe('CardDash', () => {
   it('should render a default card', async () => {
@@ -8,7 +8,7 @@ describe('CardDash', () => {
     const component = screen.getByTestId('card-dash');
 
     expect(component).toBeInTheDocument();
-    expect(component.tagName).toBe('DIV');
+    expect(component!.tagName).toBe('DIV');
     expect(component).toHaveClass('bg-accent-radiant');
   });
 
@@ -18,7 +18,7 @@ describe('CardDash', () => {
     const component = screen.getByTestId('card-dash');
 
     expect(component).toBeInTheDocument();
-    expect(component.tagName).toBe('DIV');
+    expect(component!.tagName).toBe('DIV');
     expect(component).toHaveClass('example-custom-class');
   });
 });

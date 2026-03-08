@@ -1,6 +1,6 @@
 import { Label, LabelVariantEnum } from '.';
-import { a11yValidations } from '../../libs/test-utils/a11y';
-import { render, screen } from '../../libs/test-utils/test-utils';
+import { a11yValidations } from '@/libs/test-utils/a11y';
+import { render, screen } from '@/libs/test-utils/test-utils';
 
 describe('Label', () => {
   it('should render a default variant', async () => {
@@ -16,7 +16,7 @@ describe('Label', () => {
     expect(await a11yValidations(container)).toHaveNoViolations();
 
     expect(component).toBeInTheDocument();
-    expect(component.tagName).toBe('LABEL');
+    expect(component!.tagName).toBe('LABEL');
     expect(component).toHaveClass('text-content-fg-subcontent');
     expect(component).toHaveAttribute('aria-disabled', 'false');
   });
@@ -34,7 +34,7 @@ describe('Label', () => {
     expect(await a11yValidations(container)).toHaveNoViolations();
 
     expect(component).toBeInTheDocument();
-    expect(component.tagName).toBe('LABEL');
+    expect(component!.tagName).toBe('LABEL');
     expect(component).toHaveClass('text-feedback-error-hard');
     expect(component).toHaveAttribute('aria-disabled', 'false');
   });
@@ -52,7 +52,7 @@ describe('Label', () => {
     expect(await a11yValidations(container)).toHaveNoViolations();
 
     expect(component).toBeInTheDocument();
-    expect(component.tagName).toBe('LABEL');
+    expect(component!.tagName).toBe('LABEL');
     expect(component).toHaveClass('text-content-fg-disabled');
     expect(component).toHaveAttribute('aria-disabled', 'true');
   });

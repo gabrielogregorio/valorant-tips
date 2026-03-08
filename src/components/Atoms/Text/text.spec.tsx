@@ -1,5 +1,5 @@
 import { Text, TextVariantEnum } from '.';
-import { render, screen } from '../../libs/test-utils/test-utils';
+import { render, screen } from '@/libs/test-utils/test-utils';
 
 describe('Text', () => {
   it('should render default variant', () => {
@@ -8,7 +8,7 @@ describe('Text', () => {
     const textComponent = screen.getByText('Example');
 
     expect(textComponent).toBeInTheDocument();
-    expect(textComponent.tagName).toBe('P');
+    expect(textComponent!.tagName).toBe('P');
     expect(textComponent).toHaveClass('text-[16px]');
   });
 
@@ -18,7 +18,7 @@ describe('Text', () => {
     const textComponent = screen.getByText('Example');
 
     expect(textComponent).toBeInTheDocument();
-    expect(textComponent.tagName).toBe('SPAN');
+    expect(textComponent!.tagName).toBe('SPAN');
     expect(textComponent).toHaveClass('text-[36px]');
   });
 
@@ -28,7 +28,7 @@ describe('Text', () => {
     const textComponent = screen.getByText('Example');
 
     expect(textComponent).toBeInTheDocument();
-    expect(textComponent.tagName).toBe('SPAN');
+    expect(textComponent!.tagName).toBe('SPAN');
     expect(textComponent).toHaveClass('text-[56px]');
   });
 
@@ -38,7 +38,7 @@ describe('Text', () => {
     const textComponent = screen.getByText('Example');
 
     expect(textComponent).toBeInTheDocument();
-    expect(textComponent.tagName).toBe('SPAN');
+    expect(textComponent!.tagName).toBe('SPAN');
     expect(textComponent).toHaveClass('text-[16px]');
   });
 
@@ -48,7 +48,7 @@ describe('Text', () => {
     const textComponent = screen.getByText('Example');
 
     expect(textComponent).toBeInTheDocument();
-    expect(textComponent.tagName).toBe('H1');
+    expect(textComponent!.tagName).toBe('H1');
     expect(textComponent).toHaveClass('text-[24px]');
   });
 
@@ -58,7 +58,7 @@ describe('Text', () => {
     const textComponent = screen.getByText('Example');
 
     expect(textComponent).toBeInTheDocument();
-    expect(textComponent.tagName).toBe('H2');
+    expect(textComponent!.tagName).toBe('H2');
     expect(textComponent).toHaveClass('text-[20px]');
   });
 
@@ -68,7 +68,7 @@ describe('Text', () => {
     const textComponent = screen.getByText('Example');
 
     expect(textComponent).toBeInTheDocument();
-    expect(textComponent.tagName).toBe('H2');
+    expect(textComponent!.tagName).toBe('H2');
     expect(textComponent).toHaveClass('text-[20px]');
   });
 
@@ -78,7 +78,7 @@ describe('Text', () => {
     const textComponent = screen.getByText('Example');
 
     expect(textComponent).toBeInTheDocument();
-    expect(textComponent.tagName).toBe('SPAN');
+    expect(textComponent!.tagName).toBe('SPAN');
     expect(textComponent).toHaveClass('text-[16px]');
   });
 
@@ -88,7 +88,7 @@ describe('Text', () => {
     const textComponent = screen.getByText('Example');
 
     expect(textComponent).toBeInTheDocument();
-    expect(textComponent.tagName).toBe('SPAN');
+    expect(textComponent!.tagName).toBe('SPAN');
     expect(textComponent).toHaveClass('text-[12px]');
   });
 
@@ -98,7 +98,7 @@ describe('Text', () => {
     const textComponent = screen.getByText('Example');
 
     expect(textComponent).toBeInTheDocument();
-    expect(textComponent.tagName).toBe('P');
+    expect(textComponent!.tagName).toBe('P');
     expect(textComponent).toHaveClass('text-[16px]');
   });
 
@@ -108,7 +108,7 @@ describe('Text', () => {
     const textComponent = screen.getByText('Example');
 
     expect(textComponent).toBeInTheDocument();
-    expect(textComponent.tagName).toBe('P');
+    expect(textComponent!.tagName).toBe('P');
     expect(textComponent).toHaveClass('text-[16px]');
     expect(textComponent).toHaveClass('font-semibold');
   });
@@ -119,7 +119,7 @@ describe('Text', () => {
     const textComponent = screen.getByText('Example');
 
     expect(textComponent).toBeInTheDocument();
-    expect(textComponent.tagName).toBe('P');
+    expect(textComponent!.tagName).toBe('P');
     expect(textComponent).toHaveClass('text-[16px]');
     expect(textComponent).toHaveClass('underline');
   });

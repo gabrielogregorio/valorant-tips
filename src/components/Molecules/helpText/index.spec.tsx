@@ -1,6 +1,6 @@
 import { HelpText, HelpTextVariantEnum } from '.';
-import { a11yValidations } from '../../libs/test-utils/a11y';
-import { render, screen } from '../../libs/test-utils/test-utils';
+import { a11yValidations } from '@/libs/test-utils/a11y';
+import { render, screen } from '@/libs/test-utils/test-utils';
 
 describe('HelpText', () => {
   it('should render a default variant', async () => {
@@ -11,7 +11,7 @@ describe('HelpText', () => {
     expect(await a11yValidations(container)).toHaveNoViolations();
 
     expect(component).toBeInTheDocument();
-    expect(component.tagName).toBe('DIV');
+    expect(component!.tagName).toBe('DIV');
     expect(component).toHaveClass('text-content-fg-subcontent');
   });
 
@@ -23,7 +23,7 @@ describe('HelpText', () => {
     expect(await a11yValidations(container)).toHaveNoViolations();
 
     expect(component).toBeInTheDocument();
-    expect(component.tagName).toBe('DIV');
+    expect(component!.tagName).toBe('DIV');
     expect(component).toHaveClass('text-content-fg-disabled');
   });
 
@@ -35,7 +35,7 @@ describe('HelpText', () => {
     expect(await a11yValidations(container)).toHaveNoViolations();
 
     expect(component).toBeInTheDocument();
-    expect(component.tagName).toBe('DIV');
+    expect(component!.tagName).toBe('DIV');
     expect(component).toHaveClass('text-feedback-error-hard');
   });
 });

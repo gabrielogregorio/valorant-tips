@@ -28,6 +28,7 @@ const RootLayout = async ({
       <main className="flex-1 flex items-center justify-center px-3xl py-3xl bg-content-bg border border-border-soft shadow-md rounded-sm">
         {children}
       </main>
+
       <Footer />
     </div>
   );

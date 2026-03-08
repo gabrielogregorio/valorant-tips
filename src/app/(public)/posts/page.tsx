@@ -3,6 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import { PostsServiceType, useFetchStablePosts } from '@/shared/hooks/useFetchPosts';
 import { PostCard } from '../../../components/Organisms/PostCard';
+import { TitleAndSubtitle } from '../../../components/Molecules/TitleAndSubTitle';
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -26,7 +27,40 @@ export default function Page() {
 
   return (
     <div>
-      <div className="grid grid-cols-1 gap-6">
+      <TitleAndSubtitle key="" subtitle="" title="As melhores dicas de Valorant" />
+      <div className="grid grid-cols-1 gap-6 mt-4">
+        <div className="flex justify-center">
+          <button type="button" className="p-2 m-2 text-primary font-bold">
+            #Sova
+          </button>
+
+          <button type="button" className="p-2 m-2 text-primary font-bold">
+            #Bind
+          </button>
+        </div>
+
+        <div className='flex gap-2 flex-wrap justify-center'>
+          {[
+            'QualquerMomento',
+            'Facil',
+            'FlechaRastreadora',
+            'Defensores',
+            'A',
+            'Outra',
+            'Medio',
+            'Atacantes',
+            'BaseAtacante',
+            'BaseDefensora',
+          ].map((tag) => (
+            <button
+              type="button"
+              key={tag}
+              className="p-3 pb-1 pt-1 border border-secondary rounded-md transition duration-100 font-bold text-secondary ">
+              #{tag}
+            </button>
+          ))}
+        </div>
+
         {posts.posts.map((post: PostsServiceType) => (
           <PostCard key={post.id} post={post} />
         ))}

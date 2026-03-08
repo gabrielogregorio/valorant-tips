@@ -1,6 +1,6 @@
 import { ClickableInputButton } from '.';
-import { a11yValidations } from '../../libs/test-utils/a11y';
-import { click, render, screen } from '../../libs/test-utils/test-utils';
+import { a11yValidations } from '@/libs/test-utils/a11y';
+import { click, render, screen } from '@/libs/test-utils/test-utils';
 
 describe('ClickableInputButton', () => {
   it('should render a default variant', async () => {
@@ -22,7 +22,7 @@ describe('ClickableInputButton', () => {
     await click(component);
     expect(clickFunction).toHaveBeenCalledTimes(1);
     expect(component).toBeInTheDocument();
-    expect(component.tagName).toBe('BUTTON');
+    expect(component!.tagName).toBe('BUTTON');
     expect(component).toHaveClass('example-custom-invalid');
     expect(component).toBeEnabled();
   });
@@ -48,7 +48,7 @@ describe('ClickableInputButton', () => {
     expect(await a11yValidations(container)).toHaveNoViolations();
 
     expect(component).toBeInTheDocument();
-    expect(component.tagName).toBe('BUTTON');
+    expect(component!.tagName).toBe('BUTTON');
     expect(component).toHaveClass('example-custom-invalid');
     expect(component).toBeDisabled();
   });

@@ -1,5 +1,5 @@
 import { Button, ButtonVariantEnum } from '.';
-import { render, screen, click } from '../../libs/test-utils/test-utils';
+import { render, screen, click } from '@/libs/test-utils/test-utils';
 
 describe('Button', () => {
   it('should render a primary variant and click', async () => {
@@ -13,7 +13,7 @@ describe('Button', () => {
     const component = screen.getByRole('button');
 
     expect(component).toBeInTheDocument();
-    expect(component.tagName).toBe('BUTTON');
+    expect(component!.tagName).toBe('BUTTON');
     expect(component).toHaveClass('bg-primary');
     expect(component).toBeEnabled();
     expect(clickFunction).toHaveBeenCalledTimes(0);
@@ -34,7 +34,7 @@ describe('Button', () => {
     const component = screen.getByRole('button');
 
     expect(component).toBeInTheDocument();
-    expect(component.tagName).toBe('BUTTON');
+    expect(component!.tagName).toBe('BUTTON');
     expect(component).toHaveClass('bg-secondary');
     expect(component).toBeEnabled();
     expect(clickFunction).toHaveBeenCalledTimes(0);
@@ -55,7 +55,7 @@ describe('Button', () => {
     const component = screen.getByRole('button');
 
     expect(component).toBeInTheDocument();
-    expect(component.tagName).toBe('BUTTON');
+    expect(component!.tagName).toBe('BUTTON');
     expect(component).toBeEnabled();
     expect(clickFunction).toHaveBeenCalledTimes(0);
 
@@ -75,7 +75,7 @@ describe('Button', () => {
     const component = screen.getByRole('button');
 
     expect(component).toBeInTheDocument();
-    expect(component.tagName).toBe('BUTTON');
+    expect(component!.tagName).toBe('BUTTON');
     expect(component).toHaveClass('bg-primary');
     expect(component).toBeDisabled();
     expect(clickFunction).toHaveBeenCalledTimes(0);

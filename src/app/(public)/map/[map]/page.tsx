@@ -3,6 +3,7 @@ import { fetcherServer } from '@/libs/fetcher';
 import { AgentType } from '@/shared/hooks/useFetchAgents';
 import { MapsType } from '@/shared/hooks/useFetchMaps';
 import { Image } from '@/libs/image';
+import { TitleAndSubtitle } from '@/components/Molecules/TitleAndSubTitle';
 
 export const revalidate = 20;
 
@@ -21,19 +22,23 @@ export default async function ChoiceAgentAfterMap({ params }: { params: Promise<
   const agentsByMap = (await fetcherServer(`/agents/${map}/posts`)) as AgentType[];
 
   return (
-    <div className="grid grid-cols-4 gap-4">
-      {agentsByMap.map((agents) => (
-        <Link
-          type="button"
-          key={agents.id}
-          href={`/posts?agents=${agents.id}&maps=${map}`}
-          className={'relative rounded-lg overflow-hidden border-2 transition-all'}>
-          <Image src={agents.imageUrl} alt={agents.name} className="object-cover" width={500} height={500} />
-          <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1 text-center">
-            {agents.name}
-          </div>
-        </Link>
-      ))}
+    <div>
+      <TitleAndSubtitle key="" subtitle="" title="Agora escolhe um agente " />
+
+      <div className="grid grid-cols-4 gap-4 mt-4">
+        {agentsByMap.map((agents) => (
+          <Link
+            type="button"
+            key={agents.id}
+            href={`/posts?agents=${agents.id}&maps=${map}`}
+            className={'rounded-lg overflow-hidden hover:scale-105 transition-transform duration-150'}>
+            <Image src={agents.imageUrl} alt={agents.name} className="object-cover" width={500} height={500} />
+            <div className="text-white text-xs text-center">
+              {agents.name}
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

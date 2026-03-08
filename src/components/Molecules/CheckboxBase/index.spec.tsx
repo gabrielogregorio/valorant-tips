@@ -1,6 +1,6 @@
 import { CheckboxBase } from '.';
-import { a11yValidations } from '../../libs/test-utils/a11y';
-import { click, render, screen } from '../../libs/test-utils/test-utils';
+import { a11yValidations } from '@/libs/test-utils/a11y';
+import { click, render, screen } from '@/libs/test-utils/test-utils';
 
 describe('CheckboxBase', () => {
   it('should render checked component and unchecked', async () => {
@@ -14,7 +14,7 @@ describe('CheckboxBase', () => {
     expect(await a11yValidations(container)).toHaveNoViolations();
     expect(component).toBeInTheDocument();
     expect(component).toBeChecked();
-    expect(component.tagName).toBe('INPUT');
+    expect(component!.tagName).toBe('INPUT');
     await click(component);
 
     expect(fn).toBeCalledWith(false);
