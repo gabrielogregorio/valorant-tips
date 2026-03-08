@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { FieldValues, useController } from 'react-hook-form';
-import { LoadImageFormProps } from '../../../Organisms/LoadImageForm/interfaces';
-import { LoadImageBase } from '../../../Organisms/LoadImageBase';
+import { LoadImageFormProps } from '@/Organisms/LoadImageForm/interfaces';
+import { LoadImageBase } from '@/Organisms/LoadImageBase';
 
 export const LoadImageFormExternal = <T extends FieldValues>({
   name,

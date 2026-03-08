@@ -1,0 +1,74 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+import {getThemeVariables} from '../../utils-storybook/index'
+
+export const BorderRadius = () => {
+  const colors = getThemeVariables('color')
+  const borderRadius = getThemeVariables('radius')
+
+  // const borderradius = getThemeVariables('border')
+
+  // const objectSpacing =config.theme.borderRadius
+  // const keysSpacing = Object.keys(objectSpacing)
+
+  return <div className="flex gap-xs">
+    {Object.entries(borderRadius).map(([key, value]) => {
+
+console.log(colors, 'COLOR')
+
+      return <div key={key} >
+      <div className='text-center text-content-fg-subcontent'>
+      {key}
+      </div>
+      <div
+        className="flex justify-center items-center"
+         style={{
+          borderRadius: value,
+          backgroundColor: colors.primary,
+          width: '100px',
+          height: '100px'}}>
+          {value}
+        </div>
+        </div>
+      })}
+  </div>
+}
+
+
+export const BorderWidth = () => {
+
+  const colors = getThemeVariables('color') // ,
+  const borderWidths = getThemeVariables('border-width')
+
+
+  return <div className="flex gap-xs">
+    {Object.entries(borderWidths) .map(([key, value]) => {
+
+      return<div key={key} >
+            <div className='text-center text-content-fg-subcontent'>
+      {key}
+      </div>
+      <div
+        className="flex justify-center items-center"
+        style={{
+          borderColor:    colors.accent.radiant,
+          borderWidth: value
+          }}
+          >
+
+          {value}
+        </div>
+        </div>
+      })}
+  </div>
+}
+
+
+## Border radius
+
+Border radius usado no projeto
+
+<BorderRadius />
+
+Bordas usadas no projeto
+
+<BorderWidth />

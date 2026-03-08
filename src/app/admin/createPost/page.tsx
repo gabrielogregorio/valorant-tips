@@ -1,14 +1,10 @@
-import { TitleAndSubtitle } from '../../../Molecules/TitleAndSubTitle';
+'use client';
+import { CreateOrEditPost } from '@/components/Features/CreateOrEditPost';
 
-// Copilot, crie as telas
-
-export default function DashboardScreen() {
+export default function AdminCreatePostPage() {
   return (
-    <>
-      <TitleAndSubtitle title="Dashboard" subtitle="Esse é um dashboard" />
-
-      <div>Tela inicial</div>
-    </>
+    <div className="max-w-content-desktop mx-auto py-8">
+      <CreateOrEditPost />
+    </div>
   );
 }
-

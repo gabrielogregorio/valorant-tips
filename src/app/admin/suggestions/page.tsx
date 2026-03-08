@@ -1,12 +1,5 @@
-import { TitleAndSubtitle } from '../../../Molecules/TitleAndSubTitle';
-import { Suggestions } from '../../../Organisms/Suggestions';
+import { SuggestionsAdmin } from '@/Organisms/SuggestionsAdmin';
 
-const SuggestionScreen = () => (
-  <>
-    <TitleAndSubtitle title="Sugestões" subtitle="Aqui estão as sugestões enviadas pelos players" />
-
-    <Suggestions />
-  </>
-);
+const SuggestionScreen = () => <SuggestionsAdmin />;
 
 export default SuggestionScreen;

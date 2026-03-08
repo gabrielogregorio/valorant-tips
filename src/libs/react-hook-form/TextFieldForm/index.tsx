@@ -1,7 +1,7 @@
 import { useEffect, useRef, ReactElement, RefObject } from 'react';
 import { FieldValues, useController } from 'react-hook-form';
-import { TextFieldBase } from '../../../Molecules/TextFieldBase';
-import { TextFieldFormProps } from '../../../Molecules/TextFieldForm/interfaces';
+import { TextFieldBase } from '@/components/Molecules/TextFieldBase';
+import { TextFieldFormProps } from '@/components/Molecules/TextFieldForm/interfaces';
 
 export const TextFieldFormExternal = <T extends FieldValues>({
   name,

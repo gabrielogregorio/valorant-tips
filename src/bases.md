@@ -2,28 +2,28 @@ Layouts automáticos no figma
 Nas configurações do laytout automático, o STROKES DEVEM estar marcado a opção INCLUDED IN LAYOUT para seguir o comportamento do frontend
 
 Qual é o reset basico para a estilização
-Todos os elementos da página devem serguir o content box: box sixing para que o tamanho inclua a contagem da borda,  e todos devem ter o padding e margin resetados para zero.
+Todos os elementos da página devem serguir o content box: box sixing para que o tamanho inclua a contagem da borda, e todos devem ter o padding e margin resetados para zero.
 
-* {
+- {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-}
+  }
 
 Qual é a regra base para o body da página?
 Não é regra ser o body, mas entende-se o body como a raiz de todos os items, e esta deve serguir o background --root-bg, deve ser display flex, colunar, com os items alinhados ao centro , com gap de --spacing-5xl e deve definir a fonte padrão do Valorant Tips
 
 .root {
-  font-family: "Poppins", serif;
-  font-weight: 400;
-  font-style: normal;
+font-family: "Poppins", serif;
+font-weight: 400;
+font-style: normal;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-5xl);
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: var(--spacing-5xl);
 
-  background: var(--root-bg);
+background: var(--root-bg);
 }
 
 O que é a região de complemento?
@@ -66,29 +66,16 @@ Capturas de telas devem ser exibidas com a expecificação 16x9 e ocupação os 
 Criação de componentes
 Preferencialmenmte, organismos devem ocupar os 840px para que o layout fique mais modular na vertical e para que não sobrem espaços desnecessários. Preferencialmente eles devem preencher o espaços restante da div content base
 
-
-
-
-
-
-
-
 Arquitetura de layouts na Prática
 Abaixo exemplos práticos de como o layout deve se comportar
-
-
 
 O Modelo da região do conteudo deve seguir o abaixo, tendo 840px da região de conteudo útil, 24px de padding por todos os lados e borda de 1px, sendo que o content-box será box-sixing. Isso deve garantir 890px de largura total que é a região do conteudo.
 
 O width deve ser aplicado na região do conteudo, a região do conteudo útil é consequência.
 
-
 Abaixo um exemplo completo em HTML com todas as especificações para o layout, incluindo responsividade padrão que o figma irá seguir.
 
 Note que o :root pode mudar de acordo com o figma, abaixo foi incluido apenas para facilitar a demonstração de como tudo deve ser comportar
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -204,10 +191,9 @@ Note que o :root pode mudar de acordo com o figma, abaixo foi incluido apenas pa
     >
       Footer
     </div>
+
   </body>
 </html>
-
-
 
 Icones
 As regras abaixo visam facilitar alinhamento e reuso em diferenetes cenários para os icones
@@ -221,4 +207,3 @@ No código, svgs devem ter o atributo fill=”currentColor” ao invés das core
 Ao esticar um svg, o conteudo inteiro DEVE crescer junto
 A nomenclatura de cada Variant DEVE ser Icon[NomeDoIcone][FILL|OUTLINE], exemplo: IconHeartOutline, o frontend DEVE serguir
 Icones FILL são icones onde o conteudo principal está pintado, se o conteudo principal for apenas uma linha ou pontos, isso ainda é outline, e o fill seria essa versão com o fundo preenchido.
-

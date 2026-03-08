@@ -8,4 +8,6 @@ export enum RouteScreensEnum {
   'createPost' = '/admin/createPost',
   'suggestions' = '/admin/suggestions',
   'profile' = '/admin/profile',
+  'saved' = '/saved',
+  'tested' = '/tested',
 }

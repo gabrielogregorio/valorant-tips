@@ -1,5 +1,5 @@
-import { TitleAndSubtitle } from '../../../Molecules/TitleAndSubTitle';
-import CreateAccount from '../../../Organisms/CreateAccount';
+import { TitleAndSubtitle } from '@/components/Molecules/TitleAndSubTitle';
+import CreateAccount from '@/Organisms/CreateAccountForm';
 
 export default function Home() {
   return (

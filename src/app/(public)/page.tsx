@@ -1,10 +1,25 @@
-import { MapList, Maps } from "../../Organisms/MapList";
+import Link from 'next/link';
+import { Image } from '@/libs/image';
+import { fetcherServer } from '@/libs/fetcher';
+import { MapsType } from '@/shared/hooks/useFetchMaps';
 
+export default async function Page() {
+  const maps = await fetcherServer<MapsType[]>('/maps/?filter=with-posts');
 
-export default async function Home() {
-  const maps: Maps[] = await fetch('http://127.0.0.1:3333/maps', { next: { revalidate: 20 } }).then((res) => res.json())
-
-  return <MapList maps={maps} />
-
-};
-
+  return (
+    <div className="grid grid-cols-4 gap-4">
+      {maps.map((map) => (
+        <Link
+          type="button"
+          key={map.id}
+          href={`/map/${map.id}`}
+          className={'relative rounded-lg overflow-hidden border-2 transition-all'}>
+          <Image src={map.imageUrl} alt={map.name} className="object-cover" width={500} height={500} />
+          <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1 text-center">
+            {map.name}
+          </div>
+        </Link>
+      ))}
+    </div>
+  );
+}

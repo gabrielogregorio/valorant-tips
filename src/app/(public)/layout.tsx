@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { ReactNode } from 'react';
-import { PublicHeader } from '../../Organisms/PublicHeader';
-import { Footer } from '../../Organisms/Footer';
+import { PublicHeader } from '../../components/Organisms/PublicHeader';
+import { Footer } from '../../components/Organisms/Footer';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -12,22 +12,24 @@ const RegisterPage = ({
   children,
 }: Readonly<{
   children: ReactNode;
-}>) => (
-  // <body className="bg-root-bg ">
-  <div className="flex flex-col justify-between min-h-screen">
-    <PublicHeader />
+}>) => {
+  return (
+    // <body className="bg-root-bg ">
+    <div className="flex flex-col justify-between min-h-screen">
+      <PublicHeader />
 
-    <div className="mt-5xl flex items-start justify-center animate-fadeIn300 flex-1">
-      <main className="flex flex-col max-w-content-desktop w-full px-3xl py-3xl gap-3xl bg-content-bg border border-border-soft shadow-md rounded-sm">
-        {children}
-      </main>
-    </div>
+      <div className="mt-5xl flex items-start justify-center animate-fadeIn300 flex-1">
+        <main className="flex flex-col max-w-content-desktop w-full px-3xl py-3xl gap-3xl bg-content-bg border border-border-soft shadow-md rounded-sm">
+          {children}
+        </main>
+      </div>
 
-    <div className="mt-5xl">
-      <Footer />
+      <div className="mt-5xl">
+        <Footer />
+      </div>
     </div>
-  </div>
-  // </body>
-);
+    // </body>
+  );
+};
 
 export default RegisterPage;

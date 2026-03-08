@@ -1,20 +1,11 @@
-import { TitleAndSubtitle } from '../../../Molecules/TitleAndSubTitle';
-// import { AgentList } from '../../../Organisms/AgentList';
-// import { CategoryWithTags } from '../../../Organisms/CategoryWithTags';
-// import { MapList } from '../../../Organisms/MapsList';
+'use client';
 
-const DashboardScreen = () => (
-  <>
-    <TitleAndSubtitle title="Dashboard" subtitle="Esse é um dashboard" />
+import { ManageData } from '@/Organisms/ManagerData';
 
-    <div>
-      {/* <MapList />
-
-      <AgentList />
-
-      <CategoryWithTags /> */}
+export default function AdminDataPage() {
+  return (
+    <div className="mx-auto py-8 w-full">
+      <ManageData />
     </div>
-  </>
-);
-
-export default DashboardScreen;
+  );
+}

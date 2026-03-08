@@ -1,4 +1,3 @@
-/* eslint-disable id-length */
 import { queryHelpers, buildQueries, Matcher, MatcherOptions } from '@testing-library/react';
 
 const queryAllByDataCy = (container: HTMLElement, id: Matcher, options?: MatcherOptions | undefined) =>

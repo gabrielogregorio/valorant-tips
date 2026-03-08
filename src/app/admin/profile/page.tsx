@@ -1,15 +1,15 @@
-import { TitleAndSubtitle } from '../../../Molecules/TitleAndSubTitle';
-import UpdateProfileData from '../../../Organisms/UpdateProfileData';
-import UpdateProfilePassword from '../../../Organisms/UpdateProfilePassword';
+import { TitleAndSubtitle } from '@/components/Molecules/TitleAndSubTitle';
+import UpdateProfileData from '@/components/Organisms/UpdateProfileData';
+import UpdateProfilePassword from '@/components/Organisms/UpdateProfilePassword';
 
-const DashboardScreen = () => (
-  <>
+const ProfileScreen = () => (
+  <div className="flex flex-col">
     <TitleAndSubtitle title="Seu Perfil" subtitle="Atualize suas informações" />
 
     <UpdateProfileData />
 
     <UpdateProfilePassword />
-  </>
+  </div>
 );
 
-export default DashboardScreen;
+export default ProfileScreen;

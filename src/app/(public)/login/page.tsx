@@ -1,5 +1,5 @@
-import { TitleAndSubtitle } from '../../../Molecules/TitleAndSubTitle';
-import Login from '../../../Organisms/Login';
+import { TitleAndSubtitle } from '@/Molecules/TitleAndSubTitle';
+import Login from '@/components/Organisms/LoginForm';
 
 export default function LoginScreen() {
   return (

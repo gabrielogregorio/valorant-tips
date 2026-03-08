@@ -1,6 +1,6 @@
 import { ApiService } from '../services/ApiService';
-import { formatI18n } from '../../libs/i18n';
-import { useRequestCacheCustomSwr } from '../../libs/useRequestCache';
+import { formatI18n } from '@/libs/i18n';
+import { useRequestCacheCustomSwr } from '@/libs/useRequestCache';
 
 type SuggestionsType = {
   createdAt: string;
