@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { SuggestionCard } from './SuggestionCard';
 import { authCookieName } from '@/shared/constants/cookies';
 import { ClientCookies } from '@/libs/clientCookies';
-import { TitleAndSubtitle } from '@/molecules/TitleAndSubtitle';
+import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
 
 type Suggestion = {
   description: string; // : "example description",

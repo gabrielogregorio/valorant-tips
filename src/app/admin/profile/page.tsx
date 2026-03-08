@@ -1,5 +1,5 @@
-import { TitleAndSubtitle } from '@/molecules/TitleAndSubtitle';
-import UpdateProfileData from '@Features/profile/UpdateProfileData';
+import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
+import { UpdateProfileData } from '@Features/profile/UpdateProfileData';
 import UpdateProfilePassword from '@Features/profile/UpdateProfilePassword';
 
 const ProfileScreen = () => (

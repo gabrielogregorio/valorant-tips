@@ -1,5 +1,6 @@
 'use client';
 
+import { Text, TextVariantEnum } from '@/atoms/Text';
 import { Button } from '@/molecules/Button';
 import { AgentType } from '@/shared/hooks/useFetchAgents';
 import { AgentList } from '@Features/agents/AgentList';
@@ -70,21 +71,24 @@ export const ManageData = () => {
 
   return (
     <div className="space-y-8">
-      <h1 className="text-3xl font-bold">Gerenciar dados</h1>
-      <p className="text-gray-600">Aqui você encontrará diversas dicas para evoluir no jogo Valorant</p>
+
+      <Text variant={TextVariantEnum.h1} className='text-white'>Gerenciar dados</Text>
+      <p className="text-gray-200">Aqui você encontrará diversas dicas para evoluir no jogo Valorant</p>
 
       {/* Maps Section */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">Mapas</h2>
+        <Text variant={TextVariantEnum.h2} className='text-white'>Mapas</Text>
+
+
         <MapListAdmin maps={maps} onEdit={handleMapEdit} />
         <Button onClick={handleMapCreate} variant="primary">
           + Criar Mapa
         </Button>
       </section>
 
-      {/* Agents Section */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">Agentes</h2>
+        <Text variant={TextVariantEnum.h2} className='text-white'>Agentes</Text>
+
         <AgentList agents={agents} onEdit={handleAgentEdit} />
         <Button onClick={handleAgentCreate} variant="primary">
           + Criar Agente

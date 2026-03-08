@@ -1,6 +1,6 @@
 import { Icons } from '@/atoms/Icons';
 import { tailwindMerge } from '@/libs/mergeClasses';
-import { Button, ButtonVariantEnum } from '../Button';
+import { Button } from '../Button';
 
 type Props = {
   className?: string;

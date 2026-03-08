@@ -2,7 +2,7 @@
 
 import { useSearchParams } from 'next/navigation';
 import { PostsServiceType, useFetchStablePosts } from '@/shared/hooks/useFetchPosts';
-import { TitleAndSubtitle } from '@/molecules/TitleAndSubtitle';
+import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
 import { PostCard } from '@Features/posts/PostCard';
 
 export default function Page() {

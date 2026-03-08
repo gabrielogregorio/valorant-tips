@@ -1,4 +1,4 @@
-import { TitleAndSubtitle } from '@/molecules/TitleAndSubtitle';
+import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
 import CreateAccount from '@Features/auth/CreateAccountForm';
 
 

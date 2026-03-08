@@ -1,4 +1,4 @@
-import { TitleAndSubtitle } from '@/molecules/TitleAndSubtitle';
+import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
 import { LoginForm } from '@Features/auth/LoginForm';
 
 export default function LoginScreen() {

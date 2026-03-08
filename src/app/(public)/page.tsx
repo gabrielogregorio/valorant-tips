@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Image } from '@/libs/image';
 import { fetcherServer } from '@/libs/fetcher';
 import { MapsType } from '@/shared/hooks/useFetchMaps';
-import { TitleAndSubtitle } from '@/molecules/TitleAndSubtitle';
+import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
 
 export default async function Page() {
   const maps = await fetcherServer<MapsType[]>('/maps/?filter=with-posts');

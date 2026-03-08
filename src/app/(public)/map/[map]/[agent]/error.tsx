@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/molecules/Button';
-import { TitleAndSubtitle } from '@/molecules/TitleAndSubtitle';
+import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
 
 export default function Error({
     error,
