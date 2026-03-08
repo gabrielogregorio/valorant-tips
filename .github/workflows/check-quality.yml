@@ -10,19 +10,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [22.x]
-
     steps:
-      - uses: actions/checkout@v2
-      - name: use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-environment
 
-      - name: install dependencies
-        run: pnpm install --ignore-optional --frozen-lockfile
       - run: pnpm type-check
       - run: pnpm lint
       - run: pnpm stylelint "**.css"

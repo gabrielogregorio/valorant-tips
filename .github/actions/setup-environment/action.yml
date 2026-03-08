@@ -1,0 +1,19 @@
+name: 'Setup Environment'
+description: 'Sets up Node.js 22, PNPM, and caches dependencies for NextJS UI tests'
+runs:
+  using: 'composite'
+  steps:
+    - uses: pnpm/action-setup@v4
+      name: Pnpm Action Setup
+      with:
+        version: 10
+
+    - name: Use Node.js 22
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22
+        cache: 'pnpm'
+
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile

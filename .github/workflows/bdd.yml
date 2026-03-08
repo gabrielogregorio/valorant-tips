@@ -1,0 +1,22 @@
+name: BDD
+
+on:
+  pull_request:
+    branches: [main, dev]
+  push:
+    branches: [main, dev]
+
+jobs:
+  bdd:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-environment
+
+      - name: Generate BDD tests
+        run: npx bddgen
+
+      - name: Run BDD Tests
+        run: |
+          npx playwright install --with-deps chromium
+          pnpm exec playwright test
