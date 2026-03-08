@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
-import { RouteScreensEnum } from '@/types/routeScreenEnum';
+import { RouteScreensEnum } from '@/shared/@types/routeScreenEnum';
 
 export const useHandleRouter = () => {
   const { push } = useRouter();

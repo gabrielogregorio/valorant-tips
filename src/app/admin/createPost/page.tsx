@@ -1,5 +1,6 @@
 'use client';
-import { CreateOrEditPost } from '@/components/Features/CreateOrEditPost';
+
+import { CreateOrEditPost } from "@Features/posts/CreateOrEditPost";
 
 export default function AdminCreatePostPage() {
   return (

@@ -211,71 +211,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-Radix
-Radix
-Radix
-
-Radix
-Radix
-Radix
-
-Radix
-Radix
-Radix
-
-Radix
-Radix
-Radix
-
-Radix
-Radix
-Radix
-
-Radix
-Radix
-Radix
-
-Radix
-Radix
-Radix
-
-Radix
-Radix
-Radix
-
-Radix
-Radix
-Radix
-
-Radix
-Radix
-Radix
-
-Radix
-Radix
-Radix
-
-Radix
-Radix
-Radix
-
-Radix
-Radix
-Radix
-
-Radix
-Radix
-Radix
-
-Radix
-Radix
-Radix
-
-Radix
-Radix
-Radix
-Zustand
-
 ## Commits e Hooks de Git
 
 Este projeto utiliza **Husky** e **Commitlint** para garantir que todas as mensagens de commit sigam o padrão de **Commits Semânticos** (Conventional Commits).
@@ -286,6 +221,7 @@ As mensagens de commit devem seguir o formato:
 `<tipo>(escopo opcional): <descrição>`
 
 Tipos comuns:
+
 - `feat`: Nova funcionalidade
 - `fix`: Correção de bug
 - `docs`: Alterações na documentação
@@ -299,9 +235,11 @@ Tipos comuns:
 ### Hooks de Git
 
 Os hooks são executados automaticamente:
+
 - **pre-commit**: Roda o linting (`pnpm lint`) antes de cada commit.
 - **commit-msg**: Valida se a mensagem do commit segue o padrão semântico.
 
 Se você precisar rodar manualmente para testar:
+
 - Linting: `pnpm lint`
 - Commitlint (último commit): `pnpm commitlint --from HEAD~1 --to HEAD --verbose`

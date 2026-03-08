@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import { getSavedIds, toggleSaved } from '../../store/postInteractions';
+import { getSavedIds, toggleSaved } from '../store/postInteractions';
 
 export function useSavedPost() {
   const [savedIds, setSavedIds] = useState<string[]>(() => getSavedIds());

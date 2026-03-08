@@ -17,6 +17,7 @@ console.groupEnd();
 }, [error]);
 
 return (
+
 <div>
 <h2>Ops, algo deu errado!</h2>
 

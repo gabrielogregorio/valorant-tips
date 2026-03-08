@@ -1,5 +1,6 @@
-import { TitleAndSubtitle } from '@/components/Molecules/TitleAndSubTitle';
-import { Dashboard } from '@/components/Organisms/Dashboard';
+import { TitleAndSubtitle } from '@/molecules/TitleAndSubtitle';
+import { Dashboard } from '@Features/dashboard/Dashboard';
+
 
 export default function DashboardScreen() {
   return (

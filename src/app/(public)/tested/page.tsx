@@ -1,7 +1,7 @@
 'use client';
 
 import { PostsServiceType, useFetchStablePosts } from '@/shared/hooks/useFetchPosts';
-import { PostCard } from '@/components/Organisms/PostCard';
+import { PostCard } from '@/organisms/PostCard';
 
 // TODO: Implementar tested
 export default function Page() {

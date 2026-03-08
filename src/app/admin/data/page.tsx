@@ -1,6 +1,6 @@
 'use client';
 
-import { ManageData } from '@/Organisms/ManagerData';
+import { ManageData } from '@/organisms/ManagerData';
 
 export default function AdminDataPage() {
   return (

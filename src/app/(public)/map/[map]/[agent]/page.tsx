@@ -1,4 +1,4 @@
-import { TitleAndSubtitle } from '@/Molecules/TitleAndSubTitle';
+import { TitleAndSubtitle } from '@/molecules/TitleAndSubtitle';
 
 export default async function PostsMapAgents({ params }: { params: { agent: string; map: string } }) {
   const { agent, map } = await params;

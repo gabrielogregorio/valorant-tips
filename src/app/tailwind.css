@@ -3,7 +3,6 @@
 @import 'tailwindcss';
 
 @layer base {
-  /* resets vcss devem estar dentro da layer base para não sobrescreverem o tailwind */
   * {
     box-sizing: border-box;
     padding: 0;
@@ -20,31 +19,19 @@
 }
 
 @theme {
-  /* ========================= */
-  /* FONT */
-  /* ========================= */
-
   --font-poppins: 'Poppins', sans-serif;
 
-  /* Breakpoints */
   --breakpoint-desktop: 1366px;
   --breakpoint-tabled: 1024px;
   --breakpoint-mobile: 640px;
 
-  /* Border Width */
   --border-width: 1px;
 
-  /* Background Images */
   --background-image-loadImage: url('/public/images/choiceImage.png');
 
-  /* Animations */
   --animate-pulseIn300: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --animate-spin: spin 1s linear infinite;
   --animate-fadeIn300: fadeIn300 0.3s ease-in-out forwards;
-
-  /* ========================= */
-  /* SPACING */
-  /* ========================= */
 
   --spacing-xxs: 2px;
   --spacing-xs: 4px;
@@ -60,26 +47,16 @@
   --spacing-7xl: 48px;
 
   --spacing-content-desktop: 890px;
-  --spacing-full: 100% --spacing-size-w-content-modal: 650px;
-
-  /* ========================= */
-  /* RADIUS */
-  /* ========================= */
+  --spacing-full: 100%;
+  --spacing-size-w-content-modal: 650px;
+  --spacing-size-inputs: 400px;
 
   --radius-xxs: 2px;
   --radius-xs: 4px;
   --radius-sm: 6px;
   --radius-full: 100%;
 
-  /* ========================= */
-  /* SHADOW */
-  /* ========================= */
-
   --shadow-md: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
-
-  /* ========================= */
-  /* COLORS */
-  /* ========================= */
 
   --color-primary: #d85f5f;
   --color-primary-hard: #e03f3f;
@@ -161,3 +138,29 @@
 .disable-pointer-events-for-children * {
   pointer-events: none;
 }
+
+/* Disable auto fill white effect */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #e5e7eb;
+  -webkit-box-shadow: 0 0 0px 1000px #1f1f1f inset;
+  box-shadow: 0 0 0px 1000px #1f1f1f inset;
+  transition: background-color 9999s ease-in-out 0s;
+  border: 1px solid #3a3a3a;
+  caret-color: #e5e7eb;
+}
+
+/* input,
+textarea,
+select {
+  background-color: #1f1f1f;
+  color: #e5e7eb;
+  border: 1px solid #3a3a3a;
+} */

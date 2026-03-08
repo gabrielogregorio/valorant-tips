@@ -19,17 +19,18 @@
         "name": "next"
       }
     ],
+    "baseUrl": "./",
     "paths": {
-      "@/Atoms/*": ["./src/components/Atoms/*"],
-      "@/Molecules/*": ["./src/components/Molecules/*"],
-      "@/Organisms/*": ["./src/components/Organisms/*"],
+      "@/atoms/*": ["src/components/atoms/*"],
+      "@/molecules/*": ["src/components/molecules/*"],
+      "@/organisms/*": ["src/components/organisms/*"],
       "@/shared/*": ["./src/shared/*"],
       "@/libs/*": ["./src/libs/*"],
       "@/types/*": ["./src/shared/@types/*"],
-      "@Features/*": ["./src/Features/*"],
+      "@Features/*": ["src/features/*"],
       "@/*": ["./src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".next/dev/types/**/*.ts", "**/*.mts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "**/*.stories.tsx", "**/*.stories.ts"]
 }

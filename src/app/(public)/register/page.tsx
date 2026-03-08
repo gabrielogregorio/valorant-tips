@@ -1,5 +1,6 @@
-import { TitleAndSubtitle } from '@/components/Molecules/TitleAndSubTitle';
-import CreateAccount from '@/Organisms/CreateAccountForm';
+import { TitleAndSubtitle } from '@/molecules/TitleAndSubtitle';
+import CreateAccount from '@Features/auth/CreateAccountForm';
+
 
 export default function Home() {
   return (

@@ -3,7 +3,7 @@ import { fetcherServer } from '@/libs/fetcher';
 import { AgentType } from '@/shared/hooks/useFetchAgents';
 import { MapsType } from '@/shared/hooks/useFetchMaps';
 import { Image } from '@/libs/image';
-import { TitleAndSubtitle } from '@/components/Molecules/TitleAndSubTitle';
+import { TitleAndSubtitle } from '@/molecules/TitleAndSubtitle';
 
 export const revalidate = 20;
 

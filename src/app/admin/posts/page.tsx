@@ -1,9 +1,9 @@
 'use client';
 
-import { TitleAndSubtitle } from '@/components/Molecules/TitleAndSubTitle';
+import { TitleAndSubtitle } from '@/molecules/TitleAndSubtitle';
 import { Loader2, AlertCircle } from 'lucide-react';
 import { PostsServiceType, useFetchPosts } from '@/shared/hooks/useFetchPosts';
-import { PostCard } from '@/components/Organisms/PostCard';
+import { PostCard } from '@/features/posts/PostCard';
 
 const PostScreen = () => {
   const { posts, isLoading, reload, error } = useFetchPosts();
@@ -21,6 +21,9 @@ const PostScreen = () => {
       <div className="flex items-center gap-2 p-4 bg-feedback-error-soft text-feedback-error-hard rounded-sm">
         <AlertCircle size={18} />
         {(error as Error).message}
+        <button type="button" onClick={() => reload()}>
+          recarregar
+        </button>
       </div>
     );
   }

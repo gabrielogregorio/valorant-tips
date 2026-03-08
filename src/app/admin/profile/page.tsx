@@ -1,6 +1,6 @@
-import { TitleAndSubtitle } from '@/components/Molecules/TitleAndSubTitle';
-import UpdateProfileData from '@/components/Organisms/UpdateProfileData';
-import UpdateProfilePassword from '@/components/Organisms/UpdateProfilePassword';
+import { TitleAndSubtitle } from '@/molecules/TitleAndSubtitle';
+import UpdateProfileData from '@Features/profile/UpdateProfileData';
+import UpdateProfilePassword from '@Features/profile/UpdateProfilePassword';
 
 const ProfileScreen = () => (
   <div className="flex flex-col">

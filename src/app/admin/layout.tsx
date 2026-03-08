@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import React from 'react';
-import { Footer } from '@/Organisms/Footer';
-import { PrivateHeaderClient } from '@/Organisms/PrivateHeader/PrivateHeaderClient';
+import { Footer } from '@/organisms/Footer';
+import { PrivateHeaderClient } from '@/organisms/PrivateHeader/PrivateHeaderClient';
 
 export const metadata: Metadata = {
   title: 'Create Next App',

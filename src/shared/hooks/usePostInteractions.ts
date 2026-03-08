@@ -6,7 +6,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { getPostStatus, toggleSaved, toggleTested, type PostInteractionStatus } from '@/store/postInteractions';
+import { getPostStatus, toggleSaved, toggleTested, type PostInteractionStatus } from '@/shared/store/postInteractions';
 
 export function usePostInteractions(id: string) {
   const [status, setStatus] = useState<PostInteractionStatus>({

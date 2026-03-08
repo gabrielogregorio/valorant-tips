@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import { getTestedIds, toggleTested } from '../../store/postInteractions';
+import { getTestedIds, toggleTested } from '../store/postInteractions';
 
 export function useTestedPost() {
   const [testedIds, setTestedIds] = useState<string[]>(() => getTestedIds());

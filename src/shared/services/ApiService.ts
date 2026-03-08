@@ -1,5 +1,5 @@
-import { ClientCookies } from '@/libs/clientCookies';
-import { HttpClient } from '@/libs/HttpClient';
+import { ClientCookies } from '../../libs/clientCookies';
+import { HttpClient } from '../../libs/HttpClient';
 import { authCookieName } from '../constants/cookies';
 import { NEXT_PUBLIC_API_HOST } from '../envs';
 import { ApiError } from './ApiError';

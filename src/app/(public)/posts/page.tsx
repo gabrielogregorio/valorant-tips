@@ -2,8 +2,8 @@
 
 import { useSearchParams } from 'next/navigation';
 import { PostsServiceType, useFetchStablePosts } from '@/shared/hooks/useFetchPosts';
-import { PostCard } from '@/components/Organisms/PostCard';
-import { TitleAndSubtitle } from '@/components/Molecules/TitleAndSubTitle';
+import { TitleAndSubtitle } from '@/molecules/TitleAndSubtitle';
+import { PostCard } from '@Features/posts/PostCard';
 
 export default function Page() {
   const searchParams = useSearchParams();
