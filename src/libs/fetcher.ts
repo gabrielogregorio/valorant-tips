@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/nextjs';
 import { authCookieName } from '@/shared/constants/cookies';
 import { ClientCookies } from './clientCookies';
 
@@ -27,13 +28,38 @@ export const fetcher = async (path: string) => {
   return response.json();
 };
 
-export const fetcherServer = async <T>(path: string): Promise<T> => {
-  // alterar
-  const response = await fetch(`${API_URL}${path}`);
+export const fetcherServer = async <T>(path: string, options?: RequestInit): Promise<T> => {
+  return await Sentry.withScope(async (scope) => {
+    scope.setTag('component', 'fetcherServer');
+    scope.setTag('url', path);
+    scope.setTag('method', options?.method ?? 'GET');
 
-  if (!response.ok) {
-    throw new HttpError(response.status, `Erro ${response.status}: ${response.statusText}`);
-  }
+    try {
+      const response = await fetch(`${API_URL}${path}`, options);
 
-  return response.json();
+      if (!response.ok) {
+        const errorBody = await response.json().catch(() => ({}));
+
+        Sentry.captureException(new HttpError(response.status, `API Failure: ${response.statusText}`), {
+          extra: {
+            path,
+            status: response.status,
+            errorBody,
+            options,
+          },
+        });
+
+        throw new HttpError(response.status, `Erro ${response.status}: ${response.statusText}`);
+      }
+
+      return response.json();
+    } catch (error) {
+      if (!(error instanceof HttpError)) {
+        Sentry.captureException(error, {
+          extra: { path, options },
+        });
+      }
+      throw error;
+    }
+  });
 };

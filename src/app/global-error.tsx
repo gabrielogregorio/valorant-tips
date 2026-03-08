@@ -1,19 +1,24 @@
 'use client';
 
-const GlobalError = ({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) => {
-  console.error('global-error', error);
+import * as Sentry from '@sentry/nextjs';
+import Error from 'next/error';
+import { useEffect } from 'react';
+
+export default function GlobalError({
+  error,
+}: {
+  error: Error & { digest?: string };
+}) {
+  useEffect(() => {
+    Sentry.captureException(error);
+  }, [error]);
+
   return (
-    // global-error must include html and body tags
-    <html lang="pt-br">
-      {/* update do language */}
+    <html>
       <body>
-        <h2>Something went wrong!</h2>
-        <button type="button" onClick={() => reset()}>
-          Try again
-        </button>
+        {/* Your standard error UI here */}
+        <Error statusCode={0} />
       </body>
     </html>
   );
-};
-
-export default GlobalError;
+}

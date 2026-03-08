@@ -10,10 +10,10 @@ interface Props {
 export const NotFound = ({ className = '' }: Props) => (
   <div className={tailwindMerge(`flex gap-3xl items-center`, className)} data-testid="not-found">
     <Image
-      src="/images/kj-in-notebook-kingdom.png"
+      src="/images/kj-in-notebook-kingdom.webp"
       width={100}
-      className="select-none"
       height={140}
+      className="select-none"
       alt={formatI18n('alt.kjUsingNotebookKingdom')}
       aria-hidden
       draggable={false}

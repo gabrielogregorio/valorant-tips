@@ -2,7 +2,6 @@ import { ImageLoader } from 'next/dist/client/image-component';
 import { PlaceholderValue, StaticImport } from 'next/dist/shared/lib/get-img-props';
 import ImageComponent from 'next/image';
 import { NEXT_PUBLIC_MODE_RUN } from '@/shared/envs';
-import { getImagePath } from '@/shared/utils/getImagePath';
 
 interface ImageProps {
   src: string | StaticImport;
@@ -26,7 +25,7 @@ export const Image = ({ src, ariaLabel, ...props }: ImageProps) => {
     <ImageComponent
       aria-label={ariaLabel}
       unoptimized={NEXT_PUBLIC_MODE_RUN === 'DEVELOP'}
-      src={typeof src === 'string' ? getImagePath(src) : src}
+      src={src}
       {...props}
     />
   );

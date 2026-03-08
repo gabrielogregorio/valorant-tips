@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next';
+import { withSentryConfig } from '@sentry/nextjs';
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -12,4 +13,16 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withSentryConfig(nextConfig, {
+  // Sentry Build/CLI options
+  org: 'valorant-tips',
+  project: 'javascript-nextjs',
+  silent: !process.env.CI,
+
+  // Sentry SDK options
+  widenClientFileUpload: true,
+  reactComponentAnnotation: { enabled: true },
+  tunnelRoute: '/monitoring',
+  disableLogger: true,
+  automaticVercelMonitors: true,
+});

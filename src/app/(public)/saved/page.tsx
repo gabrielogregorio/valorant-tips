@@ -1,7 +1,7 @@
 'use client';
 
 import { PostsServiceType, useFetchStablePosts } from '@/shared/hooks/useFetchPosts';
-import { PostCard } from '@/organisms/PostCard';
+import { PostCard } from '@Features/posts/PostCard';
 
 // TODO: Implementar busca de posts salvos
 export default function Page() {

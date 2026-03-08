@@ -218,7 +218,7 @@ export const CreateOrEditPost = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 max-w-content-desktop mx-auto" noValidate>
       <div>
-        <h1 className="text-3xl font-bold">{isEditing ? 'Editar Post' : 'Criar Post'}</h1>
+        <h1 className="text-3xl font-bold text-content-fg">{isEditing ? 'Editar Post' : 'Criar Post'}</h1>
       </div>
 
       {/* TITLE */}
@@ -242,7 +242,7 @@ export const CreateOrEditPost = () => {
 
       {/* AGENTS */}
       <section className="space-y-4">
-        <h2 className="text-xl font-semibold">Agentes</h2>
+        <h2 className="text-xl font-semibold text-content-fg">Agentes</h2>
         <div className="grid grid-cols-4 gap-4">
           {fetchAgents.agents?.map((agent) => (
             <SelectableCard
@@ -258,7 +258,7 @@ export const CreateOrEditPost = () => {
               }
             />
           ))}
-          <button type="button" onClick={() => fetchAgents.reload}>
+          <button className='text-content-fg' type="button" onClick={() => fetchAgents.reload}>
             <RefreshCcw />
           </button>
         </div>
@@ -266,7 +266,7 @@ export const CreateOrEditPost = () => {
 
       {/* MAPS */}
       <section className="space-y-4">
-        <h2 className="text-xl font-semibold">Mapas</h2>
+        <h2 className="text-xl font-semibold text-content-fg">Mapas</h2>
         <div className="grid grid-cols-4 gap-4">
           {fetchMaps.maps?.map((map) => (
             <SelectableCard
@@ -282,7 +282,7 @@ export const CreateOrEditPost = () => {
               }
             />
           ))}
-          <button type="button" onClick={() => fetchMaps.reload}>
+          <button className='text-content-fg' type="button" onClick={() => fetchMaps.reload}>
             <RefreshCcw />
           </button>
         </div>
@@ -290,7 +290,7 @@ export const CreateOrEditPost = () => {
 
       {/* STEPS */}
       <section className="space-y-6">
-        <h2 className="text-xl font-semibold">Passos</h2>
+        <h2 className="text-xl font-semibold text-content-fg">Passos</h2>
 
         {steps.map((step, index) => (
           <div key={step.id} className="p-4 border rounded-lg bg-gray-50 space-y-4">
