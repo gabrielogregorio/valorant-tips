@@ -7,10 +7,5 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "typescript.preferences.importModuleSpecifier": "shortest",
-
-  "css.validate": false,
-  "less.validate": false,
-  "scss.validate": false,
-
-  "tailwindCSS.classAttributes": ["class", "className", "ngClass", ".*Styles.*"]
+  "files.autoSave": "afterDelay"
 }
