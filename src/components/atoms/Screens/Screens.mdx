@@ -1,49 +1,45 @@
 import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
-import {getThemeVariables} from '../../utils-storybook'
+import { getThemeVariables } from '../../../utils-storybook'
+
+<Meta title="atoms/Design Tokens/Screens" />
 
 
-export const Shadow = () => {
-  const colorsList = getThemeVariables('color')
-  const colors = [
-    colorsList['accent-radiant'],
-    colorsList['accent-rose'],
-    colorsList['accent-purple'],
-    colorsList['accent-pacific-blue'],
-  ]
+# Screens & Breakpoints
 
+Responsive design breakpoints defined in the project's Tailwind configuration.
 
-  const objectSpacing = getThemeVariables('breakpoint')
-  const keysSpacing = Object.entries(objectSpacing).map(([k, v]) => v)
-    console.log(objectSpacing, keysSpacing, 'colorsList')
+export const Screens = () => {
+  const breakpoints = getThemeVariables('breakpoint')
+  const keys = Object.keys(breakpoints).sort((a, b) => {
+    return parseInt(breakpoints[a]) - parseInt(breakpoints[b])
+  })
 
-  return <div className="flex flex-col gap-xs">
-    {keysSpacing.map((key, index) => {
-      const value = objectSpacing[key]
-
-      return <div key={key} >
-      <div className='text-center'>
-      {key}
-      </div>
-      <div
-        className="flex justify-center items-center text-content-fg-contrast desktop:bg-red-400"
-         style={{
-          width: value,
-          height: '100px',
-          backgroundColor: colors[index]
-          }}>
-        {`<=`} {value}
-        </div>
-        </div>
+  return (
+    <div className="flex flex-col gap-md mt-lg">
+      {keys.map((key) => {
+        const value = breakpoints[key]
+        return (
+          <div key={key} className="flex flex-col gap-xs">
+            <div className="flex justify-between items-end border-b border-border-soft pb-xs">
+              <span className="text-xl font-bold uppercase text-primary-hard">{key}</span>
+              <span className="text-sm text-content-fg-subcontent font-mono">{`<= ${value}`}</span>
+            </div>
+            <div
+              className={`flex justify-center items-center rounded-sm bg-accent-radiant text-black font-bold h-[40px]`}
+              style={{ width: value, maxWidth: '100%' }}
+            >
+              {key} Container Max Width
+            </div>
+          </div>
+        )
       })}
-  </div>
+    </div>
+  )
 }
 
+<Screens />
 
+> [!TIP]
+> Use these breakpoints with Tailwind's responsive prefixes (e.g., `desktop:grid-cols-4`, `mobile:grid-cols-1`).
 
-
-## Border radius
-
-Border radius usado no projeto
-
-<Shadow />
 

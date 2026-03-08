@@ -1,46 +1,49 @@
-import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
-import {getThemeVariables} from '../../utils-storybook'
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { getThemeVariables } from '../../../utils-storybook'
 
-export const Spacing = () => {
-   const keysSpacing = getThemeVariables('spacing')
+<Meta title="atoms/Design Tokens/Spacing" />
 
+# Layout & Spacing
 
+Nossa escala de espaçamento é baseada em uma progressão lógica para garantir ritmo vertical e consistência entre componentes.
 
-return <table className="table-fixed">
-<thead>
-    <tr>
-      <th>Name</th>
-      <th>Size</th>
-    </tr>
-  </thead>
-   <tbody>
-
-{Object.entries(keysSpacing).map(([key, value]) => {
-
-
-    return   <tr key={key}>
-      <td>{key}</td>
-      <td className="flex gap-xs">
-        <div style={{width: '50px'}}>
-          {value}
-        </div>
-
-        <span style={{paddingRight: value, background: '#9747FF'}}/>
-      </td>
-    </tr>
-  })}
-   </tbody>
-  </table>
-
-
+export const SpacingTable = () => {
+  const keysSpacing = getThemeVariables('spacing')
+  
+  return (
+    <div className="overflow-hidden rounded-sm border border-neutral-800 bg-neutral-900">
+      <table className="w-full text-left border-collapse">
+        <thead className="bg-neutral-800 text-content-fg">
+          <tr>
+            <th className="p-md border-b border-neutral-700">Token</th>
+            <th className="p-md border-b border-neutral-700">Value (px)</th>
+            <th className="p-md border-b border-neutral-700 w-full">Visual</th>
+          </tr>
+        </thead>
+        <tbody className="text-content-fg-subcontent">
+          {Object.entries(keysSpacing).map(([key, value]) => (
+            <tr key={key} className="hover:bg-neutral-800/50 transition-colors">
+              <td className="p-md border-b border-neutral-800 font-mono text-xs">--spacing-{key}</td>
+              <td className="p-md border-b border-neutral-800">{value}</td>
+              <td className="p-md border-b border-neutral-800">
+                <div 
+                  className="bg-accent-purple rounded-xxs h-4 animate-fadeIn300" 
+                  style={{ width: value.includes('px') ? value : `${value}px` }}
+                />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
 }
 
-
-## Layout scale
-
-The layout units arrange components and other UI parts into a full-page layout.
-
-<Spacing />
+## Scale
+Utilizamos estas unidades para margens, paddings e gaps em flex/grid containers.
 
 
+<SpacingTable />
 
+
+> **Princípio de Design:** Sempre prefira usar os tokens em vez de valores "hardcoded". Isso permite que ajustemos a densidade da interface globalmente se necessário.

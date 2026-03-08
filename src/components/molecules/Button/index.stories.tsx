@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { fn } from 'storybook/test';
 import { Button } from '.';
-import { Icons } from '@/atoms/Icons';
+import { Icons } from '../../atoms/Icons';
 
 const meta = {
   title: 'Molecules/Button',
