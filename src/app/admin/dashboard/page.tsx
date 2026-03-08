@@ -1,7 +1,6 @@
 import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
 import { Dashboard } from '@Features/dashboard/Dashboard';
 
-
 export default function DashboardScreen() {
   return (
     <div className="flex flex-col">

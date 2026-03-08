@@ -27,9 +27,9 @@ export const LoadImageBase = ({
   label,
   name,
   value,
-  onChange = () => { },
+  onChange = () => {},
   className = '',
-  setErrorMessage = () => { },
+  setErrorMessage = () => {},
   errorMessage,
   helpText,
 }: LoadImagePropsInterface) => {
@@ -46,7 +46,8 @@ export const LoadImageBase = ({
 
     formData.append('image', event.target.files[0]);
 
-    api.post<{ url: string }>('/uploadImage', formData)
+    api
+      .post<{ url: string }>('/uploadImage', formData)
       .then((res: { data: { url: string } }) => {
         const urlImg = `${res.data.url}`;
         onChange(urlImg);

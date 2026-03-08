@@ -1,7 +1,6 @@
 import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
 import CreateAccount from '@Features/auth/CreateAccountForm';
 
-
 export default function Home() {
   return (
     <>

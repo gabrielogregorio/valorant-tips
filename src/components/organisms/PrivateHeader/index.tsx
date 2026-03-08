@@ -22,7 +22,7 @@ const NavItem = ({ active = false, text, href }: { active?: boolean; text: strin
     <Link
       href={href}
       className={tailwindMerge(`whitespace-nowrap text-content-fg-contrast`, variantStyles.styles)}
-      aria-selected={active}>
+      aria-current={active ? 'page' : undefined}>
       <Text className="text-content-fg-contrast" variant={variantStyles.variant}>
         {text}
       </Text>

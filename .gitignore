@@ -7,9 +7,10 @@
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
+.features-gen
 !.yarn/releases
 !.yarn/versions
-
+e2e-screenshots
 eslint-config-debug.json
 temp-config.json
 debug-storybook.log
@@ -54,3 +55,4 @@ node_modules/
 
 *storybook.log
 storybook-static
+.features-gen

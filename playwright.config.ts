@@ -4,10 +4,14 @@ import { defineBddConfig } from 'playwright-bdd';
 /**
  * See https://playwright-bdd.js.org/docs/configuration
  */
-const testDir = defineBddConfig({
-  features: 'tests/bdd/features/*.feature',
-  steps: ['tests/bdd/steps/*.steps.ts', 'tests/bdd/steps/fixtures.ts'],
-});
+const isBDD = process.env.TEST_BDD === 'true';
+
+const testDir = isBDD
+  ? defineBddConfig({
+      features: 'tests/bdd/features/*.feature',
+      steps: ['tests/bdd/steps/*.steps.ts', 'tests/bdd/steps/fixtures.ts'],
+    })
+  : 'tests/e2e';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -23,7 +27,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [['list'], ['html']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
@@ -52,11 +56,24 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  webServer: {
-    command: 'npm run dev',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
-    stdout: 'ignore',
-    stderr: 'pipe',
-  },
+  webServer: [
+    {
+      command: 'node tests/e2e/mock-server.js',
+      url: 'http://127.0.0.1:4444/maps',
+      reuseExistingServer: !process.env.CI,
+      stdout: 'pipe',
+      stderr: 'pipe',
+    },
+    {
+      command: 'npm run dev',
+      url: 'http://localhost:3000',
+      reuseExistingServer: !process.env.CI,
+      env: {
+        NODE_ENV: 'test',
+        NEXT_PUBLIC_API_HOST: 'http://127.0.0.1:4444',
+      },
+      stdout: 'ignore',
+      stderr: 'pipe',
+    },
+  ],
 });

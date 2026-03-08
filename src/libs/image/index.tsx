@@ -22,11 +22,6 @@ interface ImageProps {
 
 export const Image = ({ src, ariaLabel, ...props }: ImageProps) => {
   return (
-    <ImageComponent
-      aria-label={ariaLabel}
-      unoptimized={NEXT_PUBLIC_MODE_RUN === 'DEVELOP'}
-      src={src}
-      {...props}
-    />
+    <ImageComponent aria-label={ariaLabel} unoptimized={NEXT_PUBLIC_MODE_RUN === 'DEVELOP'} src={src} {...props} />
   );
 };

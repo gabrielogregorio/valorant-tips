@@ -18,7 +18,14 @@ export default async function Page() {
             key={map.id}
             href={`/map/${map.id}`}
             className={'overflow-hidden hover:scale-105 transition-transform duration-150'}>
-            <Image src={map.imageUrl} alt={map.name} className="object-cover rounded-lg" width={500} height={500} />
+            <Image
+              src={map.imageUrl}
+              alt=""
+              aria-hidden="true"
+              className="object-cover rounded-lg"
+              width={500}
+              height={500}
+            />
             <div className="text-white text-base p-1 text-center">{map.name}</div>
           </Link>
         ))}

@@ -14,7 +14,7 @@ export const ClickableInputButton = ({
   className = '',
   icon,
   ariaLabel,
-  onClick = () => { },
+  onClick = () => {},
   disabled = false,
 }: Props) => {
   const Icon = Icons[icon];

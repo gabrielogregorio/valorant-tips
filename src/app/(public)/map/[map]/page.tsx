@@ -33,9 +33,7 @@ export default async function ChoiceAgentAfterMap({ params }: { params: Promise<
             href={`/posts?agents=${agents.id}&maps=${map}`}
             className={'rounded-lg overflow-hidden hover:scale-105 transition-transform duration-150'}>
             <Image src={agents.imageUrl} alt={agents.name} className="object-cover" width={500} height={500} />
-            <div className="text-white text-xs text-center">
-              {agents.name}
-            </div>
+            <div className="text-white text-xs text-center">{agents.name}</div>
           </Link>
         ))}
       </div>

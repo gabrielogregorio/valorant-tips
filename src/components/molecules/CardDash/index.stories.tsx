@@ -21,7 +21,6 @@ export const Primary: Story = {
   },
 };
 
-
 export const Secondary: Story = {
   args: {
     title: 'POSTS CRIADOS',
@@ -29,7 +28,6 @@ export const Secondary: Story = {
     className: 'bg-secondary',
   },
 };
-
 
 export const AccentRadiant: Story = {
   args: {
@@ -39,8 +37,6 @@ export const AccentRadiant: Story = {
   },
 };
 
-
-
 export const AccentRose: Story = {
   args: {
     title: 'POSTS CRIADOS',
@@ -48,9 +44,6 @@ export const AccentRose: Story = {
     className: 'bg-accent-rose',
   },
 };
-
-
-
 
 export const AccentPurple: Story = {
   args: {
@@ -60,8 +53,6 @@ export const AccentPurple: Story = {
   },
 };
 
-
-
 export const AccentPacificBlue: Story = {
   args: {
     title: 'POSTS CRIADOS',
@@ -69,4 +60,3 @@ export const AccentPacificBlue: Story = {
     className: 'bg-accent-pacific-blue',
   },
 };
-

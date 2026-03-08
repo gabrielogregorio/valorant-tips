@@ -7,7 +7,6 @@ sentry
 prettier
 jest
 coverage
-hotjar
 
 <div align="center">
 
@@ -36,6 +35,8 @@ hotjar
 ![issues closed](https://img.shields.io/github/issues-closed/gabrielogregorio/valorant-tips.svg)
 ![PR's open](https://img.shields.io/github/issues-pr/gabrielogregorio/valorant-tips.svg)
 ![PR's closed](https://img.shields.io/github/issues-pr-closed/gabrielogregorio/valorant-tips.svg)
+
+kamban do projeto https://github.com/users/gabrielogregorio/projects/14
 
 </div>
 

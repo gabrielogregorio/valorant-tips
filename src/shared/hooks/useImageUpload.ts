@@ -40,7 +40,7 @@ export const useImageUpload = ({
       setImagePreview(localUrl);
       setError(null);
 
-       if (uploadApiRoute) {
+      if (uploadApiRoute) {
         setIsUploading(true);
         try {
           const formData = new FormData();

@@ -232,21 +232,22 @@ export const CreateOrEditPost = () => {
       <section className="space-y-4">
         <h2 className="text-xl font-semibold text-content-fg">Agentes</h2>
         <div className="grid grid-cols-4 gap-4">
-          {Array.isArray(fetchAgents.agents) && fetchAgents.agents.map((agent: AgentType) => (
-            <SelectableCard
-              key={agent.id}
-              id={agent.id}
-              image={agent.imageUrl}
-              name={agent.name}
-              isSelected={selectedAgents.includes(agent.id)}
-              onClick={() =>
-                setSelectedAgents((prev) =>
-                  prev.includes(agent.id) ? prev.filter((a) => a !== agent.id) : [...prev, agent.id],
-                )
-              }
-            />
-          ))}
-          <button className='text-content-fg' type="button" onClick={() => fetchAgents.reload}>
+          {Array.isArray(fetchAgents.agents) &&
+            fetchAgents.agents.map((agent: AgentType) => (
+              <SelectableCard
+                key={agent.id}
+                id={agent.id}
+                image={agent.imageUrl}
+                name={agent.name}
+                isSelected={selectedAgents.includes(agent.id)}
+                onClick={() =>
+                  setSelectedAgents((prev) =>
+                    prev.includes(agent.id) ? prev.filter((a) => a !== agent.id) : [...prev, agent.id],
+                  )
+                }
+              />
+            ))}
+          <button className="text-content-fg" type="button" onClick={() => fetchAgents.reload}>
             <RefreshCcw />
           </button>
         </div>
@@ -256,21 +257,22 @@ export const CreateOrEditPost = () => {
       <section className="space-y-4">
         <h2 className="text-xl font-semibold text-content-fg">Mapas</h2>
         <div className="grid grid-cols-4 gap-4">
-          {Array.isArray(fetchMaps.maps) && fetchMaps.maps.map((map: MapsType) => (
-            <SelectableCard
-              key={map.id}
-              id={map.id}
-              image={map.imageUrl}
-              name={map.name}
-              isSelected={selectedMaps.includes(map.id)}
-              onClick={() =>
-                setSelectedMaps((prev) =>
-                  prev.includes(map.id) ? prev.filter((m) => m !== map.id) : [...prev, map.id],
-                )
-              }
-            />
-          ))}
-          <button className='text-content-fg' type="button" onClick={() => fetchMaps.reload}>
+          {Array.isArray(fetchMaps.maps) &&
+            fetchMaps.maps.map((map: MapsType) => (
+              <SelectableCard
+                key={map.id}
+                id={map.id}
+                image={map.imageUrl}
+                name={map.name}
+                isSelected={selectedMaps.includes(map.id)}
+                onClick={() =>
+                  setSelectedMaps((prev) =>
+                    prev.includes(map.id) ? prev.filter((m) => m !== map.id) : [...prev, map.id],
+                  )
+                }
+              />
+            ))}
+          <button className="text-content-fg" type="button" onClick={() => fetchMaps.reload}>
             <RefreshCcw />
           </button>
         </div>

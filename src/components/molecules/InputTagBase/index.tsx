@@ -96,7 +96,7 @@ export const InputTagBase = ({
   onChange,
   label,
   value,
-  onDelete = () => { },
+  onDelete = () => {},
   ...rest
 }: InputTagBaseProps) => {
   const variants = getVariants({ disabled, errorMessage });

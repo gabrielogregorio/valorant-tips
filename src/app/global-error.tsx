@@ -4,11 +4,7 @@ import * as Sentry from '@sentry/nextjs';
 import Error from 'next/error';
 import { useEffect } from 'react';
 
-export default function GlobalError({
-  error,
-}: {
-  error: Error & { digest?: string };
-}) {
+export default function GlobalError({ error }: { error: Error & { digest?: string } }) {
   useEffect(() => {
     Sentry.captureException(error);
   }, [error]);
@@ -16,7 +12,6 @@ export default function GlobalError({
   return (
     <html>
       <body>
-        {/* Your standard error UI here */}
         <Error statusCode={0} />
       </body>
     </html>

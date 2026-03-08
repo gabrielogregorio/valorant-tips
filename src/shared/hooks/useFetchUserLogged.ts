@@ -14,7 +14,7 @@ export const useFetchUserLogged = () => {
   );
 
   return {
-    data: data?.data,
+    data,
     errorMessage: error ? formatI18n('msg.error.onFetchUserLogged') : '',
     isLoading,
     reload: mutate,

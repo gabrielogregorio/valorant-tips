@@ -1,6 +1,4 @@
-import { SuggestionsAdmin } from "@Features/admin/SuggestionsAdmin";
-
-
+import { SuggestionsAdmin } from '@Features/admin/SuggestionsAdmin';
 
 const SuggestionScreen = () => <SuggestionsAdmin />;
 

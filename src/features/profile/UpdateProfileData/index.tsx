@@ -91,5 +91,5 @@ export const UpdateProfileData = () => {
       </div>
     </form>
   );
-};
 
+};

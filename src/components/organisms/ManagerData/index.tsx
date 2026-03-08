@@ -71,14 +71,16 @@ export const ManageData = () => {
 
   return (
     <div className="space-y-8">
-
-      <Text variant={TextVariantEnum.h1} className='text-white'>Gerenciar dados</Text>
+      <Text variant={TextVariantEnum.h1} className="text-white">
+        Gerenciar dados
+      </Text>
       <p className="text-gray-200">Aqui você encontrará diversas dicas para evoluir no jogo Valorant</p>
 
       {/* Maps Section */}
       <section className="space-y-4">
-        <Text variant={TextVariantEnum.h2} className='text-white'>Mapas</Text>
-
+        <Text variant={TextVariantEnum.h2} className="text-white">
+          Mapas
+        </Text>
 
         <MapListAdmin maps={maps} onEdit={handleMapEdit} />
         <Button onClick={handleMapCreate} variant="primary">
@@ -87,7 +89,9 @@ export const ManageData = () => {
       </section>
 
       <section className="space-y-4">
-        <Text variant={TextVariantEnum.h2} className='text-white'>Agentes</Text>
+        <Text variant={TextVariantEnum.h2} className="text-white">
+          Agentes
+        </Text>
 
         <AgentList agents={agents} onEdit={handleAgentEdit} />
         <Button onClick={handleAgentCreate} variant="primary">
