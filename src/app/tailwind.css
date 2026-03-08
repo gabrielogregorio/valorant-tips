@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 @import 'tailwindcss';
 
 @layer base {
@@ -89,13 +91,14 @@
 
   --color-root-bg: #f7f7fa;
 
-  --color-content-fg: #444444;
+  --color-content-fg: #ffffff;
   --color-content-fg-subcontent: #6a7281;
   --color-content-fg-contrast: #ffffff;
   --color-content-fg-placeholder: #99a1ae;
   --color-content-fg-disabled: #848589;
 
-  --color-content-bg: #ffffff;
+  --color-main-bg: #22272e;
+  --color-content-bg: #2d333b;
   --color-content-bg-disabled: #f0f3fa;
   --color-content-bg-highlight: #d9d9d9;
 
