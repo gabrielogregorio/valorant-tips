@@ -6,6 +6,7 @@ import { Text, TextAsEnum, TextVariantEnum } from '../../Atoms/Text';
 import { tailwindMerge } from '../../../libs/mergeClasses';
 import { RouteScreensEnum } from '../../../@types/routeScreenEnum';
 import { usePathname } from 'next/navigation';
+import Breadcrumb from '../../Molecules/Breadcrumb';
 
 const getVariantStyles = (active: boolean) => {
   if (active) {
@@ -30,20 +31,50 @@ const NavItem = ({ active, text, href }: { active: boolean; text: string; href: 
   );
 };
 
+const getBreadcrumbEntries = (path: string) => {
+  if (path.startsWith(RouteScreensEnum.publicPosts)) {
+    return [
+      { label: 'Início', href: RouteScreensEnum.root },
+      { label: 'Mapas' },
+      { label: 'Agentes' },
+      { label: 'Dicas' },
+    ];
+  }
+
+  if (path.startsWith(RouteScreensEnum.publicMaps)) {
+    return [{ label: 'Início', href: RouteScreensEnum.root }, { label: 'Mapas' }, { label: 'Agentes' }];
+  }
+
+  // this is last case
+  if (path.startsWith(RouteScreensEnum.root)) {
+    return [{ label: 'Início', href: RouteScreensEnum.root }, { label: 'Mapas' }];
+  }
+
+  return [];
+};
+
 export const PublicHeader = () => {
   const path = usePathname();
+  const breadcrumbEntries = useMemo(() => getBreadcrumbEntries(path), [path]);
   return (
-    <header className="bg-primary flex text-center desktop:text-left items-center justify-between flex-col desktop:flex-row min-h-24 gap-7xl desktop:gap-0 px-lg py-lg desktop:px-6xl desktop:py-6xl w-full">
-      <Link href={RouteScreensEnum.root}>
-        <Text variant={TextVariantEnum['6xl']} as={TextAsEnum.span} className="w-full text-content-fg-contrast">
-          VALORANT TIPS
-        </Text>
-      </Link>
-      <nav aria-label="Menu Principal" className="flex gap-3xl flex-col desktop:flex-row">
-        <NavItem active={path === RouteScreensEnum.root} href={RouteScreensEnum.root} text="INICIO" />
-        <NavItem active={path === RouteScreensEnum.saved} href={RouteScreensEnum.saved} text="SALVOS" />
-        <NavItem active={path === RouteScreensEnum.tested} href={RouteScreensEnum.tested} text="TESTADOS" />
-      </nav>
-    </header>
+    <div>
+      <header className="bg-content-bg flex text-center desktop:text-left items-center justify-between flex-col desktop:flex-row min-h-24 gap-7xl desktop:gap-0 px-lg py-lg desktop:px-6xl desktop:py-6xl w-full">
+        <Link href={RouteScreensEnum.root}>
+          <Text
+            variant={TextVariantEnum['h1']}
+            as={TextAsEnum.span}
+            className="w-full text-content-fg-contrast font-bold">
+            VALORANT TIPS
+          </Text>
+        </Link>
+        <nav aria-label="Menu Principal" className="flex gap-3xl flex-col desktop:flex-row">
+          <NavItem active={path === RouteScreensEnum.root} href={RouteScreensEnum.root} text="INICIO" />
+          <NavItem active={path === RouteScreensEnum.saved} href={RouteScreensEnum.saved} text="SALVOS" />
+          <NavItem active={path === RouteScreensEnum.tested} href={RouteScreensEnum.tested} text="TESTADOS" />
+        </nav>
+      </header>
+
+      <Breadcrumb entries={breadcrumbEntries} />
+    </div>
   );
 };

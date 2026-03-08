@@ -3,6 +3,8 @@ export enum RouteScreensEnum {
   'login' = '/login',
   'register' = '/register',
   'root' = '/',
+  'publicPosts' = '/posts',
+  'publicMaps' = '/map',
   'posts' = '/admin/posts',
   'data' = '/admin/data',
   'createPost' = '/admin/createPost',
@@ -11,3 +13,4 @@ export enum RouteScreensEnum {
   'saved' = '/saved',
   'tested' = '/tested',
 }
+
