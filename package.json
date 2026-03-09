@@ -5,9 +5,9 @@
   "private": true,
   "scripts": {
     "prepare": "husky",
-    "dev": "next dev",
+    "dev": "cross-env NEXT_PUBLIC_APP_VERSION=$npm_package_version next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "cross-env NEXT_PUBLIC_APP_VERSION=$npm_package_version next start",
     "test": "vitest run",
     "test:watch": "vitest",
     "type-check": "tsc --noEmit",
