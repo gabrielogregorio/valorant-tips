@@ -16,7 +16,8 @@
     "doctor": "storybook doctor",
     "format": "prettier --write .",
     "test:e2e": "playwright test",
-    "test:bdd:gen": "cross-env TEST_BDD=true bddgen",
+    "test:a11y": "playwright test --grep @a11y",
+    "test:bdd:gen": "rm -rf .features-gen && cross-env TEST_BDD=true bddgen",
     "test:bdd": "pnpm run test:bdd:gen && cross-env TEST_BDD=true playwright test",
     "playwright": "playwright"
   },
