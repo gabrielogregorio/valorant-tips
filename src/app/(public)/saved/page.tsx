@@ -1,5 +1,7 @@
 'use client';
 
+import { PageContainer } from '@/atoms/PageContainer';
+import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
 import { PostsServiceType, useFetchStablePosts } from '@/shared/hooks/useFetchPosts';
 import { PostCard } from '@Features/posts/PostCard';
 
@@ -20,12 +22,13 @@ export default function Page() {
   }
 
   return (
-    <div>
+    <PageContainer>
+      <TitleAndSubtitle key="" subtitle="" title="As melhores dicas Salvas de Valorant" />
       <div className="grid grid-cols-1 gap-6">
         {posts.posts.map((post: PostsServiceType) => (
           <PostCard key={post.id} post={post} />
         ))}
       </div>
-    </div>
+    </PageContainer>
   );
 }

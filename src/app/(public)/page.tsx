@@ -3,33 +3,35 @@ import { Image } from '@/libs/image';
 import { fetcherServer } from '@/libs/fetcher';
 import { MapsType } from '@/shared/hooks/useFetchMaps';
 import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
+import { PageContainer } from '@/atoms/PageContainer';
 
 export default async function Page() {
   const maps = await fetcherServer<MapsType[]>('/maps/?filter=with-posts');
 
   return (
-    <div>
+    <PageContainer>
       <TitleAndSubtitle key="" subtitle="" title="Escolhe um mapa ai Parça" />
 
-      <div className="grid grid-cols-4 gap-4 mt-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
         {maps.map((map) => (
           <Link
             type="button"
             key={map.id}
             href={`/map/${map.id}`}
-            className={'overflow-hidden hover:scale-105 transition-transform duration-150'}>
+            className={'hover:scale-105 transition-transform duration-150'}>
             <Image
               src={map.imageUrl}
               alt=""
+              draggable={false}
               aria-hidden="true"
-              className="object-cover rounded-lg"
-              width={500}
-              height={500}
+              className="w-full object-cover rounded-lg shadow-2xl overflow-hidden aspect-296/158 select-none"
+              width={296}
+              height={158}
             />
-            <div className="text-white text-base p-1 text-center">{map.name}</div>
+            <span className="text-white text-base p-1 text-center select-none block">{map.name}</span>
           </Link>
         ))}
       </div>
-    </div>
+    </PageContainer>
   );
 }

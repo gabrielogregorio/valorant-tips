@@ -14,19 +14,13 @@ const RegisterPage = ({
   children: ReactNode;
 }>) => {
   return (
-    // <body className="bg-root-bg ">
-    <div className="flex flex-col justify-between min-h-screen">
+    <>
       <PublicHeader />
 
-      <div className="mt-5xl flex items-start justify-center animate-fadeIn300 flex-1">
-        <main className="flex flex-col max-w-content-desktop w-full px-3xl py-3xl gap-3xl bg-content-bg border border-neutral-800 shadow-md rounded-sm">
-          {children}
-        </main>
-      </div>
+      <main className="pt-28 md:pt-32 flex-1 flex flex-col">{children}</main>
 
       <Footer />
-    </div>
-    // </body>
+    </>
   );
 };
 

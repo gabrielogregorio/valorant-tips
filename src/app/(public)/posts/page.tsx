@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import { PostsServiceType, useFetchStablePosts } from '@/shared/hooks/useFetchPosts';
 import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
 import { PostCard } from '@Features/posts/PostCard';
+import { PageContainer } from '@/atoms/PageContainer';
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -26,7 +27,7 @@ export default function Page() {
   }
 
   return (
-    <div>
+    <PageContainer>
       <TitleAndSubtitle key="" subtitle="" title="As melhores dicas de Valorant" />
       <div className="grid grid-cols-1 gap-6 mt-4">
         <div className="flex justify-center">
@@ -65,6 +66,6 @@ export default function Page() {
           <PostCard key={post.id} post={post} />
         ))}
       </div>
-    </div>
+    </PageContainer>
   );
 }
