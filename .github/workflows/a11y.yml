@@ -16,9 +16,6 @@ jobs:
       - name: Run A11y Component Tests (Vitest)
         run: pnpm vitest run --reporter=default
 
-      - name: Wait for server
-        run: pnpm dev & npx wait-on http://localhost:3000
-
       - name: Playwright A11y Audit
         run: |
           npx playwright install --with-deps chromium
