@@ -4,7 +4,7 @@
 
 ## Contexto
 
-Só ESLint básico não cobria acessibilidade, promessas, duplicação, testes e qualidade estrutural.
+Só ESLint básico não cobria acessibilidade, promisses não resolvidas, duplicação, testes e qualidade estrutural.
 
 ## Decisão
 
