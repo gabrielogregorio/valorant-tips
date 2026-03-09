@@ -5,6 +5,7 @@ import { SuggestionCard } from './SuggestionCard';
 import { authCookieName } from '@/shared/constants/cookies';
 import { ClientCookies } from '@/libs/clientCookies';
 import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
+import { AdminPageContainer } from '@/atoms/AdminPageContainer';
 
 type Suggestion = {
   description: string; // : "example description",
@@ -15,6 +16,7 @@ type Suggestion = {
   createdAt: string; //  : "2026-03-08T01:08:31.512Z",
   updatedAt: string; //  : "2026-03-08T01:08:31.512Z"
 };
+
 
 export const SuggestionsAdmin = () => {
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
@@ -48,15 +50,23 @@ export const SuggestionsAdmin = () => {
   }, []);
 
   if (loading) {
-    return <div className="text-center py-8">Carregando sugestões...</div>;
+    return (
+      <AdminPageContainer>
+        <div className="text-center py-8 text-content-fg">Carregando sugestões...</div>
+      </AdminPageContainer>
+    );
   }
 
   if (error) {
-    return <div className="text-center py-8 text-red-500">{error}</div>;
+    return (
+      <AdminPageContainer>
+        <div className="text-center py-8 text-red-500">{error}</div>
+      </AdminPageContainer>
+    );
   }
 
   return (
-    <div className="space-y-6">
+    <AdminPageContainer innerClassName=" max-w-[600px]">
       <TitleAndSubtitle title="Sugestões" subtitle="Aqui estão as sugestões enviadas pelos players" />
 
       <div className="grid gap-4">
@@ -73,6 +83,6 @@ export const SuggestionsAdmin = () => {
       </div>
 
       {suggestions.length === 0 && <p className="text-center text-gray-500">Nenhuma sugestão encontrada</p>}
-    </div>
+    </AdminPageContainer>
   );
 };

@@ -15,51 +15,58 @@ export const LoginForm = () => {
   const { push } = useHandleRouter();
 
   return (
-    <form
-      className="max-w-size-inputs animate-fadeIn300 mx-auto w-full"
-      onSubmit={(event) => {
-        event.preventDefault();
-        onSubmit(event);
-      }}>
-      <div className="flex flex-col gap-4xl">
-        <TextFieldForm<LoginFormInterface>
-          control={control}
-          id="username"
-          name="username"
-          label="USUÁRIO"
-          placeholder="Seu usuário"
-          helpText="Digite o usuário para fazer login"
-        />
+    <div className="flex w-full flex-col justify-center items-center py-8">
+      <div className="w-full max-w-size-inputs">
+        <form
+          className="animate-fadeIn300 mt-4 w-full rounded-2xl bg-content-bg/30 p-6 backdrop-blur-sm sm:p-8"
+          onSubmit={(event) => {
+            event.preventDefault();
+            onSubmit(event);
+          }}>
+          <div className="flex flex-col gap-xl">
+            <TextFieldForm<LoginFormInterface>
+              control={control}
+              id="username"
+              name="username"
+              label="USUÁRIO"
+              placeholder="Seu usuário"
+              helpText="Digite o usuário para fazer login"
+            />
 
-        <TextFieldForm<LoginFormInterface>
-          type="password"
-          control={control}
-          id="password"
-          name="password"
-          autoComplete="current-password"
-          label="SENHA"
-          placeholder="******"
-        />
+            <TextFieldForm<LoginFormInterface>
+              type="password"
+              control={control}
+              id="password"
+              name="password"
+              autoComplete="current-password"
+              label="SENHA"
+              placeholder="******"
+            />
+          </div>
+
+          <div className="mt-8 flex flex-col gap-xl">
+            {errorMessage ? <ErrorMessage text={errorMessage} /> : undefined}
+
+            {success ? <SuccessMessage text={success} /> : undefined}
+
+            <Button type="submit" variant="primary" disabled={isLoading} className="w-full h-12 rounded-xl">
+              {isLoading ? 'LOGANDO...' : 'FAZER LOGIN'}
+            </Button>
+
+            <div className="mt-2 flex items-center justify-center gap-xs">
+              <Text variant={TextVariantEnum.subtext} className="text-neutral-100 opacity-90">
+                Não tem conta?
+              </Text>
+              <Button
+                variant="text"
+                className="text-xs font-bold text-primary hover:bg-primary/10"
+                onClick={() => push(RouteScreensEnum.register)}>
+                CRIAR CONTA
+              </Button>
+            </div>
+          </div>
+        </form>
       </div>
-
-      <div className="mt-7xl flex flex-col gap-2xl">
-        {errorMessage ? <ErrorMessage text={errorMessage} /> : undefined}
-
-        {success ? <SuccessMessage text={success} /> : undefined}
-
-        <Button type="submit" variant="primary" disabled={isLoading}>
-          {isLoading ? 'LOGANDO...' : 'FAZER LOGIN'}
-        </Button>
-
-        <div className="mt-xl flex items-center justify-center gap-xs">
-          <Text variant={TextVariantEnum.subtext} className="text-content-fg-subcontent">
-            Não tem conta?
-          </Text>
-          <Button variant="text" className="text-xs font-bold" onClick={() => push(RouteScreensEnum.register)}>
-            CRIAR CONTA
-          </Button>
-        </div>
-      </div>
-    </form>
+    </div>
   );
 };

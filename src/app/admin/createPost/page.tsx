@@ -1,11 +1,14 @@
 'use client';
 
+import { AdminPageContainer } from '@/atoms/AdminPageContainer';
+import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
 import { CreateOrEditPost } from '@Features/posts/CreateOrEditPost';
 
 export default function AdminCreatePostPage() {
   return (
-    <div className="max-w-content-desktop mx-auto py-8">
+    <AdminPageContainer innerClassName=" max-w-[600px]">
+      <TitleAndSubtitle title="Criar um novo post" />
       <CreateOrEditPost />
-    </div>
+    </AdminPageContainer>
   );
 }
