@@ -10,7 +10,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   rightIcon?: ReactNode;
   ariaLabel?: string;
   onClick?: () => void;
-  size?: 'small';
 }
 
 const variantStyles: { [key in ButtonVariantEnum]: string } = {
@@ -29,13 +28,11 @@ export const Button = ({
   leftIcon,
   disabled,
   onClick,
-  size,
   ariaLabel = '',
   rightIcon,
   type = 'button',
   ...rest
 }: ButtonProps) => (
-  // size
   <button
     type={type}
     onClick={onClick}

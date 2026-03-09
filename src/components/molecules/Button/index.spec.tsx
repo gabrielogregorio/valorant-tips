@@ -1,4 +1,4 @@
-import { Button, ButtonVariantEnum } from '.';
+import { Button } from '.';
 import { render, screen, click } from '@/libs/test-utils/test-utils';
 
 describe('Button', () => {

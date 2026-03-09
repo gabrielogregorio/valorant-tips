@@ -17,7 +17,7 @@ describe('CheckboxBase', () => {
     expect(component!.tagName).toBe('INPUT');
     await click(component);
 
-    expect(fn).toBeCalledWith(false);
+    expect(fn).toHaveBeenCalledWith(false);
     expect(fn).toHaveBeenCalledTimes(1);
     expect(component).toHaveClass('accent-primary');
   });
@@ -37,7 +37,7 @@ describe('CheckboxBase', () => {
     const component = screen.getByRole('checkbox', { name: /label-example/i });
     await click(component);
 
-    expect(fn).toBeCalledWith(true);
+    expect(fn).toHaveBeenCalledWith(true);
     expect(fn).toHaveBeenCalledTimes(1);
     expect(component).not.toBeChecked();
   });

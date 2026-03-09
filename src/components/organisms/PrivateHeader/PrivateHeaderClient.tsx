@@ -6,19 +6,15 @@ import { RouteScreensEnum } from '@/shared/@types/routeScreenEnum';
 
 type Props = { user: { name: string; avatarUrl?: string } };
 
-export const PrivateHeaderClient = () => {
-  // const router = useRouter();
+export const PrivateHeaderClient = ({ user }: Props) => {
+  const router = useRouter();
 
-  // const handleLogout = async () => {
-  //   await fetch('/api/auth/logout', { method: 'POST' });
-  //   router.push('/login');
-  // };
+  const handleLogout = async () => {
+    await fetch('/api/auth/logout', { method: 'POST' });
+    router.push('/login');
+  };
 
   return (
-    <PrivateHeader
-    // user={user}
-    // onEditProfile={() => router.push(RouteScreensEnum.profile)}
-    // onLogout={handleLogout}
-    />
+    <PrivateHeader user={user} onEditProfile={() => router.push(RouteScreensEnum.profile)} onLogout={handleLogout} />
   );
 };

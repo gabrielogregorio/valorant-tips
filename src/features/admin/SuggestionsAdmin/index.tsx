@@ -63,7 +63,6 @@ export const SuggestionsAdmin = () => {
         {suggestions.map((suggestion: Suggestion) => (
           <SuggestionCard
             key={suggestion.id}
-            id={suggestion.id}
             description={suggestion.description}
             postTitle={'suggestion.post?.title'}
             postId={suggestion.postId}

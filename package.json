@@ -10,6 +10,8 @@
     "start": "next start",
     "test": "vitest run",
     "test:watch": "vitest",
+    "type-check": "tsc --noEmit",
+    "audit": "pnpm audit",
     "lint": "eslint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",

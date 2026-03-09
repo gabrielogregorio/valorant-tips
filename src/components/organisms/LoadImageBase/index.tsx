@@ -1,5 +1,5 @@
 'use client';
-
+import { Image } from '@/libs/image';
 import { ChangeEvent, SetStateAction } from 'react';
 import { Text, TextVariantEnum } from '@/atoms/Text';
 import { Button } from '@/molecules/Button';
@@ -78,7 +78,7 @@ export const LoadImageBase = ({
     return (
       <div className={tailwindMerge('flex flex-col', className)}>
         <div>
-          <img unoptimized src={value} width={240} height={240} alt="" className="min-h-60 min-w-60 object-cover" />
+          <Image unoptimized src={value} width={240} height={240} alt="" className="min-h-60 min-w-60 object-cover" />
 
           <Button className="w-full justify-start min-h-0 py-0 px-0" variant={'text'} onClick={() => onChange('')}>
             <Text variant={TextVariantEnum.subtext} className="text-primary">

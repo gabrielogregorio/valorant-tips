@@ -12,7 +12,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    id: '1',
     description: 'Adicione o mapa Lotus, eu amo esse mapa. Também amo ascent, mas Lotus é ok',
     postTitle: 'Como tirar inimigos dessa posição',
     postId: '123',
@@ -23,7 +22,6 @@ export const Default: Story = {
 
 export const WithoutPost: Story = {
   args: {
-    id: '2',
     description: 'Seria legal adicionar mais mapas ao conteúdo',
     email: 'player@email.com',
     createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),

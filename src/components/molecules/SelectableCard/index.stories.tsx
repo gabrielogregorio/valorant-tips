@@ -14,7 +14,6 @@ const mockImage = 'https://images.unsplash.com/photo-1516594798267-6b6b332c8e50?
 
 export const Default: Story = {
   args: {
-    id: '1',
     image: mockImage,
     name: 'Sova',
     onClick: () => console.log('Card clicado'),
@@ -23,7 +22,6 @@ export const Default: Story = {
 
 export const Selected: Story = {
   args: {
-    id: '1',
     image: mockImage,
     name: 'Sova',
     isSelected: true,
@@ -33,7 +31,6 @@ export const Selected: Story = {
 
 export const SmallSize: Story = {
   args: {
-    id: '1',
     image: mockImage,
     name: 'Sova',
     size: 'sm',
@@ -43,7 +40,6 @@ export const SmallSize: Story = {
 
 export const LargeSize: Story = {
   args: {
-    id: '1',
     image: mockImage,
     name: 'Sova',
     size: 'lg',

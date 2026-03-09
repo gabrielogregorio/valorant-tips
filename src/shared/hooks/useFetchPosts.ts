@@ -48,7 +48,7 @@ export const useFetchStablePosts = ({ agent, map }: { agent?: string; map?: stri
   const url = buildUrl({ agent, map });
   const { data, error, isLoading, refetch } = useQuery<{ data: PostsServiceType[] }>({
     queryKey: ['posts', agent, map],
-    queryFn: () => fetcher(url),
+    queryFn: () => fetcher<{ data: PostsServiceType[] }>(url),
     staleTime: Infinity,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
@@ -61,7 +61,7 @@ export const useFetchStablePosts = ({ agent, map }: { agent?: string; map?: stri
 export const useFetchPosts = () => {
   const { data, error, isLoading, refetch } = useQuery<{ data: PostsServiceType[] }>({
     queryKey: ['posts'],
-    queryFn: () => fetcher('/posts'),
+    queryFn: () => fetcher<{ data: PostsServiceType[] }>('/posts'),
     refetchInterval: 20000,
     refetchOnWindowFocus: false,
     refetchOnReconnect: true,

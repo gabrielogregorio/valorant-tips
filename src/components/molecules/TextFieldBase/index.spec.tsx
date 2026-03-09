@@ -38,8 +38,8 @@ describe('TextFieldBase', () => {
     const component = screen.getByRole('textbox', { name: /label-example/i });
     await type(component, 'abcExample');
 
-    expect(fn).toBeCalledWith('valuea');
-    expect(fn).toBeCalledWith('valueb');
-    expect(fn).toBeCalledWith('valuec');
+    expect(fn).toHaveBeenCalledWith('valuea');
+    expect(fn).toHaveBeenCalledWith('valueb');
+    expect(fn).toHaveBeenCalledWith('valuec');
   });
 });

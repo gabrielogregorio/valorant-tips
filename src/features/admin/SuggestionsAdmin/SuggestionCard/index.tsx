@@ -3,7 +3,6 @@ import { ptBR } from 'date-fns/locale';
 import Link from 'next/link';
 
 interface SuggestionCardProps {
-  id: string;
   description: string;
   postTitle?: string;
   postId?: string;
@@ -11,7 +10,7 @@ interface SuggestionCardProps {
   createdAt: Date | string;
 }
 
-export const SuggestionCard = ({ id, description, postTitle, postId, email, createdAt }: SuggestionCardProps) => {
+export const SuggestionCard = ({ description, postTitle, postId, email, createdAt }: SuggestionCardProps) => {
   const dateFormatted = formatDistanceToNow(new Date(createdAt), {
     addSuffix: true,
     locale: ptBR,

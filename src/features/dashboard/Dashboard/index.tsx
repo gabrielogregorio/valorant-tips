@@ -56,7 +56,7 @@ export const Dashboard = () => {
       {dashboards.map((item, index) => (
         <CardDash
           className={styleVarianteStyles[index] || styleVarianteStyles[0]}
-          title={formatI18n(`label.dashboard.${item.key}`)}
+          title={formatI18n(`label.dashboard.${item.key}` as Parameters<typeof formatI18n>[0])}
           key={item.key}
           value={formatNumbers(item.value)}
         />

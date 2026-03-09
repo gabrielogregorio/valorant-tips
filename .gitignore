@@ -17,7 +17,9 @@ debug-storybook.log
 # testing
 FETCH_HEAD
 /coverage
-
+FETCH_HEAD
+.mock-log
+.next-dev-log
 # next.js
 /.next/
 /out/

@@ -2,7 +2,6 @@ import { Image } from '@/libs/image';
 import { tailwindMerge } from '@/libs/mergeClasses';
 
 interface SelectableCardProps {
-  id: string;
   image: string;
   name: string;
   isSelected?: boolean;
@@ -10,7 +9,7 @@ interface SelectableCardProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-export const SelectableCard = ({ id, image, name, isSelected = false, onClick, size = 'md' }: SelectableCardProps) => {
+export const SelectableCard = ({ image, name, isSelected = false, onClick, size = 'md' }: SelectableCardProps) => {
   const sizeClasses = {
     sm: 'w-20 h-20',
     md: 'w-24 h-24',

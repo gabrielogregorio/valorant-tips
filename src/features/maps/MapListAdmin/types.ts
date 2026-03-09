@@ -3,4 +3,3 @@ export type MapAdminType = {
   name: string;
   imageUrl: string;
 };
-[];

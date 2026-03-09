@@ -236,7 +236,6 @@ export const CreateOrEditPost = () => {
             fetchAgents.agents.map((agent: AgentType) => (
               <SelectableCard
                 key={agent.id}
-                id={agent.id}
                 image={agent.imageUrl}
                 name={agent.name}
                 isSelected={selectedAgents.includes(agent.id)}
@@ -261,7 +260,6 @@ export const CreateOrEditPost = () => {
             fetchMaps.maps.map((map: MapsType) => (
               <SelectableCard
                 key={map.id}
-                id={map.id}
                 image={map.imageUrl}
                 name={map.name}
                 isSelected={selectedMaps.includes(map.id)}

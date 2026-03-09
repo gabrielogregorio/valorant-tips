@@ -2,8 +2,8 @@ import { api } from './api';
 
 export { HttpError } from './api';
 
-export const fetcher = async (path: string) => {
-  const { data } = await api.get(path);
+export const fetcher = async <T>(path: string): Promise<T> => {
+  const { data } = await api.get<T>(path);
   return data;
 };
 

@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation'; // <<< import
 import { Text, TextAsEnum, TextVariantEnum } from '@/atoms/Text';
 import { tailwindMerge } from '@/libs/mergeClasses';
 import { RouteScreensEnum } from '@/shared/@types/routeScreenEnum';
-import { ProfileMenu } from '@/molecules/ProfileMenu';
 
 const getVariantStyles = (active: boolean) => {
   if (active) {

@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/molecules/Button';
-import { TextFieldForm } from '@/libs/react-hook-form/TextFieldForm';
 import { Image } from '@/libs/image';
+import { TextFieldForm } from '@/molecules/TextFieldForm';
 
 interface UpdateProfileFormData {
   name: string;
@@ -53,15 +53,13 @@ export const UpdateProfile = ({ onUpdateProfile, initialData }: UpdateProfilePro
         </div>
         <input type="file" accept="image/*" onChange={handleImageChange} className="hidden" id="profile-image-input" />
         <label htmlFor="profile-image-input">
-          <Button as="span" variant="secondary">
-            Escolher Imagem
-          </Button>
+          <Button variant="secondary">Escolher Imagem</Button>
         </label>
       </div>
 
-      <TextFieldForm control={control} name="name" label="Nome" rules={{ required: 'Nome é obrigatório' }} />
+      <TextFieldForm control={control} name="name" label="Nome" id="name" />
 
-      <TextFieldForm control={control} name="username" label="Usuário" rules={{ required: 'Usuário é obrigatório' }} />
+      <TextFieldForm control={control} name="username" label="Usuário" id="username" />
 
       <Button type="submit" disabled={loading} className="w-full">
         {loading ? 'Salvando...' : 'Salvar Alterações'}
