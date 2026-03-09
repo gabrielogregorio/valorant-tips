@@ -10,6 +10,9 @@ start-setup:
 dev: start-setup
 	@docker compose -f ./docker/docker-compose.dev.yml up -d
 
+dev-debug: start-setup
+	@docker compose -f ./docker/docker-compose.dev.yml run --rm --service-ports valorant-tips-web pnpm dev:debug
+
 build: start-setup
 	@docker compose -f ./docker/docker-compose.dev.yml down --remove-orphans --volumes
 	@docker compose -f ./docker/docker-compose.dev.yml build --no-cache

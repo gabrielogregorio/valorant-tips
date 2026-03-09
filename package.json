@@ -21,6 +21,7 @@
     "test:a11y": "playwright test --grep @a11y",
     "test:bdd:gen": "rm -rf .features-gen && cross-env TEST_BDD=true bddgen",
     "test:bdd": "pnpm run test:bdd:gen && cross-env TEST_BDD=true playwright test",
+    "dev:debug": "cross-env NEXT_PUBLIC_APP_VERSION=$npm_package_version NODE_OPTIONS='--inspect=0.0.0.0:9229' next dev",
     "playwright": "playwright"
   },
   "dependencies": {

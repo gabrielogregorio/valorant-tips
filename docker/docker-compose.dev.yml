@@ -6,6 +6,7 @@ services:
       dockerfile: ./docker/Dockerfile.dev
     ports:
       - '3000:3000'
+      - '9229:9232'
     volumes:
       - ../:/usr/src/app/
       # Previne que o volume local do host sobrescreva node_modules linux
@@ -13,6 +14,7 @@ services:
       - /usr/src/app/.next/
     environment:
       - NODE_ENV=development
+      - NODE_OPTIONS='' # Prevent host leakage into container
     env_file: ../.env
     networks:
       - frontend-net

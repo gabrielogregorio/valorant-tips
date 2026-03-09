@@ -22,6 +22,7 @@ FETCH_HEAD
 .next-dev-log
 # next.js
 /.next/
+.vscode/chrome-debug-profile
 /out/
 
 # production
