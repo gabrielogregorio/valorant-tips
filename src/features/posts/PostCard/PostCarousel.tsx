@@ -29,12 +29,12 @@ export const PostCarousel = ({ steps }: TProps): ReactElement => {
 
   return (
     <div className="w-full" role="region" aria-roledescription="carousel" aria-label="Passos do post">
-      <div className="relative w-full h-125 overflow-x-auto flex h-full min-w-full">
-        <div className="h-full w-full min-h-[500px] max-h-[500px]" id={carouselId} aria-live="polite">
+      <div className="relative w-full overflow-x-auto flex h-full min-w-full">
+        <div className="h-full w-full" id={carouselId} aria-live="polite">
           <Image
             key={currentStep.imageUrl}
             ariaLabel={currentStep.description || `Imagem do passo ${indexStep + NORMALIZE_COUNTER_STARTING_IN_ONE}`}
-            className="object-cover rounded-md rounded-b-none h-full min-h-[500px] max-h-[500px] w-full"
+            className="object-cover rounded-md rounded-b-none h-full  w-full aspect-840/500"
             placeholder="blur"
             priority
             width={900}
@@ -67,7 +67,7 @@ export const PostCarousel = ({ steps }: TProps): ReactElement => {
         </div>
       </div>
 
-      <div className="w-full overflow-hidden">
+      <div className="w-full overflow-hidden bg-orange-600">
         <div className="w-full h-1 overflow-hidden" style={{ backgroundColor: 'var(--color-neutral-750)' }}>
           <div
             className="h-full transition-all duration-300 ease-out min-h-2 bg-primary"

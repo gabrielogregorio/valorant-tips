@@ -10,8 +10,8 @@ type TProps = {
 
 export const PostCard = ({ post }: TProps): ReactElement => {
   return (
-    <article className="p-2 pl-0 pr-0 w-full h-full border-t border-gray-600 flex flex-col gap-4">
-      <header className="flex flex-col gap-sm">
+    <article className="py-4 w-full h-full border-t border-gray-600 flex flex-col gap-4">
+      <header className="flex flex-col gap-sm shrink-0">
         <div className="flex flex-wrap gap-2">
           {post.authors.map((author) => (
             <div key={author.id} className="flex items-center gap-lg px-lg py-md">
@@ -29,21 +29,19 @@ export const PostCard = ({ post }: TProps): ReactElement => {
           ))}
         </div>
 
-        {/* {isAuthenticated() === true ? (
-          <button type="button" className="block text-skin-secondary-regular font-bold">
-            <Link href={`/admin/post-edit?id=${post.id}`}>Editar</Link>
-          </button>
-        ) : null} */}
-
-        <h2 className="text-base text-white w-full">{post.title}</h2>
+        <h2 className="text-xl font-bold text-white w-full">{post.title}</h2>
       </header>
 
-      {post.steps && post.steps.length > 0 && <PostCarousel steps={post.steps} />}
+      {post.steps && post.steps.length > 0 && (
+        <div className="shrink-0 w-full">
+          <PostCarousel steps={post.steps} />
+        </div>
+      )}
 
-      <div className="flex flex-col gap-2">
-        <p className="text-base text-white">{post.description}</p>
+      <div className="flex flex-col gap-2 grow">
+        <p className="text-base text-white wrap-break-word whitespace-pre-wrap">{post.description}</p>
 
-        <p className="text-skin-secondary-regular text-lg bg-transparent flex flex-wrap gap-2">
+        <p className="text-skin-secondary-regular text-lg bg-transparent flex flex-wrap gap-2 mt-2">
           {post.maps.map((map) => (
             <span className="text-base font-bold text-primary" key={map.id}>
               #{map.name}
@@ -58,7 +56,7 @@ export const PostCard = ({ post }: TProps): ReactElement => {
         </p>
       </div>
 
-      <footer className="mt-auto pt-2">
+      <footer className="mt-auto pt-2 shrink-0">
         <PostActions postId={post.id} />
       </footer>
     </article>
