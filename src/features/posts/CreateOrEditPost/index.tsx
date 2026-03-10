@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -127,18 +127,18 @@ export const CreateOrEditPost = () => {
 
   /* ================= STEP HANDLERS ================= */
 
-  const updateStep = (id: string, updates: Partial<Step>) => {
+  const updateStep = useCallback((id: string, updates: Partial<Step>) => {
     setSteps((prev) => prev.map((s) => (s.id === id ? { ...s, ...updates } : s)));
-  };
+  }, [])
 
-  const addStep = () => {
+  const addStep = useCallback(() => {
     setSteps((prev) => [...prev, { id: crypto.randomUUID(), description: '' }]);
-  };
+  }, [])
 
-  const removeStep = (id: string) => {
+  const removeStep = useCallback((id: string) => {
     if (steps.length === 1) return;
     setSteps((prev) => prev.filter((s) => s.id !== id));
-  };
+  }, [steps.length])
 
   /* ================= SUBMIT ================= */
 
@@ -246,7 +246,7 @@ export const CreateOrEditPost = () => {
                 }
               />
             ))}
-          <button className="text-content-fg" type="button" onClick={() => fetchAgents.reload}>
+          <button className="text-content-fg cursor-pointer" type="button" onClick={() => fetchAgents.reload}>
             <RefreshCcw />
           </button>
         </div>
@@ -270,13 +270,12 @@ export const CreateOrEditPost = () => {
                 }
               />
             ))}
-          <button className="text-content-fg" type="button" onClick={() => fetchMaps.reload}>
+          <button className="text-content-fg cursor-pointer" type="button" onClick={() => fetchMaps.reload}>
             <RefreshCcw />
           </button>
         </div>
       </section>
 
-      {/* STEPS */}
       <section className="space-y-6">
         <h2 className="text-xl font-semibold text-content-fg">Passos</h2>
 
@@ -302,7 +301,7 @@ export const CreateOrEditPost = () => {
           </div>
         ))}
 
-        <Button type="button" variant="secondary" onClick={addStep} disabled={isLoading}>
+        <Button type="button" variant="secondary" onClick={() => addStep()} disabled={isLoading}>
           + Adicionar Passo
         </Button>
       </section>

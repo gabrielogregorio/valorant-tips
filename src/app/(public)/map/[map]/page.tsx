@@ -24,7 +24,7 @@ export default async function ChoiceAgentAfterMap({ params }: { params: Promise<
 
   return (
     <PageContainer>
-      <TitleAndSubtitle key="" subtitle="" title="Agora escolhe um agente " />
+      <TitleAndSubtitle key="" subtitle="" title="Agora escolhe um agente" />
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
         {agentsByMap.map((agents) => (

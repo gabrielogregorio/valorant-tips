@@ -1,13 +1,3 @@
-# Migrar axios para fetch
-
-TRAZER DE VOLTA
-
-commit lint
-sentry
-prettier
-jest
-coverage
-
 <div align="center">
 
 # Valorant tips

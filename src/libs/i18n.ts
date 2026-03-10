@@ -17,7 +17,7 @@ const resources = {
       'placeholder.yourName': 'Seu nome',
       'placeholder.yourUser': 'Seu usuário',
       'helpText.typeYourName': 'Digite o nome que você quer que apareça nos seus posts',
-      'helpText.typeYourUsername': 'Digite o usuário  para fazer login no site, isso DEVE SER SEGREDO',
+      'helpText.typeYourUsername': 'Digite o usuário para fazer login no site',
       'label.name': 'NOME',
       'label.username': 'USUÁRIO',
       'msg.error.onFetchUserLogged': 'Erro ao obter dados do usuário logado',

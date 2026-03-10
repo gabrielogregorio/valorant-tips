@@ -84,8 +84,8 @@
   --color-accent-purple: #9747ff;
   --color-accent-pacific-blue: #029abc;
 
-  --color-feedback-error-hard: #cb4343;
-  --color-feedback-error-soft: #fcd2d2;
+  --color-feedback-error-hard: #ef4444;
+  --color-feedback-error-soft: #fca5a5;
 
   --color-feedback-success-hard: #125134;
   --color-feedback-success-soft: #d1e7dd;
@@ -93,7 +93,7 @@
   --color-overlay-bg: rgba(0, 0, 0, 0.6);
   --color-overlay-bg-blur: rgba(26, 26, 26, 0.5);
 
-  --color-border: #bababa;
+  --color-border: #848589;
   --color-border-soft: #e8e8e8;
 
   --color-neutral-900: #111111;
@@ -149,18 +149,8 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  -webkit-text-fill-color: #e5e7eb;
-  -webkit-box-shadow: 0 0 0px 1000px #1f1f1f inset;
-  box-shadow: 0 0 0px 1000px #1f1f1f inset;
-  transition: background-color 9999s ease-in-out 0s;
-  border: 1px solid #3a3a3a;
+  -webkit-text-fill-color: inherit;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
   caret-color: #e5e7eb;
 }
-
-/* input,
-textarea,
-select {
-  background-color: #1f1f1f;
-  color: #e5e7eb;
-  border: 1px solid #3a3a3a;
-} */
