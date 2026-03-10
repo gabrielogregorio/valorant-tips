@@ -16,8 +16,8 @@ type Props = {
 };
 
 const variantStyles: { [key in HelpTextVariantEnum]: string } = {
-  [HelpTextVariantEnum.Default]: 'text-content-fg-subcontent',
-  [HelpTextVariantEnum.Error]: 'text-feedback-error-hard',
+  [HelpTextVariantEnum.Default]: 'text-neutral-100 opacity-80',
+  [HelpTextVariantEnum.Error]: 'text-feedback-error-soft font-bold',
   [HelpTextVariantEnum.Disabled]: 'text-content-fg-disabled',
 };
 

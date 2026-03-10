@@ -14,7 +14,7 @@ type Props = {
 
 const variantStyles: { [key in OptionalVariantEnum]: string } = {
   [OptionalVariantEnum.Default]: 'text-content-fg-placeholder',
-  [OptionalVariantEnum.Error]: 'text-feedback-error-hard',
+  [OptionalVariantEnum.Error]: 'text-feedback-error-soft',
   [OptionalVariantEnum.Disabled]: 'text-content-fg-disabled',
 };
 

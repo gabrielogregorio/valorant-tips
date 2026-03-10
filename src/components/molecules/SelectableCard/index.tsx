@@ -21,7 +21,7 @@ export const SelectableCard = ({ image, name, isSelected = false, onClick, size 
       type="button"
       onClick={onClick}
       className={tailwindMerge(
-        'relative rounded-lg overflow-hidden border-2 transition-all',
+        'relative rounded-lg overflow-hidden border-2 transition-all cursor-pointer hover:scale-105 transition-transfor duration-150',
         sizeClasses[size],
         isSelected ? 'border-blue-500 shadow-lg' : 'border-gray-300',
       )}>

@@ -17,37 +17,16 @@ interface Props extends Omit<labelHtmlProps, 'children'> {
 
 const variantStyles: { [key in LabelVariantEnum]: { labelStyles: string } } = {
   [LabelVariantEnum.Default]: {
-    labelStyles: 'text-content-fg-subcontent',
+    labelStyles: 'text-neutral-100',
   },
   [LabelVariantEnum.Disabled]: {
     labelStyles: 'text-content-fg-disabled',
   },
   [LabelVariantEnum.Error]: {
-    labelStyles: 'text-feedback-error-hard',
+    labelStyles: 'text-feedback-error-soft',
   },
 };
 
-/**
- * # Introdução
- * Esse componente deve ser usado em INPUTS, apenas nisso e nada mais
- *
- * # ADR
- * ## Label 1: Proibição do Children
- * O Componente não irá aceitar `children`, já que o children pode aceitar usos abusivos do componente, exemplo:
- * ```tsx
- * <Label>
- *   <Text variant="h1">Example</Text>
- * </Label>
- * ```
- *
- * No exemplo acima a situação pode ficar pior se houver outro text dentro do componente, e isso tende a escalar negativamente
- *
- * ### Decisão
- * Para evitar isso, foi decidido que o componente iŕa receber um text, e irá bloquear o children, forçando usos desta forma:
- *
- * <Label text="valor do conteudo" isDisabled={true} hasError={true}>
- *
- */
 export const Label = ({ htmlFor, variant = LabelVariantEnum.Default, className = '', text = '', ...rest }: Props) => {
   const isDisabled = variant === LabelVariantEnum.Disabled;
 

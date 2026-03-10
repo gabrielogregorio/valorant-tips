@@ -35,7 +35,7 @@ describe('Label', () => {
 
     expect(component).toBeInTheDocument();
     expect(component!.tagName).toBe('LABEL');
-    expect(component).toHaveClass('text-feedback-error-hard');
+    expect(component).toHaveClass('text-feedback-error-soft');
     expect(component).toHaveAttribute('aria-disabled', 'false');
   });
 

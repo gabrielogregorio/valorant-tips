@@ -23,7 +23,6 @@ export const ProfileMenu = ({ name, avatarUrl, onEditProfile, onLogout }: Profil
         <button
           aria-label="Menu do perfil"
           className="flex items-center gap-sm cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-content-fg-contrast rounded-full">
-          {/* Avatar */}
           <div className="relative w-10 h-10 rounded-full overflow-hidden bg-accent-radiant border-2 border-content-fg-contrast flex items-center justify-center shrink-0">
             {avatarUrl ? (
               <Image src={avatarUrl} alt={name} fill className="object-cover" />
@@ -32,7 +31,6 @@ export const ProfileMenu = ({ name, avatarUrl, onEditProfile, onLogout }: Profil
             )}
           </div>
 
-          {/* Nome + chevron */}
           <span className="hidden desktop:flex items-center gap-xs text-content-fg-contrast font-semibold text-sm whitespace-nowrap">
             {name}
             <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
@@ -47,7 +45,6 @@ export const ProfileMenu = ({ name, avatarUrl, onEditProfile, onLogout }: Profil
           sideOffset={8}
           align="end"
           className="z-50 min-w-[180px] rounded-xl bg-white shadow-lg border border-gray-100 p-xs animate-in fade-in-0 zoom-in-95">
-          {/* Cabeçalho do dropdown */}
           <div className="px-sm py-xs border-b border-gray-100 mb-xs">
             <p className="text-sm font-semibold text-gray-800 truncate">{name}</p>
           </div>

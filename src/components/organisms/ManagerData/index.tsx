@@ -70,14 +70,13 @@ export const ManageData = () => {
   }
 
   return (
-    <div className="space-y-8">
+    <div>
       <Text variant={TextVariantEnum.h1} className="text-white">
         Gerenciar dados
       </Text>
       <p className="text-gray-200">Aqui você encontrará diversas dicas para evoluir no jogo Valorant</p>
 
-      {/* Maps Section */}
-      <section className="space-y-4">
+      <section>
         <Text variant={TextVariantEnum.h2} className="text-white">
           Mapas
         </Text>
@@ -99,13 +98,14 @@ export const ManageData = () => {
         </Button>
       </section>
 
-      {showMapModal && (
-        <ModalCreateOrUpdateMap
-          map={selectedMap}
-          onClose={() => setShowMapModal(false)}
-          onSuccess={() => setShowMapModal(false)}
-        />
-      )}
+
+      <ModalCreateOrUpdateMap
+        map={selectedMap}
+        open={showMapModal}
+        onClose={() => setShowMapModal(false)}
+        onSuccess={() => setShowMapModal(false)}
+      />
+
 
       {showAgentModal && (
         <ModalCreateOrUpdateAgent

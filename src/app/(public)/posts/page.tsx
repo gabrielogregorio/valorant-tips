@@ -5,6 +5,7 @@ import { PostsServiceType, useFetchStablePosts } from '@/shared/hooks/useFetchPo
 import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
 import { PostCard } from '@Features/posts/PostCard';
 import { PageContainer } from '@/atoms/PageContainer';
+import { Skeleton } from '@/molecules/Skeleton';
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -12,17 +13,43 @@ export default function Page() {
   const agents = searchParams.get('agents');
   const maps = searchParams.get('maps');
 
-  const posts = useFetchStablePosts({ agent: agents?.toString(), map: maps?.toString() }); // resolver agents e maps vs agent e map
-  if (posts.isLoading) {
-    return <div>is loading</div>;
+  // TODO: analyze
+  const { posts, isLoading, error } = useFetchStablePosts({});
+
+  const filteredPosts =
+    posts?.filter((post) => {
+      // If no agents/maps in URL, show all
+      if (!agents && !maps) return true;
+
+      const selectedAgents = agents ? agents.split(',') : [];
+      const selectedMaps = maps ? maps.split(',') : [];
+
+      const matchesAgent =
+        selectedAgents.length === 0 || post.agents.some((agent) => selectedAgents.includes(agent.id));
+
+      const matchesMap = selectedMaps.length === 0 || post.maps.some((map) => selectedMaps.includes(map.id));
+
+      return matchesAgent && matchesMap;
+    }) || [];
+
+  if (isLoading) {
+    return (
+      <PageContainer>
+        <TitleAndSubtitle key="" subtitle="" title="As melhores dicas de Valorant" />
+        <div className="grid grid-cols-1 gap-6 w-full mt-4">
+          <Skeleton className="w-full h-size-inputs rounded-xl" />
+          <Skeleton className="w-full h-size-inputs rounded-xl" />
+        </div>
+      </PageContainer>
+    );
   }
 
-  console.log(posts.error);
-  if (posts.error) {
+  console.log(error);
+  if (error) {
     return <div>Error</div>;
   }
 
-  if (!posts.posts?.length) {
+  if (filteredPosts.length === 0) {
     return <div>sem dados</div>;
   }
 
@@ -62,7 +89,7 @@ export default function Page() {
           ))}
         </div>
 
-        {posts.posts.map((post: PostsServiceType) => (
+        {filteredPosts.map((post: PostsServiceType) => (
           <PostCard key={post.id} post={post} />
         ))}
       </div>

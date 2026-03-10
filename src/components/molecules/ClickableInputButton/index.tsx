@@ -26,7 +26,7 @@ export const ClickableInputButton = ({
       disabled={disabled}
       type="button"
       className={tailwindMerge(
-        'min-w-[12px] max-w-[12px] px-0! py-0! pt-0! pb-0! enabled:active:scale-100 scale-100',
+        'p-1 text-content-fg-subcontent hover:text-content-fg transition-colors duration-150',
         className,
       )}
       leftIcon={<Icon />}

@@ -1,8 +1,3 @@
-/**
- * src/hooks/usePostInteractions.ts
- * Hook combinado: retorna estado salvo + testado de um post de uma vez.
- */
-
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';

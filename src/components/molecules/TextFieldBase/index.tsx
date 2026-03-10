@@ -59,10 +59,10 @@ const handlePasswordShow = (
 ) => {
   const typeHandled = showPassword && type === 'password' ? 'text' : type;
 
-  let element: ReactNode;
+  let iconPassword: ReactNode;
 
   if (type === 'password') {
-    element = showPassword ? (
+    iconPassword = showPassword ? (
       <ClickableInputButton ariaLabel="Esconder senha" onClick={() => setShowPassword(false)} icon="OpenEyeOutline" />
     ) : (
       <ClickableInputButton ariaLabel="Mostrar senha" onClick={() => setShowPassword(true)} icon="CloseEyeOutline" />
@@ -71,7 +71,7 @@ const handlePasswordShow = (
 
   return {
     typeHandled,
-    element,
+    iconPassword,
   };
 };
 
@@ -94,68 +94,57 @@ export const TextFieldBase = ({
   const variants = getVariants({ disabled, errorMessage });
 
   const helpTextHandled = errorMessage || helpText;
-  const baseOnDisableStyles = disabled ? 'bg-content-bg-disabled' : 'bg-root-bg';
-  const inputOnDisableStyles = disabled ? 'cursor-not-allowed' : 'cursor-auto';
-
-  const inputStylesLeftIcon = leftIcon ? 'pl-7' : 'pl-3';
-  const inputStylesRightIcon = rightIcon ? 'pr-7' : 'pr-3';
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const { element, typeHandled } = handlePasswordShow(type, showPassword, setShowPassword);
+  const { iconPassword, typeHandled } = handlePasswordShow(type, showPassword, setShowPassword);
 
   return (
-    <div className="flex flex-col gap-xxs relative">
+    <div className="flex w-full flex-col gap-1">
+      <div className="flex items-center justify-between px-1">
+        <Label text={label} htmlFor={id} variant={variants.label} />
+        {isOptional ? <Optional variant={variants.optional} /> : null}
+      </div>
+
       <div
         className={tailwindMerge(
-          'flex flex-col gap-xs border-b border-border focus-within:border-primary min-h-17.75',
-          baseOnDisableStyles,
+          'relative flex items-center rounded-xl border border-border-soft bg-content-bg px-3 py-1 transition-all duration-200 hover:border-primary focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20',
+          disabled ? 'cursor-not-allowed opacity-50' : '',
+          errorMessage &&
+            'border-feedback-error-soft focus-within:border-feedback-error-soft focus-within:ring-feedback-error-soft/20',
+          className,
         )}>
-        <div className="flex gap-xs items-center absolute left-lg top-lg pointer-events-none select-none max-h-4.5 h-4.5">
-          <Label text={label} htmlFor={id} variant={variants.label} />
-          {isOptional ? <Optional variant={variants.optional} /> : undefined}
-        </div>
+        {leftIcon ? <div className="mr-2 flex items-center justify-center">{leftIcon}</div> : null}
 
-        <div className="flex gap-xs">
-          {leftIcon ? (
-            <div className="absolute top-8.5 left-3 min-h-6 max-h-6 min-w-3 flex items-center justify-center">
-              {leftIcon}
-            </div>
-          ) : undefined}
-          <input
-            type={typeHandled}
-            ref={ref}
-            name={name}
-            value={value === null || value === undefined ? '' : value}
-            id={id}
-            className={tailwindMerge(
-              'pt-8.5 pb-3 text-base font-normal tracking-[0%] placeholder:text-content-fg-placeholder bg-transparent outline-none focus:outline-none text-content-fg w-full',
-              inputStylesLeftIcon,
-              inputStylesRightIcon,
-              inputOnDisableStyles,
-              className,
-            )}
-            {...rest}
-          />
-          {rightIcon ? (
-            <div className="absolute top-8.5 right-3 min-h-6 max-h-6 min-w-3 flex items-center justify-center">
-              {rightIcon}
-            </div>
-          ) : (
-            <div className="absolute top-8.5 right-3 min-h-6 max-h-6 min-w-3 flex items-center justify-center">
-              {element}
-            </div>
+        <input
+          type={typeHandled}
+          ref={ref}
+          name={name}
+          value={value === null || value === undefined ? '' : value}
+          id={id}
+          disabled={disabled}
+          className={tailwindMerge(
+            'flex-1 bg-transparent py-2.5 text-base font-normal tracking-[0%] text-content-fg outline-none placeholder:text-content-fg-placeholder disabled:cursor-not-allowed',
           )}
-        </div>
+          {...rest}
+        />
+
+        {rightIcon ? (
+          <div className="ml-2 flex items-center justify-center">{rightIcon}</div>
+        ) : iconPassword ? (
+          <div className="ml-2 flex items-center justify-center">{iconPassword}</div>
+        ) : null}
       </div>
 
       {helpTextHandled ? (
-        <HelpText
-          leftIcon={errorMessage ? <Icons.AlertOutline className="h-3 w-3" /> : undefined}
-          variant={variants.helpText}
-          text={helpTextHandled}
-        />
-      ) : undefined}
+        <div className="px-1 mt-1">
+          <HelpText
+            leftIcon={errorMessage ? <Icons.AlertOutline className="h-3 w-3" /> : undefined}
+            variant={variants.helpText}
+            text={helpTextHandled}
+          />
+        </div>
+      ) : null}
     </div>
   );
 };

@@ -12,7 +12,7 @@ describe('ErrorMessage', () => {
 
     expect(component).toBeInTheDocument();
     expect(component!.tagName).toBe('DIV');
-    expect(component).toHaveClass('text-feedback-error-hard');
+    expect(component).toHaveClass('text-feedback-error-soft');
     expect(component).toHaveClass('bg-feedback-error-soft');
   });
 });

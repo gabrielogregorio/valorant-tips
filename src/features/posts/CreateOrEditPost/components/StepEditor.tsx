@@ -3,6 +3,7 @@ import { ChevronUp, ChevronDown, X } from 'lucide-react';
 import { ImageUploadPreview } from '@/molecules/ImageUploadPreview/ImageLoad';
 import { useImageUpload } from '@/shared/hooks/useImageUpload';
 
+// TODO: Fazer o step system ser de arrasta e solta + por seleção e com animação de movimentação
 interface Step {
   id: string;
   image?: string;
@@ -33,18 +34,22 @@ export const StepEditor = ({ step, index, onUpdate, onRemove, canMoveUp, canMove
           type="button"
           onClick={() => onMove('up')}
           disabled={!canMoveUp}
-          className="p-1 disabled:opacity-50 hover:bg-gray-100 rounded">
+          aria-label={`Subir Passo ${index + 1} para ${index}`}
+          className="p-1 disabled:opacity-50 hover:bg-gray-100 rounded text-content-fg cursor-pointer">
           <ChevronUp size={20} />
         </button>
-        <span className="text-sm font-medium text-center min-w-6">{index + 1}</span>
+        <span className="text-sm font-medium text-center min-w-6 text-content-fg">{index + 1}</span>
         <button
           type="button"
           onClick={() => onMove('down')}
+          aria-label={`Descer Passo ${index + 1} para ${index + 2}`}
           disabled={!canMoveDown}
-          className="p-1 disabled:opacity-50 hover:bg-gray-100 rounded">
+          className="p-1 disabled:opacity-50 hover:bg-gray-100 rounded text-content-fg cursor-pointer">
           <ChevronDown size={20} />
         </button>
-        <button type="button" onClick={() => onRemove(step.id)} className="p-1 text-red-500 hover:bg-red-50 rounded">
+        <button type="button"
+          aria-label={`Deletar passo ${index + 1}`}
+          onClick={() => onRemove(step.id)} className="p-1 text-red-500 hover:bg-red-50 rounded cursor-pointer">
           <X size={20} />
         </button>
       </div>
@@ -58,11 +63,13 @@ export const StepEditor = ({ step, index, onUpdate, onRemove, canMoveUp, canMove
         />
       </div>
 
+
+      {/* TODO: criar componente com testes */}
       <textarea
         value={step.description}
         onChange={(e) => onUpdate(step.id, { description: e.target.value })}
         placeholder="Descrição do passo"
-        className="w-full px-3 py-2 border rounded resize-none h-24"
+        className="w-full px-3 py-2 border rounded resize-none h-24 text-content-fg border-content-fg"
       />
     </div>
   );

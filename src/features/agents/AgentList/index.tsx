@@ -15,16 +15,16 @@ export const AgentList = ({ agents, onEdit }: { agents: AgentType[]; onEdit: (ma
             <button
               type="button"
               onClick={() => onEdit(agent)}
-              className="cursor-pointer hover:scale-105 transition-transform duration-150 max-w-80 max-h-44 overflow-hidden rounded-3xl"
+              className="cursor-pointer hover:scale-105 transition-transform duration-150 rounded-3xl block"
               key={agent.name}>
               <Image
                 src={agent.imageUrl}
-                width={320}
-                height={180}
+                width={587}
+                height={900}
                 alt=""
-                className="rounded-md object-cover w-full h-full"
+                className="rounded-md object-cover aspect-587/900 block"
               />
-              <Text className="text-center">{agent.name}</Text>
+              <Text className="text-center block text-content-fg">{agent.name}</Text>
             </button>
           );
         })}

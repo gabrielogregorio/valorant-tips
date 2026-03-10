@@ -22,9 +22,7 @@ const RootLayout = async ({
   return (
     <div className="min-h-screen flex flex-col">
       <PrivateHeaderClient user={{ name: 'Mock Server User' }} />
-      <main className="flex-1 flex items-center justify-center px-3xl py-3xl bg-content-bg border border-border-soft shadow-md rounded-sm">
-        {children}
-      </main>
+      <main className="flex-1 flex flex-col justify-start">{children}</main>
 
       <Footer />
     </div>

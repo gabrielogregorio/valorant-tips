@@ -15,7 +15,7 @@ const styleVarianteStyles = [
   'bg-accent-radiant',
   'bg-accent-rose',
   'bg-accent-purple',
-  'bg-feedback-error-hard',
+  'bg-feedback-error-soft',
   'bg-accent-pacific-blue',
 ];
 

@@ -14,7 +14,7 @@ export const CardDash = ({ className = '', title, value }: CardDashProps) => (
       'text-content-fg-contrast bg-accent-radiant flex flex-col items-center py-sm px-sm gap-lg min-w-40 rounded-sm',
       className,
     )}>
-    <Text variant={TextVariantEnum.subtext}>{title}</Text>
+    <Text variant={TextVariantEnum.text}>{title}</Text>
     <Text variant={TextVariantEnum['9xl']}>{value}</Text>
   </div>
 );

@@ -1,11 +1,12 @@
 'use client';
 
+import { AdminPageContainer } from '@/atoms/AdminPageContainer';
 import { ManageData } from '@/organisms/ManagerData';
 
 export default function AdminDataPage() {
   return (
-    <div className="mx-auto py-8 w-full">
+    <AdminPageContainer innerClassName=" max-w-[800px]">
       <ManageData />
-    </div>
+    </AdminPageContainer>
   );
 }
