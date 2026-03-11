@@ -4,7 +4,7 @@ import { MapAdminType } from './types';
 
 export const MapListAdmin = ({ maps, onEdit }: { maps: MapAdminType[]; onEdit: (map: MapAdminType) => void }) => {
   return (
-    <div className=''>
+    <div className="">
       <Text className="text-center text-content-fg" variant={TextVariantEnum.h3}>
         Mapas disponíveis
       </Text>

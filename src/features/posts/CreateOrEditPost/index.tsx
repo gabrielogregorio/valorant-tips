@@ -14,6 +14,8 @@ import { MapsType, useFetchMaps } from '@/shared/hooks/useFetchMaps';
 import { Button } from '@/molecules/Button';
 import { ClientCookies } from '@/libs/clientCookies';
 import { authCookieName } from '@/shared/constants/cookies';
+import { fetcherServer } from '@/libs/fetcher';
+import { PostsServiceType } from '@/shared/hooks/useFetchPosts';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3333';
 
@@ -23,20 +25,7 @@ interface Step {
   id: string;
   description: string;
   imageFile?: File | null;
-  imagePreview?: string;
-}
-
-interface PostResponse {
-  id: string;
-  title: string;
-  description: string;
-  agentIds: string[];
-  mapIds: string[];
-  steps: {
-    id: string;
-    description: string;
-    imageUrl?: string;
-  }[];
+  imageUrl?: string;
 }
 
 const postSchema = z.object({
@@ -87,6 +76,7 @@ export const CreateOrEditPost = () => {
     selectedAgents.length > 0 &&
     selectedMaps.length > 0 &&
     steps.every((s) => s.description.trim().length > 0) &&
+    steps.every((s) => s.imageFile != null || s.imageUrl != null) &&
     !isLoading;
 
   useEffect(() => {
@@ -97,26 +87,26 @@ export const CreateOrEditPost = () => {
 
     const fetchPost = async () => {
       try {
-        const res = await fetch(`${BASE_URL}/posts/${id}`);
-        if (!res.ok) throw new Error('Erro ao buscar post');
+        const res = (
+          await fetcherServer<{ meta: { timestamp: string }; data: PostsServiceType }>(`${BASE_URL}/posts/${id}`)
+        ).data;
 
-        const data: PostResponse = await res.json();
-
-        setValue('title', data.title);
-        setValue('description', data.description);
-        setSelectedAgents(data.agentIds);
-        setSelectedMaps(data.mapIds);
+        setValue('title', res.title);
+        setValue('description', res.description);
+        setSelectedAgents(res.agents.map((agent) => agent.id));
+        setSelectedMaps(res.maps.map((map) => map.id));
 
         setSteps(
-          data.steps.map((step) => ({
+          res.steps.map((step) => ({
             id: step.id,
             description: step.description,
-            imagePreview: step.imageUrl,
+            imageUrl: step.imageUrl,
             imageFile: null,
           })),
         );
       } catch (err) {
         console.error(err);
+        setErrorMessage('Erro ao carregar posts');
       } finally {
         setInitialLoading(false);
       }
@@ -129,16 +119,19 @@ export const CreateOrEditPost = () => {
 
   const updateStep = useCallback((id: string, updates: Partial<Step>) => {
     setSteps((prev) => prev.map((s) => (s.id === id ? { ...s, ...updates } : s)));
-  }, [])
+  }, []);
 
   const addStep = useCallback(() => {
     setSteps((prev) => [...prev, { id: crypto.randomUUID(), description: '' }]);
-  }, [])
+  }, []);
 
-  const removeStep = useCallback((id: string) => {
-    if (steps.length === 1) return;
-    setSteps((prev) => prev.filter((s) => s.id !== id));
-  }, [steps.length])
+  const removeStep = useCallback(
+    (id: string) => {
+      if (steps.length === 1) return;
+      setSteps((prev) => prev.filter((s) => s.id !== id));
+    },
+    [steps.length],
+  );
 
   /* ================= SUBMIT ================= */
 
@@ -153,11 +146,15 @@ export const CreateOrEditPost = () => {
       formData.append('agentIds', JSON.stringify(selectedAgents));
       formData.append('mapIds', JSON.stringify(selectedMaps));
 
-      const formattedSteps = steps.map((step, index) => ({
-        id: step.id,
-        description: step.description,
-        imageField: step.imageFile ? `stepImage_${index}` : null,
-      }));
+      const formattedSteps = steps.map((step, index) => {
+        const fieldName = step.imageFile ? `stepImage_${index}` : null;
+        return {
+          id: step.id,
+          description: step.description,
+          imageField: fieldName,
+          imageUrl: !step.imageFile ? step.imageUrl : undefined,
+        };
+      });
 
       formData.append('steps', JSON.stringify(formattedSteps));
 
@@ -282,7 +279,7 @@ export const CreateOrEditPost = () => {
         {steps.map((step, index) => (
           <div key={step.id} className="w-full">
             <StepEditor
-              step={{ id: step.id, description: step.description, image: step.imagePreview }}
+              step={{ id: step.id, description: step.description, imageUrl: step.imageUrl, imageFile: step.imageFile }}
               index={index}
               onUpdate={updateStep}
               onRemove={removeStep}

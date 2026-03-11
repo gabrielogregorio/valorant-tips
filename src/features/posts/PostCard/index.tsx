@@ -3,14 +3,30 @@ import { PostsServiceType } from '@/shared/hooks/useFetchPosts';
 import { Image } from '@/libs/image';
 import { PostCarousel } from './PostCarousel';
 import { PostActions } from './PostActions';
+import { ClientCookies } from '@/libs/clientCookies';
+import { authCookieName } from '@/shared/constants/cookies';
+import Link from 'next/link';
 
 type TProps = {
   post: PostsServiceType;
 };
 
 export const PostCard = ({ post }: TProps): ReactElement => {
+  const token = ClientCookies.getCookie(authCookieName);
+
   return (
     <article className="py-4 w-full h-full border-t border-gray-600 flex flex-col gap-4">
+      <div className="flex justify-end">
+        {token && (
+          <Link
+            href={`/admin/updatePost/${post.id}`}
+            className="cursor-pointer p-2 text-gray-400 hover:text-primary transition-colors block bg-teal-500"
+            aria-label="Editar post">
+            Editar
+          </Link>
+        )}
+      </div>
+
       <header className="flex flex-col gap-sm shrink-0">
         <div className="flex flex-wrap gap-2">
           {post.authors.map((author) => (

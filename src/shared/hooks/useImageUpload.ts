@@ -20,10 +20,10 @@ export const useImageUpload = ({
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (initialImage) {
+    if (!imageFile) {
       setImagePreview(initialImage);
     }
-  }, [initialImage]);
+  }, [initialImage, imageFile]);
 
   useEffect(() => {
     return () => {
@@ -37,7 +37,13 @@ export const useImageUpload = ({
     async (file: File) => {
       setImageFile(file);
       const localUrl = URL.createObjectURL(file);
-      setImagePreview(localUrl);
+
+      setImagePreview((prev) => {
+        if (prev?.startsWith('blob:')) {
+          URL.revokeObjectURL(prev);
+        }
+        return localUrl;
+      });
       setError(null);
 
       if (uploadApiRoute) {
@@ -70,6 +76,12 @@ export const useImageUpload = ({
     }
   }, [onRemoveComplete]);
 
+  const resetImage = useCallback(() => {
+    setImageFile(null);
+    setImagePreview(initialImage);
+    setError(null);
+  }, [initialImage]);
+
   return {
     imageFile,
     imagePreview,
@@ -78,5 +90,6 @@ export const useImageUpload = ({
     handleImageSelect,
     handleImageRemove,
     setImagePreview,
+    resetImage,
   };
 };

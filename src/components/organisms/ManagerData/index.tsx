@@ -98,7 +98,6 @@ export const ManageData = () => {
         </Button>
       </section>
 
-
       <ModalCreateOrUpdateMap
         map={selectedMap}
         open={showMapModal}
@@ -106,10 +105,10 @@ export const ManageData = () => {
         onSuccess={() => setShowMapModal(false)}
       />
 
-
       {showAgentModal && (
         <ModalCreateOrUpdateAgent
           agent={selectedAgent}
+          open={showAgentModal}
           onClose={() => setShowAgentModal(false)}
           onSuccess={() => setShowAgentModal(false)}
         />

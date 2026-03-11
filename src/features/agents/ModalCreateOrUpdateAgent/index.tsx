@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { X, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
@@ -9,11 +9,12 @@ import { Button } from '@/molecules/Button';
 import { TextFieldForm } from '@/molecules/TextFieldForm';
 import { AgentType } from '@/shared/hooks/useFetchAgents';
 import { useImageUpload } from '@/shared/hooks/useImageUpload';
-import { Portal } from "radix-ui";
+import { Portal } from 'radix-ui';
 
 interface AgentModalProps {
   agent?: AgentType | null;
   onClose: () => void;
+  open: boolean;
   onSuccess?: (savedMap: AgentType) => void;
 }
 
@@ -70,7 +71,7 @@ async function updateAgent(id: string, data: MapFormValues, imageFile?: File): P
 
 type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
 
-export const ModalCreateOrUpdateAgent = ({ agent, onClose, onSuccess }: AgentModalProps) => {
+export const ModalCreateOrUpdateAgent = ({ agent, onClose, onSuccess, open }: AgentModalProps) => {
   const isEditing = !!agent?.id;
 
   const { imageFile, imagePreview, handleImageSelect, handleImageRemove } = useImageUpload({
@@ -85,6 +86,8 @@ export const ModalCreateOrUpdateAgent = ({ agent, onClose, onSuccess }: AgentMod
   const {
     control,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors, isValid },
   } = useForm<MapFormValues>({
     resolver: zodResolver(agentSchema),
@@ -94,6 +97,15 @@ export const ModalCreateOrUpdateAgent = ({ agent, onClose, onSuccess }: AgentMod
 
   const isLoading = submitStatus === 'loading';
   const canSubmit = isValid && hasImage && !isLoading;
+
+  useEffect(() => {
+    const syncExternalValueWithInputField = () => {
+      if (agent?.name && watch('name') !== agent?.name) {
+        setValue('name', agent.name);
+      }
+    };
+    syncExternalValueWithInputField();
+  }, [agent?.name, watch, setValue]);
 
   const onSubmit = async (data: MapFormValues) => {
     if (!imageFile && !imagePreview) {
@@ -125,14 +137,16 @@ export const ModalCreateOrUpdateAgent = ({ agent, onClose, onSuccess }: AgentMod
 
   return (
     <Portal.Root>
-      <Dialog.Root open onOpenChange={(open) => !open && onClose()}>
+      <Dialog.Root open={open} onOpenChange={(open) => !open && onClose()}>
         <Dialog.Overlay className="fixed inset-0 z-40 bg-black/80 backdrop-blur-sm animate-in fade-in-0" />
 
         <Dialog.Content
           className="fixed z-50 w-full max-w-content-desktop bg-content-bg shadow-2xl rounded-xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-h-[90vh] overflow-y-auto animate-in fade-in-0 zoom-in-95"
           onInteractOutside={(e) => isLoading && e.preventDefault()}>
           <div className="flex items-center justify-between p-6 pb-0">
-            <Dialog.Title className="text-2xl font-bold text-content-fg">{isEditing ? 'Editar Agente' : 'Criar Agente'}</Dialog.Title>
+            <Dialog.Title className="text-2xl font-bold text-content-fg">
+              {isEditing ? 'Editar Agente' : 'Criar Agente'}
+            </Dialog.Title>
             <Dialog.Close asChild>
               <button
                 className="p-1.5 hover:bg-gray-100 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-content-fg"

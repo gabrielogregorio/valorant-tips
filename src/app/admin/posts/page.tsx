@@ -34,9 +34,11 @@ const PostScreen = () => {
   }
 
   if (!isLoading && (posts?.length === 0 || !posts)) {
-    return <AdminPageContainer innerClassName=" max-w-[800px]">
-      <div className="text-center py-20 text-content-fg-subcontent">Nenhum post encontrado</div>
-    </AdminPageContainer>
+    return (
+      <AdminPageContainer innerClassName=" max-w-[800px]">
+        <div className="text-center py-20 text-content-fg-subcontent">Nenhum post encontrado</div>
+      </AdminPageContainer>
+    );
   }
 
   return (

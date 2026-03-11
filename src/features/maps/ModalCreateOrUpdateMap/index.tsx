@@ -1,8 +1,7 @@
-
 'use client';
 
-import { Portal } from "radix-ui";
-import { useState } from 'react';
+import { Portal } from 'radix-ui';
+import { useEffect, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { X, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
@@ -92,12 +91,23 @@ export const ModalCreateOrUpdateMap = ({ map, onClose, onSuccess, open }: MapMod
   const {
     control,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors, isValid },
   } = useForm<MapFormValues>({
     resolver: zodResolver(mapSchema),
     defaultValues: { name: map?.name ?? '' },
     mode: 'onChange',
   });
+
+  useEffect(() => {
+    const syncExternalValueWithInputField = () => {
+      if (map?.name && watch('name') !== map?.name) {
+        setValue('name', map.name);
+      }
+    };
+    syncExternalValueWithInputField();
+  }, [map?.name, watch, setValue]);
 
   const isLoading = submitStatus === 'loading';
   const hasImage = !!imageFile || !!imagePreview;
@@ -140,7 +150,9 @@ export const ModalCreateOrUpdateMap = ({ map, onClose, onSuccess, open }: MapMod
           className="fixed z-50 w-full max-w-content-desktop bg-content-bg shadow-2xl rounded-xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-h-[90vh] overflow-y-auto animate-in fade-in-0 zoom-in-95"
           onInteractOutside={(e) => isLoading && e.preventDefault()}>
           <div className="flex items-center justify-between p-6 pb-0">
-            <Dialog.Title className="text-2xl font-bold text-content-fg">{isEditing ? 'Editar Mapa' : 'Criar Mapa'}</Dialog.Title>
+            <Dialog.Title className="text-2xl font-bold text-content-fg">
+              {isEditing ? 'Editar Mapa' : 'Criar Mapa'}
+            </Dialog.Title>
             <Dialog.Close asChild>
               <button
                 className="p-1.5 hover:bg-gray-100 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-content-fg"

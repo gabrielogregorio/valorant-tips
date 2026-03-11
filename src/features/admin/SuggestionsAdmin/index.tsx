@@ -17,7 +17,6 @@ type Suggestion = {
   updatedAt: string; //  : "2026-03-08T01:08:31.512Z"
 };
 
-
 export const SuggestionsAdmin = () => {
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [loading, setLoading] = useState(true);
