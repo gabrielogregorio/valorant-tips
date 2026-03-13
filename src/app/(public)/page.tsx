@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { Image } from '@/libs/image';
-import { fetcherServer } from '@/libs/fetcher';
 import { MapsType } from '@/shared/hooks/useFetchMaps';
 import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
 import { PageContainer } from '@/atoms/PageContainer';
+import { api } from '@/libs/api';
 
 export default async function Page() {
-  const maps = await fetcherServer<MapsType[]>('/maps/?filter=with-posts');
+  const maps = (await api.get<MapsType[]>('/maps/?filter=with-posts')).data;
 
   return (
     <PageContainer>

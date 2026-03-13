@@ -10,11 +10,11 @@ import { Skeleton } from '@/molecules/Skeleton';
 export default function Page() {
   const searchParams = useSearchParams();
 
-  const agents = searchParams.get('agents');
-  const maps = searchParams.get('maps');
+  const agents = searchParams.get('agents')!;
+  const maps = searchParams.get('maps')!;
 
   // TODO: analyze
-  const { posts, isLoading, error } = useFetchStablePosts({});
+  const { posts, isLoading, error } = useFetchStablePosts();
 
   const filteredPosts =
     posts?.filter((post) => {

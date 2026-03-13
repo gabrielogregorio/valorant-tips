@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { PrivateHeader } from './index';
 import { RouteScreensEnum } from '@/shared/@types/routeScreenEnum';
+import { api } from '@/libs/api';
 
 type Props = { user: { name: string; avatarUrl?: string } };
 
@@ -10,7 +11,7 @@ export const PrivateHeaderClient = ({ user }: Props) => {
   const router = useRouter();
 
   const handleLogout = async () => {
-    await fetch('/api/auth/logout', { method: 'POST' });
+    await api.post('/api/auth/logout');
     router.push('/login');
   };
 

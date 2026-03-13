@@ -9,6 +9,7 @@ import { MapListAdmin } from '@Features/maps/MapListAdmin';
 import { MapAdminType } from '@Features/maps/MapListAdmin/types';
 import { ModalCreateOrUpdateMap } from '@Features/maps/ModalCreateOrUpdateMap';
 import { useState, useEffect } from 'react';
+import { api } from '@/libs/api';
 
 export const ManageData = () => {
   const [maps, setMaps] = useState<MapAdminType[]>([]);
@@ -23,16 +24,26 @@ export const ManageData = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const mapsResponse = await fetch('http://localhost:3333/maps');
-        const agentsResponse = await fetch('http://localhost:3333/agents');
+        const mapsResponse = await api.get<MapAdminType[]>('/maps');
+        const agentsResponse = await api.get<AgentType[]>('/agents');
+
+        const getSafeUrl = (url: string) => {
+          try {
+            new URL(url);
+            return url;
+          } catch {
+            return '/default/profile.webp'; // fallback da aplicação
+          }
+        };
+
         setMaps(
-          ((await mapsResponse.json()) as MapAdminType[]).map((map) => {
-            return { ...map, imageUrl: map.imageUrl };
+          mapsResponse.data.map((map) => {
+            return { ...map, imageUrl: getSafeUrl(map.imageUrl) };
           }),
         );
         setAgents(
-          ((await agentsResponse.json()) as AgentType[]).map((agent) => {
-            return { ...agent, imageUrl: agent.imageUrl };
+          agentsResponse.data.map((agent) => {
+            return { ...agent, imageUrl: getSafeUrl(agent.imageUrl) };
           }),
         );
       } catch (error) {

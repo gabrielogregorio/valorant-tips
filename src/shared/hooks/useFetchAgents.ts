@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetcher } from '@/libs/fetcher';
+import { api } from '@/libs/api';
 
 export type AgentType = {
   id: string;
@@ -10,7 +10,7 @@ export type AgentType = {
 export const useFetchAgents = () => {
   const { data, error, isLoading, refetch } = useQuery<AgentType[]>({
     queryKey: ['agents'],
-    queryFn: () => fetcher('/agents'),
+    queryFn: async () => (await api.get<AgentType[]>('/agents')).data,
     refetchOnWindowFocus: false,
     refetchOnReconnect: true,
     staleTime: 0,

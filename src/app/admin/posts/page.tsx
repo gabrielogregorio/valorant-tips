@@ -2,12 +2,12 @@
 
 import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
 import { Loader2, AlertCircle } from 'lucide-react';
-import { PostsServiceType, useFetchPosts } from '@/shared/hooks/useFetchPosts';
+import { PostsServiceType, useFetchStablePosts } from '@/shared/hooks/useFetchPosts';
 import { PostCard } from '@/features/posts/PostCard';
 import { AdminPageContainer } from '@/atoms/AdminPageContainer';
 
 const PostScreen = () => {
-  const { posts, isLoading, reload, error } = useFetchPosts();
+  const { posts, isLoading, reload, error } = useFetchStablePosts();
 
   if (isLoading) {
     return (

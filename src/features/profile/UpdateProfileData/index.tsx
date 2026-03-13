@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect } from 'react';
-import { TextFieldForm } from '@/molecules/TextFieldForm';
 import { Button } from '@/molecules/Button';
 import { ErrorMessage } from '@/molecules/ErrorMessage';
 import { SuccessMessage } from '@/molecules/Success';
@@ -12,6 +11,7 @@ import { UpdateProfileDataFormInterface } from './validationSchema';
 import { useFetchUserLogged } from '@/shared/hooks/useFetchUserLogged';
 import { ImageUploadPreview } from '@/molecules/ImageUploadPreview/ImageLoad';
 import { useImageUpload } from '@/shared/hooks/useImageUpload';
+import { TextFieldFormExternal } from '@/libs/react-hook-form/TextFieldForm';
 
 export const UpdateProfileData = () => {
   const { control, onSubmit, isLoading, errorMessage, success, setValue, getValues } =
@@ -61,7 +61,7 @@ export const UpdateProfileData = () => {
           onImageRemove={handleImageRemove}
         />
 
-        <TextFieldForm<UpdateProfileDataFormInterface>
+        <TextFieldFormExternal<UpdateProfileDataFormInterface>
           control={control}
           id="name"
           name="name"
@@ -70,7 +70,7 @@ export const UpdateProfileData = () => {
           helpText={formatI18n('helpText.typeYourName')}
         />
 
-        <TextFieldForm<UpdateProfileDataFormInterface>
+        <TextFieldFormExternal<UpdateProfileDataFormInterface>
           control={control}
           id="username"
           name="username"

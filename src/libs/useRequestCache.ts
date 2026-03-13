@@ -1,3 +1,4 @@
+import { api } from '@/libs/api';
 import { useQuery } from '@tanstack/react-query';
 
 interface IResponseCustomQuery<T> {
@@ -19,7 +20,7 @@ export const useRequestCacheCustomSwr = <T>(
     queryKey: [url],
     queryFn: async (): Promise<UnwrapData<T>> => {
       if (!fetcher) throw new Error('No fetcher');
-      const response = await fetcher(url);
+      const response = (await api.get(url)).data;
 
       if (response && typeof response === 'object' && 'data' in response) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

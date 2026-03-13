@@ -9,8 +9,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { ImageUploadPreview } from '@/molecules/ImageUploadPreview/ImageLoad';
 import { Button } from '@/molecules/Button';
-import { TextFieldForm } from '@/molecules/TextFieldForm';
 import { useImageUpload } from '@/shared/hooks/useImageUpload';
+import { api } from '@/libs/api';
+import { TextFieldFormExternal } from '@/libs/react-hook-form/TextFieldForm';
 
 export interface ValorantMap {
   id: string;
@@ -22,6 +23,7 @@ interface MapModalProps {
   map?: ValorantMap | null;
   onClose: () => void;
   open: boolean;
+  // eslint-disable-next-line no-unused-vars
   onSuccess?: (savedMap: ValorantMap) => void;
 }
 
@@ -42,17 +44,12 @@ async function createMap(data: MapFormValues, imageFile: File): Promise<Valorant
   formData.append('name', data.name);
   formData.append('image', imageFile);
 
-  const res = await fetch(`${BASE_URL}/maps`, {
-    method: 'POST',
-    body: formData,
-  });
-
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err?.message ?? 'Erro ao criar mapa');
+  try {
+    const res = await api.post<ValorantMap>(`${BASE_URL}/maps`, formData);
+    return res.data;
+  } catch (err: unknown) {
+    throw new Error(err instanceof Error ? err.message : 'Erro ao criar mapa');
   }
-
-  return res.json();
 }
 
 async function updateMap(id: string, data: MapFormValues, imageFile?: File): Promise<ValorantMap> {
@@ -63,17 +60,12 @@ async function updateMap(id: string, data: MapFormValues, imageFile?: File): Pro
     formData.append('image', imageFile);
   }
 
-  const res = await fetch(`${BASE_URL}/maps/${id}`, {
-    method: 'PUT',
-    body: formData,
-  });
-
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err?.message ?? 'Erro ao atualizar mapa');
+  try {
+    const res = await api.put<ValorantMap>(`${BASE_URL}/maps/${id}`, formData);
+    return res.data;
+  } catch (err: unknown) {
+    throw new Error(err instanceof Error ? err.message : 'Erro ao atualizar mapa');
   }
-
-  return res.json();
 }
 
 type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
@@ -178,14 +170,14 @@ export const ModalCreateOrUpdateMap = ({ map, onClose, onSuccess, open }: MapMod
               )}
             </div>
 
-            <div className="space-y-1">
-              <TextFieldForm control={control} id="name" name="name" label="Nome do Mapa" disabled={isLoading} />
-              {errors.name && (
-                <p className="text-sm text-red-500 flex items-center gap-1">
-                  <AlertCircle size={14} /> {errors.name.message}
-                </p>
-              )}
-            </div>
+            <TextFieldFormExternal
+              errorMessage={errors.name && errors.name.message}
+              control={control}
+              id="name"
+              name="name"
+              label="Nome do Mapa"
+              disabled={isLoading}
+            />
 
             {submitStatus === 'error' && errorMessage && (
               <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">

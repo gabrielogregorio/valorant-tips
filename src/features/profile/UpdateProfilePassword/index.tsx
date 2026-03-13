@@ -1,12 +1,12 @@
 'use client';
 
-import { TextFieldForm } from '@/molecules/TextFieldForm';
 import { Button } from '@/molecules/Button';
 import { ErrorMessage } from '@/molecules/ErrorMessage';
 import { SuccessMessage } from '@/molecules/Success';
 import { formatI18n } from '@/libs/i18n';
 import { UpdateProfilePasswordFormInterface } from './validationSchema';
 import { useProfileNewPasswordAccountFormController } from './useProfileDataAccountFormController';
+import { TextFieldFormExternal } from '@/libs/react-hook-form/TextFieldForm';
 
 const UpdateProfilePassword = () => {
   const { control, onSubmit, isLoading, errorMessage, success } = useProfileNewPasswordAccountFormController();
@@ -19,7 +19,7 @@ const UpdateProfilePassword = () => {
         onSubmit(event);
       }}>
       <div className="flex flex-col gap-xl">
-        <TextFieldForm<UpdateProfilePasswordFormInterface>
+        <TextFieldFormExternal<UpdateProfilePasswordFormInterface>
           control={control}
           id="newPassword"
           type="password"
@@ -28,7 +28,7 @@ const UpdateProfilePassword = () => {
           placeholder={formatI18n('placeholder.newPassword')}
         />
 
-        <TextFieldForm<UpdateProfilePasswordFormInterface>
+        <TextFieldFormExternal<UpdateProfilePasswordFormInterface>
           control={control}
           type="password"
           id="newConfirmPassword"

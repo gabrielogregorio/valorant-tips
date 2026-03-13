@@ -1,5 +1,5 @@
+import { api } from '@/libs/api';
 import { useQuery } from '@tanstack/react-query';
-import { fetcher } from '@/libs/fetcher';
 
 export type IDashboardServiceType = {
   value: number;
@@ -9,7 +9,7 @@ export type IDashboardServiceType = {
 export const useFetchDashboards = () => {
   const { data, error, isLoading, refetch } = useQuery<IDashboardServiceType[]>({
     queryKey: ['dashboards'],
-    queryFn: () => fetcher('/dashboards'),
+    queryFn: async () => (await api.get<IDashboardServiceType[]>('/dashboards')).data,
     refetchInterval: 20000,
     refetchOnWindowFocus: false,
     refetchOnReconnect: true,

@@ -2,10 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { SuggestionCard } from './SuggestionCard';
-import { authCookieName } from '@/shared/constants/cookies';
-import { ClientCookies } from '@/libs/clientCookies';
 import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
 import { AdminPageContainer } from '@/atoms/AdminPageContainer';
+import { api } from '@/libs/api';
 
 type Suggestion = {
   description: string; // : "example description",
@@ -26,17 +25,8 @@ export const SuggestionsAdmin = () => {
     const fetchSuggestions = async () => {
       try {
         setLoading(true);
-        const response = await fetch('http://localhost:3333/suggestions', {
-          headers: {
-            authorization: `${ClientCookies.getCookie(authCookieName)}`,
-          },
-        });
-
-        if (response.ok) {
-          setSuggestions(await response.json());
-        } else {
-          setError('Erro ao carregar sugestões');
-        }
+        const response = await api.get<Suggestion[]>('/suggestions');
+        setSuggestions(response.data);
       } catch (err) {
         console.error('Erro:', err);
         setError('Erro ao carregar sugestões');

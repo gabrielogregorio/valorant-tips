@@ -1,10 +1,10 @@
 import { useEffect, useRef, ReactElement, RefObject } from 'react';
 import { FieldValues, useController } from 'react-hook-form';
-import { TextFieldBase, TextFieldBaseProps } from '@/molecules/TextFieldBase';
+import { TextAreaBase, TextAreaBaseProps } from '@/molecules/TextAreaBase';
 import { CustomFieldValues } from '@/shared/@types/CustomFieldValues';
 
-export interface TextFieldFormProps<T extends CustomFieldValues> extends Omit<
-  Omit<TextFieldBaseProps, 'value'>,
+export interface TextAreaFormProps<T extends CustomFieldValues> extends Omit<
+  Omit<TextAreaBaseProps, 'value'>,
   'onChange'
 > {
   name: Extract<keyof T, string>;
@@ -12,15 +12,15 @@ export interface TextFieldFormProps<T extends CustomFieldValues> extends Omit<
   control: any;
 }
 
-export const TextFieldFormExternal = <T extends FieldValues>({
+export const TextAreaFormExternal = <T extends FieldValues>({
   name,
   control,
   onBlur,
   onFocus,
   errorMessage,
   ...rest
-}: TextFieldFormProps<T>): ReactElement => {
-  const wrapperRefInput: RefObject<HTMLInputElement | null> = useRef(null);
+}: TextAreaFormProps<T>): ReactElement => {
+  const wrapperRefInput: RefObject<HTMLTextAreaElement | null> = useRef(null);
   const {
     field: { value, onChange: onChangeHookForm, onBlur: onBlurHookForm, ref },
     fieldState: { error },
@@ -40,7 +40,7 @@ export const TextFieldFormExternal = <T extends FieldValues>({
   const errorMessageHandled = error?.message || errorMessage;
 
   return (
-    <TextFieldBase
+    <TextAreaBase
       ref={wrapperRefInput}
       value={value}
       errorMessage={errorMessageHandled}

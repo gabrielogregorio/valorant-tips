@@ -2,7 +2,6 @@
 
 import { CreateAccountFormInterface } from './validationSchema';
 import { useCreateAccountFormController } from './useCreateAccountFormController';
-import { TextFieldForm } from '@/molecules/TextFieldForm';
 import { Button } from '@/molecules/Button';
 import { Text, TextVariantEnum } from '@/atoms/Text';
 import { ErrorMessage } from '@/molecules/ErrorMessage';
@@ -10,6 +9,7 @@ import { SuccessMessage } from '@/molecules/Success';
 import { useHandleRouter } from '@/libs/useHandleRouter';
 import { RouteScreensEnum } from '@/shared/@types/routeScreenEnum';
 import { formatI18n } from '@/libs/i18n';
+import { TextFieldFormExternal } from '@/libs/react-hook-form/TextFieldForm';
 
 const CreateAccount = () => {
   const { control, onSubmit, isLoading, errorMessage, success } = useCreateAccountFormController();
@@ -28,7 +28,7 @@ const CreateAccount = () => {
             <fieldset className="flex flex-col gap-xl border-none">
               <legend className="mb-4 text-lg font-semibold text-content-fg">Informações Pessoais</legend>
 
-              <TextFieldForm<CreateAccountFormInterface>
+              <TextFieldFormExternal<CreateAccountFormInterface>
                 control={control}
                 id="name"
                 name="name"
@@ -37,7 +37,7 @@ const CreateAccount = () => {
                 helpText={formatI18n('helpText.typeYourName')}
               />
 
-              <TextFieldForm<CreateAccountFormInterface>
+              <TextFieldFormExternal<CreateAccountFormInterface>
                 control={control}
                 id="username"
                 name="username"
@@ -50,7 +50,7 @@ const CreateAccount = () => {
             <fieldset className="flex flex-col gap-xl border-none border-t border-border-soft/20 pt-8">
               <legend className="mb-4 text-lg font-semibold text-content-fg">Segurança do Acesso</legend>
 
-              <TextFieldForm<CreateAccountFormInterface>
+              <TextFieldFormExternal<CreateAccountFormInterface>
                 type="password"
                 control={control}
                 id="password"
@@ -61,7 +61,7 @@ const CreateAccount = () => {
                 helpText=""
               />
 
-              <TextFieldForm<CreateAccountFormInterface>
+              <TextFieldFormExternal<CreateAccountFormInterface>
                 type="password"
                 control={control}
                 id="confirmPassword"
@@ -72,7 +72,7 @@ const CreateAccount = () => {
                 helpText=""
               />
 
-              <TextFieldForm<CreateAccountFormInterface>
+              <TextFieldFormExternal<CreateAccountFormInterface>
                 type="password"
                 control={control}
                 id="code"

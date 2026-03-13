@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/molecules/Button';
 import { Image } from '@/libs/image';
-import { TextFieldForm } from '@/molecules/TextFieldForm';
+import { TextFieldFormExternal } from '@/libs/react-hook-form/TextFieldForm';
 
 interface UpdateProfileFormData {
   name: string;
@@ -57,9 +57,9 @@ export const UpdateProfile = ({ onUpdateProfile, initialData }: UpdateProfilePro
         </label>
       </div>
 
-      <TextFieldForm control={control} name="name" label="Nome" id="name" />
+      <TextFieldFormExternal control={control} name="name" label="Nome" id="name" />
 
-      <TextFieldForm control={control} name="username" label="Usuário" id="username" />
+      <TextFieldFormExternal control={control} name="username" label="Usuário" id="username" />
 
       <Button type="submit" disabled={loading} className="w-full">
         {loading ? 'Salvando...' : 'Salvar Alterações'}

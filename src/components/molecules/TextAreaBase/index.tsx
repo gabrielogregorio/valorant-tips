@@ -1,18 +1,17 @@
-import { Dispatch, HTMLInputTypeAttribute, InputHTMLAttributes, ReactNode, Ref, SetStateAction, useState } from 'react';
+import { ReactNode, Ref, TextareaHTMLAttributes } from 'react';
 import { HelpText, HelpTextVariantEnum } from '../helpText';
 import { Label, LabelVariantEnum } from '../Label';
 import { Optional, OptionalVariantEnum } from '../optional';
 import { tailwindMerge } from '@/libs/mergeClasses';
 import { Icons } from '@/atoms/Icons';
-import { ClickableInputButton } from '../ClickableInputButton';
 
-export interface TextFieldBaseProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface TextAreaBaseProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
   isOptional?: boolean;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   helpText?: string;
-  ref?: Ref<HTMLInputElement>;
+  ref?: Ref<HTMLTextAreaElement>;
   errorMessage?: string;
   id: string;
   name: string;
@@ -52,30 +51,7 @@ const getVariants = ({
   };
 };
 
-const handlePasswordShow = (
-  type: HTMLInputTypeAttribute | undefined,
-  showPassword: boolean,
-  setShowPassword: Dispatch<SetStateAction<boolean>>,
-) => {
-  const typeHandled = showPassword && type === 'password' ? 'text' : type;
-
-  let iconPassword: ReactNode;
-
-  if (type === 'password') {
-    iconPassword = showPassword ? (
-      <ClickableInputButton ariaLabel="Esconder senha" onClick={() => setShowPassword(false)} icon="OpenEyeOutline" />
-    ) : (
-      <ClickableInputButton ariaLabel="Mostrar senha" onClick={() => setShowPassword(true)} icon="CloseEyeOutline" />
-    );
-  }
-
-  return {
-    typeHandled,
-    iconPassword,
-  };
-};
-
-export const TextFieldBase = ({
+export const TextAreaBase = ({
   errorMessage = '',
   id,
   helpText = undefined,
@@ -83,21 +59,17 @@ export const TextFieldBase = ({
   disabled = false,
   name,
   className = '',
-  type,
-  rightIcon = undefined,
   isOptional = false,
   label,
   leftIcon = undefined,
+  rightIcon = undefined,
   value,
+  rows = 5,
   ...rest
-}: TextFieldBaseProps) => {
+}: TextAreaBaseProps) => {
   const variants = getVariants({ disabled, errorMessage });
 
   const helpTextHandled = errorMessage || helpText;
-
-  const [showPassword, setShowPassword] = useState(false);
-
-  const { iconPassword, typeHandled } = handlePasswordShow(type, showPassword, setShowPassword);
 
   return (
     <div className="flex w-full flex-col gap-1">
@@ -108,36 +80,33 @@ export const TextFieldBase = ({
 
       <div
         className={tailwindMerge(
-          'relative flex items-center rounded-xl border border-border-soft bg-content-bg px-3 py-1 transition-all duration-200 hover:border-primary focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20',
+          'relative flex rounded-xl border border-border-soft bg-content-bg px-3 py-1 transition-all duration-200 hover:border-primary focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20',
           disabled ? 'cursor-not-allowed opacity-50' : '',
-          errorMessage &&
-            'border-feedback-error-soft focus-within:border-feedback-error-soft focus-within:ring-feedback-error-soft/20',
+          errorMessage
+            ? 'border-feedback-error-soft focus-within:border-feedback-error-soft focus-within:ring-feedback-error-soft/20'
+            : '',
           className,
         )}>
-        {leftIcon ? <div className="mr-2 flex items-center justify-center">{leftIcon}</div> : null}
+        {leftIcon ? <div className="mr-2 mt-3 flex items-start justify-center">{leftIcon}</div> : null}
 
-        <input
-          type={typeHandled}
+        <textarea
           ref={ref}
           name={name}
           value={value === null || value === undefined ? '' : value}
           id={id}
           disabled={disabled}
+          rows={rows}
           className={tailwindMerge(
-            'flex-1 bg-transparent py-2.5 text-base font-normal tracking-[0%] text-content-fg! outline-none placeholder:text-content-fg-placeholder disabled:cursor-not-allowed',
+            'flex-1 resize-none bg-transparent py-2.5 text-base font-normal tracking-[0%] text-content-fg! outline-none placeholder:text-content-fg-placeholder disabled:cursor-not-allowed',
           )}
           {...rest}
         />
 
-        {rightIcon ? (
-          <div className="ml-2 flex items-center justify-center">{rightIcon}</div>
-        ) : iconPassword ? (
-          <div className="ml-2 flex items-center justify-center">{iconPassword}</div>
-        ) : null}
+        {rightIcon ? <div className="ml-2 mt-3 flex items-start justify-center">{rightIcon}</div> : null}
       </div>
 
       {helpTextHandled ? (
-        <div className="px-1 mt-1">
+        <div className="mt-1 px-1">
           <HelpText
             leftIcon={errorMessage ? <Icons.AlertOutline className="h-3 w-3" /> : undefined}
             variant={variants.helpText}

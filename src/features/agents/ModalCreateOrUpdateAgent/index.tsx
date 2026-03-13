@@ -6,15 +6,17 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { ImageUploadPreview } from '@/molecules/ImageUploadPreview/ImageLoad';
 import { Button } from '@/molecules/Button';
-import { TextFieldForm } from '@/molecules/TextFieldForm';
 import { AgentType } from '@/shared/hooks/useFetchAgents';
 import { useImageUpload } from '@/shared/hooks/useImageUpload';
 import { Portal } from 'radix-ui';
+import { api } from '@/libs/api';
+import { TextFieldFormExternal } from '@/libs/react-hook-form/TextFieldForm';
 
 interface AgentModalProps {
   agent?: AgentType | null;
   onClose: () => void;
   open: boolean;
+  // eslint-disable-next-line no-unused-vars
   onSuccess?: (savedMap: AgentType) => void;
 }
 
@@ -35,17 +37,12 @@ async function createAgent(data: MapFormValues, imageFile: File): Promise<AgentT
   formData.append('name', data.name);
   formData.append('image', imageFile);
 
-  const res = await fetch(`${BASE_URL}/agents`, {
-    method: 'POST',
-    body: formData,
-  });
-
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err?.message ?? 'Erro ao criar agente');
+  try {
+    const res = await api.post<AgentType>(`${BASE_URL}/agents`, formData);
+    return res.data;
+  } catch (err: unknown) {
+    throw new Error(err instanceof Error ? err.message : 'Erro ao criar agente');
   }
-
-  return res.json();
 }
 
 async function updateAgent(id: string, data: MapFormValues, imageFile?: File): Promise<AgentType> {
@@ -56,17 +53,12 @@ async function updateAgent(id: string, data: MapFormValues, imageFile?: File): P
     formData.append('image', imageFile);
   }
 
-  const res = await fetch(`${BASE_URL}/agents/${id}`, {
-    method: 'PUT',
-    body: formData,
-  });
-
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err?.message ?? 'Erro ao atualizar agente');
+  try {
+    const res = await api.put<AgentType>(`${BASE_URL}/agents/${id}`, formData);
+    return res.data;
+  } catch (err: unknown) {
+    throw new Error(err instanceof Error ? err.message : 'Erro ao atualizar agente');
   }
-
-  return res.json();
 }
 
 type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
@@ -172,14 +164,14 @@ export const ModalCreateOrUpdateAgent = ({ agent, onClose, onSuccess, open }: Ag
               )}
             </div>
 
-            <div className="space-y-1">
-              <TextFieldForm control={control} id="name" name="name" label="Nome do Agente" disabled={isLoading} />
-              {errors.name && (
-                <p className="text-sm text-red-500 flex items-center gap-1">
-                  <AlertCircle size={14} /> {errors.name.message}
-                </p>
-              )}
-            </div>
+            <TextFieldFormExternal
+              control={control}
+              id="name"
+              name="name"
+              label="Nome do Agente"
+              disabled={isLoading}
+              errorMessage={errors.name && errors.name.message}
+            />
 
             {submitStatus === 'error' && errorMessage && (
               <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">

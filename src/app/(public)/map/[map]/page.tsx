@@ -1,15 +1,15 @@
 import Link from 'next/link';
-import { fetcherServer } from '@/libs/fetcher';
 import { AgentType } from '@/shared/hooks/useFetchAgents';
 import { MapsType } from '@/shared/hooks/useFetchMaps';
 import { Image } from '@/libs/image';
 import { TitleAndSubtitle } from '@/molecules/TitleAndSubTitle';
 import { PageContainer } from '@/atoms/PageContainer';
+import { api } from '@/libs/api';
 
 export const revalidate = 20;
 
 export async function generateStaticParams() {
-  const maps = await fetcherServer<MapsType[]>('/maps/?filter=with-posts');
+  const maps = (await api.get<MapsType[]>('/maps/?filter=with-posts')).data;
 
   return maps.map((map: AgentType) => {
     return {
@@ -20,7 +20,7 @@ export async function generateStaticParams() {
 
 export default async function ChoiceAgentAfterMap({ params }: { params: Promise<{ map: string }> }) {
   const { map } = await params;
-  const agentsByMap = (await fetcherServer(`/agents/${map}/posts`)) as AgentType[];
+  const agentsByMap = (await api.get(`/agents/${map}/posts`)).data as AgentType[];
 
   return (
     <PageContainer>

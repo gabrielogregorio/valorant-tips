@@ -1,6 +1,5 @@
 'use client';
 
-import { TextFieldForm } from '@/molecules/TextFieldForm';
 import { Button } from '@/molecules/Button';
 import { Text, TextVariantEnum } from '@/atoms/Text';
 import { ErrorMessage } from '@/molecules/ErrorMessage';
@@ -9,22 +8,23 @@ import { useLoginAccountFormController } from './useLoginAccountFormController';
 import { LoginFormInterface } from './validationSchema';
 import { useHandleRouter } from '@/libs/useHandleRouter';
 import { RouteScreensEnum } from '@/shared/@types/routeScreenEnum';
+import { TextFieldFormExternal } from '@/libs/react-hook-form/TextFieldForm';
 
 export const LoginForm = () => {
   const { control, onSubmit, isLoading, errorMessage, success } = useLoginAccountFormController();
   const { push } = useHandleRouter();
 
   return (
-    <div className="flex w-full flex-col justify-center items-center py-8">
+    <div className="flex justify-center">
       <div className="w-full max-w-size-inputs">
         <form
-          className="animate-fadeIn300 mt-4 w-full rounded-2xl bg-content-bg/30 p-6 backdrop-blur-sm sm:p-8"
+          className="animate-fadeIn300 w-full rounded-2xl bg-content-bg/30 backdrop-blur-sm sm:p-8"
           onSubmit={(event) => {
             event.preventDefault();
             onSubmit(event);
           }}>
           <div className="flex flex-col gap-xl">
-            <TextFieldForm<LoginFormInterface>
+            <TextFieldFormExternal<LoginFormInterface>
               control={control}
               id="username"
               name="username"
@@ -33,7 +33,7 @@ export const LoginForm = () => {
               helpText="Digite o usuário para fazer login"
             />
 
-            <TextFieldForm<LoginFormInterface>
+            <TextFieldFormExternal<LoginFormInterface>
               type="password"
               control={control}
               id="password"

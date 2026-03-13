@@ -6,16 +6,14 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AlertCircle, CheckCircle2, Loader2, RefreshCcw } from 'lucide-react';
-import { TextFieldForm } from '@/molecules/TextFieldForm';
 import { StepEditor } from './components/StepEditor';
 import { SelectableCard } from '@/molecules/SelectableCard';
 import { AgentType, useFetchAgents } from '@/shared/hooks/useFetchAgents';
 import { MapsType, useFetchMaps } from '@/shared/hooks/useFetchMaps';
 import { Button } from '@/molecules/Button';
-import { ClientCookies } from '@/libs/clientCookies';
-import { authCookieName } from '@/shared/constants/cookies';
-import { fetcherServer } from '@/libs/fetcher';
 import { PostsServiceType } from '@/shared/hooks/useFetchPosts';
+import { api } from '@/libs/api';
+import { TextFieldFormExternal } from '@/libs/react-hook-form/TextFieldForm';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3333';
 
@@ -87,9 +85,8 @@ export const CreateOrEditPost = () => {
 
     const fetchPost = async () => {
       try {
-        const res = (
-          await fetcherServer<{ meta: { timestamp: string }; data: PostsServiceType }>(`${BASE_URL}/posts/${id}`)
-        ).data;
+        const res = (await api.get<{ meta: { timestamp: string }; data: PostsServiceType }>(`${BASE_URL}/posts/${id}`))
+          .data.data;
 
         setValue('title', res.title);
         setValue('description', res.description);
@@ -164,17 +161,10 @@ export const CreateOrEditPost = () => {
         }
       });
 
-      const res = await fetch(isEditing ? `${BASE_URL}/posts/${id}` : `${BASE_URL}/posts`, {
-        method: isEditing ? 'PUT' : 'POST',
-        headers: {
-          Authorization: `${ClientCookies.getCookie(authCookieName)}`,
-        },
-        body: formData,
-      });
-
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        throw new Error(err?.message ?? 'Erro ao salvar post');
+      if (isEditing) {
+        await api.put(`${BASE_URL}/posts/${id}`, formData);
+      } else {
+        await api.post(`${BASE_URL}/posts`, formData);
       }
 
       setSubmitStatus('success');
@@ -206,26 +196,24 @@ export const CreateOrEditPost = () => {
         <h1 className="text-3xl font-bold text-content-fg">{isEditing ? 'Editar Post' : 'Criar Post'}</h1>
       </div>
 
-      {/* TITLE */}
-      <div className="space-y-1">
-        <TextFieldForm control={control} id="title" name="title" label="Título" disabled={isLoading} />
-        {errors.title && (
-          <p className="text-sm text-red-500 flex items-center gap-1">
-            <AlertCircle size={14} /> {errors.title.message}
-          </p>
-        )}
-      </div>
+      <TextFieldFormExternal
+        errorMessage={errors.title && errors.title.message}
+        control={control}
+        id="title"
+        name="title"
+        label="Título"
+        disabled={isLoading}
+      />
 
-      <div className="space-y-1">
-        <TextFieldForm control={control} id="description" name="description" label="Descrição" disabled={isLoading} />
-        {errors.description && (
-          <p className="text-sm text-red-500 flex items-center gap-1">
-            <AlertCircle size={14} /> {errors.description.message}
-          </p>
-        )}
-      </div>
+      <TextFieldFormExternal
+        errorMessage={errors.description && errors.description.message}
+        control={control}
+        id="description"
+        name="description"
+        label="Descrição"
+        disabled={isLoading}
+      />
 
-      {/* AGENTS */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold text-content-fg">Agentes</h2>
         <div className="grid grid-cols-4 gap-4">

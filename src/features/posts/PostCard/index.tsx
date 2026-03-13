@@ -16,33 +16,33 @@ export const PostCard = ({ post }: TProps): ReactElement => {
 
   return (
     <article className="py-4 w-full h-full border-t border-gray-600 flex flex-col gap-4">
-      <div className="flex justify-end">
-        {token && (
-          <Link
-            href={`/admin/updatePost/${post.id}`}
-            className="cursor-pointer p-2 text-gray-400 hover:text-primary transition-colors block bg-teal-500"
-            aria-label="Editar post">
-            Editar
-          </Link>
-        )}
-      </div>
-
       <header className="flex flex-col gap-sm shrink-0">
-        <div className="flex flex-wrap gap-2">
-          {post.authors.map((author) => (
-            <div key={author.id} className="flex items-center gap-lg px-lg py-md">
-              <Image
-                className="rounded-full object-cover w-10 h-10"
-                width={40}
-                height={40}
-                src={author.imageUrl || '/default/profile.webp'}
-                alt={`Foto de perfil de ${author.username}`}
-              />
-              <div className="flex flex-col min-w-0">
-                <span className="text-sm font-semibold text-content-fg truncate">{author.username}</span>
+        <div className="flex items-center justify-between flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2">
+            {post.authors.map((author) => (
+              <div key={author.id} className="flex items-center gap-lg px-lg py-md">
+                <Image
+                  className="rounded-full object-cover w-10 h-10"
+                  width={40}
+                  height={40}
+                  src={author.imageUrl || '/default/profile.webp'}
+                  alt={`Foto de perfil de ${author.username}`}
+                />
+                <div className="flex flex-col min-w-0">
+                  <span className="text-sm font-semibold text-content-fg truncate">{author.username}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {token && (
+            <Link
+              href={`/admin/updatePost/${post.id}`}
+              className="cursor-pointer px-4 py-2 text-sm font-medium text-gray-400 border border-gray-600 rounded-lg hover:text-primary hover:border-primary hover:bg-primary/10 transition-all"
+              aria-label="Editar post">
+              Editar
+            </Link>
+          )}
         </div>
 
         <h2 className="text-xl font-bold text-white w-full">{post.title}</h2>
