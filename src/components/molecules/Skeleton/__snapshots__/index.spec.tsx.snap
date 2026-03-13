@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Skeleton > should render a default variant 1`] = `
+<div>
+  <div>
+    <div
+      class="bg-content-bg-disabled animate-pulseIn300 w-55 h-46"
+    />
+  </div>
+</div>
+`;

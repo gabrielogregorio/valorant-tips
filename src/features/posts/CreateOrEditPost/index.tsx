@@ -1,0 +1,325 @@
+'use client';
+
+import { useCallback, useEffect, useState } from 'react';
+import { useParams, useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { AlertCircle, CheckCircle2, Loader2, RefreshCcw } from 'lucide-react';
+import { StepEditor } from './components/StepEditor';
+import { SelectableCard } from '@/molecules/SelectableCard';
+import { AgentType, useFetchAgents } from '@/shared/hooks/useFetchAgents';
+import { MapsType, useFetchMaps } from '@/shared/hooks/useFetchMaps';
+import { Button } from '@/molecules/Button';
+import { PostsServiceType } from '@/shared/hooks/useFetchPosts';
+import { api } from '@/libs/api';
+import { TextFieldFormExternal } from '@/libs/react-hook-form/TextFieldForm';
+
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3333';
+
+type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
+
+interface Step {
+  id: string;
+  description: string;
+  imageFile?: File | null;
+  imageUrl?: string;
+}
+
+const postSchema = z.object({
+  title: z
+    .string()
+    .min(1, 'Título é obrigatório')
+    .min(3, 'Título deve ter ao menos 3 caracteres')
+    .max(120, 'Título muito longo'),
+
+  description: z
+    .string()
+    .min(1, 'Descrição é obrigatória')
+    .min(5, 'Descrição muito curta')
+    .max(500, 'Descrição muito longa'),
+});
+
+type PostFormValues = z.infer<typeof postSchema>;
+
+export const CreateOrEditPost = () => {
+  const { id } = useParams<{ id?: string }>();
+  const router = useRouter();
+  const isEditing = !!id;
+
+  const fetchAgents = useFetchAgents();
+  const fetchMaps = useFetchMaps();
+
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    formState: { errors, isValid },
+  } = useForm<PostFormValues>({
+    resolver: zodResolver(postSchema),
+    mode: 'onChange',
+  });
+
+  const [selectedAgents, setSelectedAgents] = useState<string[]>([]);
+  const [selectedMaps, setSelectedMaps] = useState<string[]>([]);
+  const [steps, setSteps] = useState<Step[]>([]);
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [initialLoading, setInitialLoading] = useState<boolean>(isEditing);
+
+  const isLoading = submitStatus === 'loading';
+
+  const canSubmit =
+    isValid &&
+    selectedAgents.length > 0 &&
+    selectedMaps.length > 0 &&
+    steps.every((s) => s.description.trim().length > 0) &&
+    steps.every((s) => s.imageFile != null || s.imageUrl != null) &&
+    !isLoading;
+
+  useEffect(() => {
+    if (!isEditing) {
+      setSteps([{ id: crypto.randomUUID(), description: '' }]);
+      return;
+    }
+
+    const fetchPost = async () => {
+      try {
+        const res = (await api.get<{ meta: { timestamp: string }; data: PostsServiceType }>(`${BASE_URL}/posts/${id}`))
+          .data.data;
+
+        setValue('title', res.title);
+        setValue('description', res.description);
+        setSelectedAgents(res.agents.map((agent) => agent.id));
+        setSelectedMaps(res.maps.map((map) => map.id));
+
+        setSteps(
+          res.steps.map((step) => ({
+            id: step.id,
+            description: step.description,
+            imageUrl: step.imageUrl,
+            imageFile: null,
+          })),
+        );
+      } catch (err) {
+        console.error(err);
+        setErrorMessage('Erro ao carregar posts');
+      } finally {
+        setInitialLoading(false);
+      }
+    };
+
+    fetchPost();
+  }, [id, isEditing, setValue]);
+
+  /* ================= STEP HANDLERS ================= */
+
+  const updateStep = useCallback((id: string, updates: Partial<Step>) => {
+    setSteps((prev) => prev.map((s) => (s.id === id ? { ...s, ...updates } : s)));
+  }, []);
+
+  const addStep = useCallback(() => {
+    setSteps((prev) => [...prev, { id: crypto.randomUUID(), description: '' }]);
+  }, []);
+
+  const removeStep = useCallback(
+    (id: string) => {
+      if (steps.length === 1) return;
+      setSteps((prev) => prev.filter((s) => s.id !== id));
+    },
+    [steps.length],
+  );
+
+  /* ================= SUBMIT ================= */
+
+  const onSubmit = async (data: PostFormValues) => {
+    setSubmitStatus('loading');
+    setErrorMessage(null);
+
+    try {
+      const formData = new FormData();
+      formData.append('title', data.title);
+      formData.append('description', data.description);
+      formData.append('agentIds', JSON.stringify(selectedAgents));
+      formData.append('mapIds', JSON.stringify(selectedMaps));
+
+      const formattedSteps = steps.map((step, index) => {
+        const fieldName = step.imageFile ? `stepImage_${index}` : null;
+        return {
+          id: step.id,
+          description: step.description,
+          imageField: fieldName,
+          imageUrl: !step.imageFile ? step.imageUrl : undefined,
+        };
+      });
+
+      formData.append('steps', JSON.stringify(formattedSteps));
+
+      steps.forEach((step, index) => {
+        if (step.imageFile) {
+          formData.append(`stepImage_${index}`, step.imageFile);
+        }
+      });
+
+      if (isEditing) {
+        await api.put(`${BASE_URL}/posts/${id}`, formData);
+      } else {
+        await api.post(`${BASE_URL}/posts`, formData);
+      }
+
+      setSubmitStatus('success');
+
+      setTimeout(() => {
+        router.push('/admin/posts');
+      }, 1200);
+    } catch (err: unknown) {
+      setSubmitStatus('error');
+      setErrorMessage(err instanceof Error ? err.message : 'Erro inesperado');
+    }
+  };
+
+  /* ================= LOADING SCREEN ================= */
+
+  if (initialLoading) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <Loader2 size={28} className="animate-spin" />
+      </div>
+    );
+  }
+
+  /* ================= RENDER ================= */
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 max-w-content-desktop mx-auto" noValidate>
+      <div>
+        <h1 className="text-3xl font-bold text-content-fg">{isEditing ? 'Editar Post' : 'Criar Post'}</h1>
+      </div>
+
+      <TextFieldFormExternal
+        errorMessage={errors.title && errors.title.message}
+        control={control}
+        id="title"
+        name="title"
+        label="Título"
+        disabled={isLoading}
+      />
+
+      <TextFieldFormExternal
+        errorMessage={errors.description && errors.description.message}
+        control={control}
+        id="description"
+        name="description"
+        label="Descrição"
+        disabled={isLoading}
+      />
+
+      <section className="space-y-4">
+        <h2 className="text-xl font-semibold text-content-fg">Agentes</h2>
+        <div className="grid grid-cols-4 gap-4">
+          {Array.isArray(fetchAgents.agents) &&
+            fetchAgents.agents.map((agent: AgentType) => (
+              <SelectableCard
+                key={agent.id}
+                image={agent.imageUrl}
+                name={agent.name}
+                isSelected={selectedAgents.includes(agent.id)}
+                onClick={() =>
+                  setSelectedAgents((prev) =>
+                    prev.includes(agent.id) ? prev.filter((a) => a !== agent.id) : [...prev, agent.id],
+                  )
+                }
+              />
+            ))}
+          <button className="text-content-fg cursor-pointer" type="button" onClick={() => fetchAgents.reload}>
+            <RefreshCcw />
+          </button>
+        </div>
+      </section>
+
+      {/* MAPS */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-semibold text-content-fg">Mapas</h2>
+        <div className="grid grid-cols-4 gap-4">
+          {Array.isArray(fetchMaps.maps) &&
+            fetchMaps.maps.map((map: MapsType) => (
+              <SelectableCard
+                key={map.id}
+                image={map.imageUrl}
+                name={map.name}
+                isSelected={selectedMaps.includes(map.id)}
+                onClick={() =>
+                  setSelectedMaps((prev) =>
+                    prev.includes(map.id) ? prev.filter((m) => m !== map.id) : [...prev, map.id],
+                  )
+                }
+              />
+            ))}
+          <button className="text-content-fg cursor-pointer" type="button" onClick={() => fetchMaps.reload}>
+            <RefreshCcw />
+          </button>
+        </div>
+      </section>
+
+      <section className="space-y-6">
+        <h2 className="text-xl font-semibold text-content-fg">Passos</h2>
+
+        {steps.map((step, index) => (
+          <div key={step.id} className="w-full">
+            <StepEditor
+              step={{ id: step.id, description: step.description, imageUrl: step.imageUrl, imageFile: step.imageFile }}
+              index={index}
+              onUpdate={updateStep}
+              onRemove={removeStep}
+              canMoveDown={index < steps.length - 1}
+              canMoveUp={index > 0}
+              onMove={(dir) => {
+                const items = [...steps];
+                if (dir === 'up' && index > 0) {
+                  [items[index], items[index - 1]] = [items[index - 1], items[index]];
+                } else if (dir === 'down' && index < items.length - 1) {
+                  [items[index], items[index + 1]] = [items[index + 1], items[index]];
+                }
+                setSteps(items);
+              }}
+            />
+          </div>
+        ))}
+
+        <Button type="button" variant="secondary" onClick={() => addStep()} disabled={isLoading}>
+          + Adicionar Passo
+        </Button>
+      </section>
+
+      {/* STATUS */}
+      {submitStatus === 'error' && errorMessage && (
+        <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+          <AlertCircle size={16} />
+          {errorMessage}
+        </div>
+      )}
+
+      {submitStatus === 'success' && (
+        <div className="flex items-center gap-2 p-3 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm">
+          <CheckCircle2 size={16} />
+          {isEditing ? 'Post atualizado com sucesso!' : 'Post criado com sucesso!'}
+        </div>
+      )}
+
+      <div className="flex justify-end">
+        <Button type="submit" disabled={!canSubmit} className="min-w-40">
+          {isLoading ? (
+            <span className="flex items-center gap-2">
+              <Loader2 size={16} className="animate-spin" />
+              Salvando...
+            </span>
+          ) : isEditing ? (
+            'Salvar alterações'
+          ) : (
+            'Criar Post'
+          )}
+        </Button>
+      </div>
+    </form>
+  );
+};

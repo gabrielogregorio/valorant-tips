@@ -1,0 +1,68 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { getThemeVariables } from '../../../utils-storybook/index'
+
+<Meta title="atoms/Design Tokens/Borders" />
+
+# Borders & Radius
+
+Define a estética de arredondamento e contorno dos componentes.
+
+export const BorderRadius = () => {
+  const colors = getThemeVariables('color')
+  const borderRadius = getThemeVariables('radius')
+
+  return (
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-lg">
+      {Object.entries(borderRadius).map(([key, value]) => (
+        <div key={key} className="flex flex-col items-center p-md bg-neutral-900 border border-neutral-800 rounded-sm">
+          <div
+            className="flex justify-center items-center shadow-md mb-md transform hover:scale-105 transition-transform"
+            style={{
+              borderRadius: value,
+              backgroundColor: colors.primary || '#d85f5f',
+              width: '120px',
+              height: '120px'
+            }}
+          />
+          <span className="text-content-fg font-bold">--radius-{key}</span>
+          <span className="text-content-fg-subcontent text-sm">{value}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export const BorderWidth = () => {
+  const colors = getThemeVariables('color')
+  // Nota: Tailwind v4 variables podem vir com nomes diferentes
+  const spacing = getThemeVariables('spacing')
+
+  return (
+    <div className="flex flex-col gap-md">
+      <div className="flex items-center gap-xl p-lg bg-neutral-900 border border-neutral-800 rounded-sm">
+         <div 
+          style={{
+            borderColor: colors['accent-radiant'] || '#fe9e2e',
+            borderWidth: '1px',
+            borderStyle: 'solid'
+          }}
+          className="w-20 h-20 bg-content-bg"
+         />
+         <div>
+            <p className="text-content-fg font-bold">Standard Border</p>
+            <p className="text-content-fg-subcontent text-sm">--border-width (1px)</p>
+         </div>
+      </div>
+    </div>
+  )
+}
+
+# Border Radius
+Usado para suavizar os cantos de botões, cards e modais. Favorecemos o uso de `radius-sm` para identidade visual mais sóbria.
+
+  <BorderRadius />
+
+## Border Width
+Atualmente o projeto utiliza um padrão de **1px** para contornos finos e elegantes, especialmente em divisores e bordas de containers.
+
+  <BorderWidth />

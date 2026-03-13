@@ -1,0 +1,36 @@
+services:
+  valorant-tips-web:
+    container_name: valorant-tips-web
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile.dev
+    ports:
+      - '3000:3000'
+      - '9229:9232'
+    volumes:
+      - ../:/usr/src/app/
+      # Previne que o volume local do host sobrescreva node_modules linux
+      - /usr/src/app/node_modules/
+      - /usr/src/app/.next/
+    environment:
+      - NODE_ENV=development
+      - NODE_OPTIONS='' # Prevent host leakage into container
+    env_file: ../.env
+    networks:
+      - frontend-net
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:3000/']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        reservations:
+          cpus: '0.2'
+          memory: 512M
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+
+networks:
+  frontend-net:
+    driver: bridge

@@ -3,23 +3,26 @@
 # dependencies
 /node_modules
 /.pnp
-.pnp.js
-tsconfig.tsbuildinfo
-.env
-
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+.features-gen
+!.yarn/releases
+!.yarn/versions
+e2e-screenshots
+eslint-config-debug.json
+temp-config.json
+debug-storybook.log
 # testing
-/coverage/lcov-report
-/coverage/coverage-summary.json
-/coverage/lcov.info
-
-# Ignore screenshot cypress
-/cypress/screenshots/*
-
-# Ignore movies cypress
-/cypress/videos/*
-
+FETCH_HEAD
+/coverage
+FETCH_HEAD
+.mock-log
+.next-dev-log
 # next.js
 /.next/
+.vscode/chrome-debug-profile
 /out/
 
 # production
@@ -33,30 +36,26 @@ tsconfig.tsbuildinfo
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
 
-# local env files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# env files (can opt-in for committing if needed)
+.env*
 
 # vercel
 .vercel
 
-# Ignore storybook static build
-/storybook-static
-# Ignore coverage cypress
-.nyc_output
-coverage/clover.xml
-coverage/coverage-final.json
+# typescript
+*.tsbuildinfo
+next-env.d.ts
 
-# PWA files
-**/public/sw.js
-**/public/workbox-*.js
-**/public/worker-*.js
-**/public/sw.js.map
-**/public/workbox-*.js.map
-**/public/worker-*.js.map
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
 
-# Sentry
-.sentryclirc
+*storybook.log
+storybook-static
+.features-gen

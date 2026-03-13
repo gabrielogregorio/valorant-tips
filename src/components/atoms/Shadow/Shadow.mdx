@@ -1,0 +1,41 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { getThemeVariables } from '../../../utils-storybook'
+
+<Meta title="atoms/Design Tokens/Shadow" />
+
+# Elevation & Shadows
+
+As sombras são usadas para dar profundidade e hierarquia visual, destacando elementos que "flutuam" sobre o fundo principal.
+
+export const ShadowShowcase = () => {
+  const colors = getThemeVariables('color')
+  const shadows = getThemeVariables('shadow')
+
+  return (
+    <div className="flex flex-wrap gap-7xl p-7xl bg-main-bg items-center justify-center rounded-sm">
+      {Object.entries(shadows).map(([key, value]) => (
+        <div key={key} className="flex flex-col items-center gap-md">
+          <div
+            className="flex justify-center items-center bg-content-bg border border-neutral-750 transition-all hover:-translate-y-1"
+            style={{
+              boxShadow: value,
+              width: '150px',
+              height: '150px',
+              borderRadius: '8px'
+            }}
+          >
+             <span className="text-accent-radiant font-bold text-xl uppercase">{key}</span>
+          </div>
+          <p className="text-content-fg-subcontent text-sm">--shadow-{key}</p>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+## Elevation Scale
+Atualmente, focamos em uma sombra média (`md`) que equilibra visibilidade profissional com sobriedade.
+
+  <ShadowShowcase />
+
+> **Dica de Design:** Use sombras apenas em elementos interativos (cards clicáveis) ou sobreposições (modais/dropdowns). Evite em elementos estáticos de layout.

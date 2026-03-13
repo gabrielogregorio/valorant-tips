@@ -1,0 +1,42 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+import { getThemeVariables } from '../../../utils-storybook'
+
+<Meta title="atoms/Design Tokens/Screens" />
+
+# Screens & Breakpoints
+
+Responsive design breakpoints defined in the project's Tailwind configuration.
+
+export const Screens = () => {
+  const breakpoints = getThemeVariables('breakpoint')
+  const keys = Object.keys(breakpoints).sort((a, b) => {
+    return parseInt(breakpoints[a]) - parseInt(breakpoints[b])
+  })
+
+  return (
+    <div className="flex flex-col gap-md mt-lg">
+      {keys.map((key) => {
+        const value = breakpoints[key]
+        return (
+          <div key={key} className="flex flex-col gap-xs">
+            <div className="flex justify-between items-end border-b border-border-soft pb-xs">
+              <span className="text-xl font-bold uppercase text-primary-hard">{key}</span>
+              <span className="text-sm text-content-fg-subcontent font-mono">{`<= ${value}`}</span>
+            </div>
+            <div
+              className={`flex justify-center items-center rounded-sm bg-accent-radiant text-black font-bold h-[40px]`}
+              style={{ width: value, maxWidth: '100%' }}
+            >
+              {key} Container Max Width
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+<Screens />
+
+> [!TIP]
+> Use these breakpoints with Tailwind's responsive prefixes (e.g., `desktop:grid-cols-4`, `mobile:grid-cols-1`).

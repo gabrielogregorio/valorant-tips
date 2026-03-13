@@ -1,0 +1,27 @@
+services:
+  valorant-tips-test:
+    container_name: valorant-tips-test
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile.test
+    volumes:
+      - ../:/usr/src/app/
+      - /usr/src/app/node_modules/
+    environment:
+      - NODE_ENV=test
+      - PLAYWRIGHT_BROWSERS_PATH=0
+    ipc: host # Prevents e2e chromium crash issues
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+    networks:
+      - test-net
+
+networks:
+  test-net:
+    driver: bridge

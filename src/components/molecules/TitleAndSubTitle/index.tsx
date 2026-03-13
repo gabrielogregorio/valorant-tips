@@ -1,0 +1,18 @@
+import { Text, TextVariantEnum } from '@/atoms/Text';
+
+export const TitleAndSubtitle = ({ title = '', subtitle = '' }: { title?: string; subtitle?: string }) => (
+  <div className="flex flex-col justify-center items-center">
+    <div className="max-w-150 w-full">
+      {title ? (
+        <Text className="text-center text-content-fg" variant={TextVariantEnum.h1}>
+          {title}
+        </Text>
+      ) : undefined}
+      {subtitle ? (
+        <Text className="text-center text-content-fg" variant={TextVariantEnum.h2}>
+          {subtitle}
+        </Text>
+      ) : undefined}
+    </div>
+  </div>
+);

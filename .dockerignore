@@ -1,0 +1,46 @@
+# Ignoring local node_modules prevents host environment specific
+# binaries (like esbuild bindings for Windows/Mac vs Linux) from crashing
+# the build or overriding the container architecture during COPY
+node_modules/
+.pnp
+.pnp.js
+
+# Ignore Next.js build output
+.next/
+out/
+build/
+
+# Ignore local environment variables (these will be passed by docker compose)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel and CI
+.vercel
+.github
+
+# Testing output
+coverage/
+playwright-report/
+test-results/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+
+# Misc
+.DS_Store
+*.pem
+.git/
+.vscode/
+
+# Ignore Readmes and Docs not needed for running code
+docs/
+AGENTS.md
+CLAUDE.md
+README.md

@@ -1,0 +1,74 @@
+import { Meta, Typeset, Story } from '@storybook/addon-docs/blocks';
+import { Text, TextVariantEnum } from './index';
+
+<Meta title="Atoms/Text/Docs" />
+
+# Typography
+
+O componente `Text` é o átomo fundamental para toda a tipografia do **Valorant Tips**. Ele abstrai as classes do Tailwind e garante que o design system seja respeitado em toda a aplicação.
+
+## Variantes
+Existem diversas variantes pré-configuradas que mapeiam diretamente para os estilos definidos no Figma.
+
+### Títulos (Headings)
+Usados para hierarquia de conteúdo.
+
+
+  <div className="flex flex-col gap-md">
+    <Text variant={TextVariantEnum['9xl']}>9XL Hero Title</Text>
+    <Text variant={TextVariantEnum['6xl']}>6XL Brand Logo</Text>
+    <Text variant={TextVariantEnum.h1}>Heading 1 - Page Title</Text>
+    <Text variant={TextVariantEnum.h2}>Heading 2 - Section</Text>
+    <Text variant={TextVariantEnum.h3}>Heading 3 - Subsection</Text>
+    <Text variant={TextVariantEnum.h2Highlight}>Heading 2 Highlighted</Text>
+  </div>
+
+
+### Corpo de Texto (Body)
+Usados para leitura densa e descrições.
+
+  <div className="flex flex-col gap-md">
+    <Text variant={TextVariantEnum.text}>Padrão de corpo de texto (Normal)</Text>
+    <Text variant={TextVariantEnum.textBold}>Texto em Negrito (Semibold)</Text>
+    <Text variant={TextVariantEnum.textUnderline}>Texto Sublinhado</Text>
+  </div>
+
+
+### Componentes e Auxiliares
+Específicos para elementos de interface.
+
+  <div className="flex flex-col gap-md text-white">
+    <div className="p-sm bg-primary w-fit"><Text variant={TextVariantEnum.button}>BUTTON TEXT</Text></div>
+    <Text variant={TextVariantEnum.link}>Link de navegação</Text>
+    <Text variant={TextVariantEnum.subtext}>Subtexto ou legenda (Pequeno)</Text>
+  </div>
+
+## Propriedades (API)
+   
+
+| Prop | Tipo | Descrição |
+|------|------|-----------|
+| `variant` | `TextVariantEnum` | Define o estilo visual (font-size, weight, leading). |
+| `as` | `TextAsEnum` | Define a tag HTML final (h1, p, span, etc). |
+| `className` | `string` | Classes adicionais via Tailwind. |
+| `children` | `ReactNode` | Conteúdo do texto. |
+
+
+## Escala de Tipografia
+
+**Font Family:** Poppins
+
+<Typeset
+  fontFamily="Poppins"
+  fontSizes={[
+    '12px',
+    '16px',
+    '18px',
+    '20px',
+    '24px',
+    '36px',
+    '56px',
+  ]}
+  fontWeight={400}
+  sampleText="The quick brown fox jumps over the lazy dog"
+/>

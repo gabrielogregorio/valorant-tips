@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@import 'tailwindcss';
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  body {
+    font-family: 'Poppins', serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@theme {
+  --font-poppins: 'Poppins', sans-serif;
+
+  --breakpoint-desktop: 1366px;
+  --breakpoint-tabled: 1024px;
+  --breakpoint-mobile: 640px;
+
+  --border-width: 1px;
+
+  --background-image-loadImage: url('/public/images/choiceImage.png');
+
+  --animate-pulseIn300: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-spin: spin 1s linear infinite;
+  --animate-fadeIn300: fadeIn300 0.3s ease-in-out forwards;
+
+  --spacing-xxs: 2px;
+  --spacing-xs: 4px;
+  --spacing-sm: 6px;
+  --spacing-md: 8px;
+  --spacing-lg: 12px;
+  --spacing-xl: 16px;
+  --spacing-2xl: 20px;
+  --spacing-3xl: 24px;
+  --spacing-4xl: 28px;
+  --spacing-5xl: 32px;
+  --spacing-6xl: 36px;
+  --spacing-7xl: 48px;
+
+  --spacing-content-desktop: 890px;
+  --spacing-full: 100%;
+  --spacing-size-w-content-modal: 650px;
+  --spacing-size-inputs: 400px;
+
+  --radius-xxs: 2px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-full: 100%;
+
+  --shadow-md: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+
+  --color-primary: #d85f5f;
+  --color-primary-hard: #e03f3f;
+  --color-primary-soft: #e07a7a;
+
+  --color-secondary: #3386d3;
+  --color-secondary-hard: #0764ba;
+  --color-secondary-soft: #72a8db;
+
+  --color-root-bg: #f7f7fa;
+
+  --color-content-fg: #ffffff;
+  --color-content-fg-subcontent: #6a7281;
+  --color-content-fg-contrast: #ffffff;
+  --color-content-fg-placeholder: #99a1ae;
+  --color-content-fg-disabled: #848589;
+
+  --color-main-bg: #22272e;
+  --color-content-bg: #2d333b;
+  --color-content-bg-disabled: #f0f3fa;
+  --color-content-bg-highlight: #d9d9d9;
+
+  --color-accent-radiant: #fe9e2e;
+  --color-accent-rose: #d81e65;
+  --color-accent-purple: #9747ff;
+  --color-accent-pacific-blue: #029abc;
+
+  --color-feedback-error-hard: #ef4444;
+  --color-feedback-error-soft: #fca5a5;
+
+  --color-feedback-success-hard: #125134;
+  --color-feedback-success-soft: #d1e7dd;
+
+  --color-overlay-bg: rgba(0, 0, 0, 0.6);
+  --color-overlay-bg-blur: rgba(26, 26, 26, 0.5);
+
+  --color-border: #848589;
+  --color-border-soft: #e8e8e8;
+
+  --color-neutral-900: #111111;
+  --color-neutral-800: #1a1a1a;
+  --color-neutral-750: #383838;
+  --color-neutral-650: #2c2c2c;
+  --color-neutral-500: #6c6c6c;
+  --color-neutral-100: #efefef;
+}
+
+@layer utilities {
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+
+  @keyframes fadeIn300 {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.disable-pointer-events-for-children {
+  pointer-events: auto;
+}
+
+.disable-pointer-events-for-children * {
+  pointer-events: none;
+}
+
+/* Disable auto fill white effect */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ffffff;
+  color: #ffffff;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+  caret-color: #e5e7eb;
+}

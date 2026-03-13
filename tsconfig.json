@@ -1,39 +1,45 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "sourceMap": true,
+    "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
+    "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
-    "baseUrl": ".",
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": "./",
     "paths": {
-      "@/base/*": ["src/components/base/*"],
-      "@/layout/*": ["src/components/layout/*"],
-      "@/widgets/*": ["src/components/widgets/*"],
-      "@/contexts/*": ["src/core/contexts/*"],
-      "@/constants/*": ["src/core/constants/*"],
-      "@/data/*": ["src/core/data/*"],
-      "@/helpers/*": ["src/core/helpers/*"],
-      "@/hooks/*": ["src/core/hooks/*"],
-      "@/services/*": ["src/core/services/*"],
-      "@/handlers/*": ["src/core/handlers/*"],
-      "@/schemas/*": ["src/core/schemas/*"],
-      "@/mock/*": ["src/tests/mock/*"],
-      "@/utils/*": ["src/tests/utils/*"],
-      "@/pages/*": ["src/pages/*"],
-      "@/types/*": ["src/core/types/*"],
-      "@/enums/*": ["src/core/enums/*"]
-    },
-    "incremental": true
+      "@/atoms/*": ["src/components/atoms/*"],
+      "@/molecules/*": ["src/components/molecules/*"],
+      "@/organisms/*": ["src/components/organisms/*"],
+      "@/shared/*": ["./src/shared/*"],
+      "@/libs/*": ["./src/libs/*"],
+      "@/types/*": ["./src/shared/@types/*"],
+      "@Features/*": ["src/features/*"],
+      "@/*": ["./src/*"]
+    }
   },
-  "include": ["next-env.d.ts", "./src/**/*.ts", "./src/**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts",
+    ".next/dev/dev/types/**/*.ts"
+  ],
+  "exclude": ["node_modules", "**/*.stories.tsx", "**/*.stories.ts"]
 }
